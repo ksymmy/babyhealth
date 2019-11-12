@@ -1,0 +1,72 @@
+.add {
+  color: #3396fb;
+  font-size: 30rpx;
+  font-weight: 600;
+  font-family: Microsoft Yahei;
+}
+
+.add image {
+  width: 46rpx;
+  height: 46rpx;
+  vertical-align: middle;
+  margin-right: 10rpx;
+}
+
+.date-search {
+  height: 80rpx;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.date-search image {
+  width: 46rpx;
+  height: 46rpx;
+  vertical-align: middle;
+}
+
+.meeting-state-0 {
+  background-color: #DBDBDB;
+  border-radius: 15rpx;
+  height: 30rpx;
+  width: 30rpx;
+  color: white;
+  position: relative;
+  margin-right: 15rpx;
+}
+
+.meeting-state-1, .meeting-state-2 {
+  background-color: #3396FB;
+  border-radius: 15rpx;
+  height: 30rpx;
+  width: 30rpx;
+  color: white;
+  position: relative;
+  margin-right: 15rpx;
+}
+
+.meeting-state-dot {
+  background-color: #2BCD32;
+  border-radius: 5rpx;
+  position: absolute;
+  height: 12rpx;
+  width: 12rpx;
+  top: 0;
+  right: 0;
+}
+
+.a-list-item-content .btnGroup button {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.meeting-opt {
+  display: flex;
+  align-items: center;
+  padding-top: 16rpx;
+}
+
+.meeting-opt .btnGroup button {
+  margin-bottom: 0;
+  margin-top: 0
+}

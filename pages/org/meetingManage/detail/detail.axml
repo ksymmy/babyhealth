@@ -1,0 +1,45 @@
+<view class="page">
+  <view class="row-border-none">
+    <view class="w25">会议主题:</view>
+    <view class="w75" style="font-weight:600">{{meetingInfo.name}}</view>
+  </view>
+  <view class="row-border-none">
+    <view class="w25">会议时间:</view>
+    <view class="w75">{{meetingInfo.meetingStart+'至'+meetingInfo.meetingEnd}}</view>
+  </view>
+  <view class="row-border-none">
+    <view class="w25">会议地点:</view>
+    <view class="w75">{{meetingInfo.address}}</view>
+  </view>
+  <view class="row-border-none" style="{{meetingInfo.canParticipateIds?'border-bottom:none;':''}}">
+    <view class="w25">参会人员:</view>
+    <view class="w75">{{meetingInfo.canParticipateIds?meetingInfo.canParticipateIds.split(',').length:0}}人</view>
+  </view>
+  <view class="row-border-none" a:if="{{meetingInfo.canParticipateIds}}">
+    <view class="w25"></view>
+    <view class="w75">
+      <view class="link">
+        <view class="link_child" a:for="{{meetingInfo.canParticipateNames.split(',')}}">
+          <image mode="scaleToFill" src="/image/person.png"/>{{item}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="row-border-none" style="{{meetingInfo.participantNum?'border-bottom:none;':''}}">
+    <view class="w25">报名通过:</view>
+    <view class="w75">{{meetingInfo.participantNum}}人</view>
+  </view>
+  <view class="row-border-none" a:if="{{meetingInfo.participantNum}}">
+    <view class="w25"></view>
+    <view class="w75">
+      <view class="link">
+        <view class="link_child" a:for="{{meetingInfo.participantNames}}">
+          <image mode="scaleToFill" src="/image/person.png"/>{{item}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="row-border-none">
+    <view class="w25">会议内容:</view>
+  </view>
+  <view class="row-border-none">
+    <view style="width:100%;display:flex;justify-content:flex-end;">{{meetingInfo.context}}</view>
+  </view>

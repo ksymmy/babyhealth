@@ -1,0 +1,54 @@
+<view class="page">
+  <form onSubmit="onSubmit" onReset="onReset">
+    <view class="row">
+      <view>
+        <text style="color:red">*</text>缴款单位或个人</view>
+      <picker onChange="bindObjPickerChange" value="{{arrIndex}}" range="{{objectArray}}" range-key="name">
+        <view class="row">
+          <view class="row-extra">当前选择：{{objectArray[arrIndex].name}}</view>
+          <image class="row-arrow" src="/image/arrowright.png" mode="aspectFill" />
+        </view>
+      </picker>
+    </view>
+    <view class="row">
+      <view>
+        <text style="color:red">*</text>会员类别</view>
+      <text class="row-text" a:if="{{memType==2}}">个人会员 收费标准:{{money+'元/年'}}</text>
+      <text class="row-text" a:elif="{{memType==3}}">单位会员 收费标准:{{money+'元/年'}}</text>
+    </view>
+    <view class="row">
+      <view>
+        <text style="color:red">*</text>缴费方式</view>
+      <picker onChange="bindYearPickerChange" value="{{yearIndex}}" range="{{yearArray}}" range-key="name">
+        <view class="row">
+          <view class="row-extra">当前选择：{{yearArray[yearIndex].name}}</view>
+          <image class="row-arrow" src="/image/arrowright.png" mode="aspectFill" />
+        </view>
+      </picker>
+    </view>
+    <view class="row">
+      <view>
+        <text style="color:red">*</text>缴费金额</view>
+      <text class="row-text">{{paymoney+'元'}}</text>
+    </view>
+    <view class="row">
+      <view>
+        <text style="color:red">*</text>会员期限</view>
+      <view style="display: flex;align-items:center;">
+        <view id="startdate" onTap="chooseDate">
+          <input disabled="true" name="startdate" value="{{startdate}}" class="input" placeholder="开始时间" /></view>
+        <text class="row-text">至</text>
+        <view id="enddate" onTap="chooseDate">
+          <input disabled="true" name="enddate" value="{{enddate}}" class="input" placeholder="结束时间" /></view>
+      </view>
+    </view>
+    <view class="row">
+      <view>
+        <text style="color:red">*</text>缴费日期</view>
+      <view id="paydate" onTap="chooseDate">
+        <input disabled="true" name="paydate" value="{{paydate}}" class="input" placeholder="缴费日期" />
+      </view>
+    </view>
+    <button size="default" type="primary" onTap="saveDues">保存</button>
+  </form>
+</view>

@@ -1,0 +1,35 @@
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100rpx;
+  font-size: 30rpx;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.row view:nth-child(2) {
+  /* word-wrap: break-word; */
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+}
+
+.row view:nth-child(2) view:nth-child(1) {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.row view:nth-child(3) {
+  margin-right: 10rpx;
+}
+
+.row .byte-color {
+  color: gray;
+  font-size: 28rpx;
+  padding-top: 10rpx;
+}
+
+.row .preview-btn {
+  border-radius: 25rpx;
+}

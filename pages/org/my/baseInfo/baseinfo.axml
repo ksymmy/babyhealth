@@ -1,0 +1,148 @@
+<view class="page">
+  <form onSubmit="onSubmit" onReset="onReset">
+    <view hidden="true">
+      <input name="id" value="{{orgInfo.id}}" class="input"/>
+    </view>
+    <view class="row">
+      <view class="dll-title">
+        <text class="redColor">*</text>统一社会信用代码</view>
+      <input style="flex-basis: 50%;" disabled="{{isDisabled}}" class="input" name="creditCode" value="{{orgInfo.creditCode}}" class="input" placeholder="请输入统一社会信用代码" />
+    </view>
+    <view class="row">
+      <view class="dll-title">
+        <text class="redColor">*</text>单位名称</view>
+      <input style="flex-basis: 70%;" disabled="{{isDisabled}}" name="corpName" value="{{orgInfo.corpName}}" class="input" placeholder="请输入单位名称" />
+    </view>
+    <picker disabled="{{isDisabled}}" onChange="bindJglxPickerChange" value="{{jglxIndex}}" range="{{jglxArray}}" range-key="name">
+      <view class="row">
+        <view class="dll-title">
+          <text class="redColor">*</text>机构类型</view>
+        <view hidden="true">
+          <input name="orgType" value="{{jglxArray[jglxIndex].id}}" class="input"/>
+          <input name="orgTypeName" value="{{jglxArray[jglxIndex].name}}" class="input"/>
+        </view>
+        <view>{{jglxArray[jglxIndex].name}}</view>
+        <image class="dll-arrow" src="/image/arrowright.png" mode="aspectFill" />
+      </view>
+    </picker>
+    <picker disabled="{{isDisabled}}" onChange="bindSshyPickerChange" value="{{sshyIndex}}" range="{{sshyArray}}" range-key="name">
+      <view class="row">
+        <view class="dll-title">
+          <text class="redColor">*</text>所属行业</view>
+        <view hidden="true">
+          <input name="industry" value="{{sshyArray[sshyIndex].id}}" class="input"/>
+          <input name="industryName" value="{{sshyArray[sshyIndex].name}}" class="input"/>
+        </view>
+        <view>{{sshyArray[sshyIndex].name}}</view>
+        <image class="dll-arrow" src="/image/arrowright.png" mode="aspectFill" />
+      </view>
+    </picker>
+    <!-- <view>
+      <view class="dll-title">
+        <text class="redColor">*</text>住址</view>
+      <view class="rowMore-demo">
+        <picker disabled="{{isDisabled == '0' ? 'disabled' :'' }}" onChange="bindareaProChange" value="{{areaProIndex}}" range="{{areaProArray}}" range-key="name">
+          <view class="rowMore">
+            <view class="dll-title">省份</view>
+            <view hidden="true">
+              <input name="provinceId" value="{{areaProArray[areaProIndex].id}}" class="input"/>
+            </view>
+            <view>{{areaProArray[areaProIndex].name}}</view>
+            <image class="dll-arrow" src="/image/arrowright.png" mode="aspectFill" />
+          </view>
+        </picker>
+        <picker disabled="{{isDisabled == '0' ? 'disabled' :'' }}" onChange="bindareaCityChange" value="{{areaCityIndex}}" range="{{areaCityArray}}" range-key="name">
+          <view class="rowMore">
+            <view class="dll-title">城市</view>
+            <view hidden="true">
+              <input name="cityId" value="{{areaCityArray[areaCityIndex].id}}" class="input"/>
+            </view>
+            <view >{{areaCityArray[areaCityIndex].name}}</view>
+            <image class="dll-arrow" src="/image/arrowright.png" mode="aspectFill" />
+          </view>
+        </picker>
+        <picker disabled="{{isDisabled == '0' ? 'disabled' :'' }}" onChange="bindareaCountyChange" value="{{areaCountyIndex}}" range="{{areaCountyArray}}" range-key="name">
+          <view class="rowMore">
+            <view class="dll-title">县区</view>
+            <view hidden="true">
+              <input name="countyId" value="{{areaCountyArray[areaCountyIndex].id}}" class="input"/>
+            </view>
+            <view>{{areaCountyArray[areaCountyIndex].name}}</view>
+            <image class="dll-arrow" src="/image/arrowright.png" mode="aspectFill" />
+          </view>
+        </picker>
+      </view>
+    </view> -->
+
+
+    <view class="page-section">
+      <view class="form-row row">
+        <view class="form-row-label" ><text class="redColor">*</text>所在区域</view>
+        <view class="form-row-content"  data-state="0" onTap="adressOnShow">
+          <input  disabled="true"  value="{{area}}" maxlength="50" class="input" placeholder="选择地区" />
+        </view>
+        <image class="row-arrow" src="/image/arrowright.png" mode="aspectFill" />
+        <view hidden="true">
+              <input name="provinceId" value="{{areaProCode}}" class="input"/>
+              <input name="cityId" value="{{areaCityCode}}" class="input"/>
+              <input name="countyId" value="{{areaCountyCode}}" class="input"/>
+        </view>
+      </view>
+    </view>
+
+
+    <view class="row">
+      <view class="dll-title">
+        <text class="redColor">*</text>
+        详细地址
+      </view>
+      <input name="detail" disabled="{{isDisabled}}" style="flex-basis: 70%;" value="{{orgInfo.detail}}" class="input" placeholder="请输入详细地址" />
+    </view>
+    <view class="row">
+      <view class="dll-title">邮政编码</view>
+      <input name="postalCode" disabled="{{isDisabled}}" style="flex-basis: 70%;" value="{{orgInfo.postalCode}}" class="input" placeholder="请输入邮政编码" />
+    </view>
+    <view class="row">
+      <view class="dll-title">
+        <text class="redColor">*</text>成立日期</view>
+        <view id="paydate" onTap="chooseDate">
+          <input name="establishDateStr" disabled="true" style="flex-basis: 70%;" value="{{dateValue}}" class="input"  placeholder="请输入成立日期" />
+        </view>
+      <!-- <input name="establishDateStr" disabled="{{isDisabled == '0' ? 'disabled' :'' }}" style="flex-basis: 70%;" value="{{dateValue}}" class="input" onFocus="chooseDate" placeholder="请输入成立日期" /> -->
+    </view>
+    <view class="row">
+      <view class="dll-title">
+        <text class="redColor">*</text>联系电话</view>
+      <input style="flex-basis: 70%;" disabled="{{isDisabled}}" name="phone" value="{{orgInfo.phone}}" class="input" placeholder="请输入联系电话" />
+    </view>
+    <view class="row">
+      <view class="dll-title">
+        <text class="redColor">*</text>邮箱</view>
+      <input style="flex-basis: 70%;" disabled="{{isDisabled}}" name="email" value="{{orgInfo.email}}" class="input" placeholder="请输入邮箱" />
+    </view>
+    <button type="primary" formType="submit">{{isDisabled == 'true' ? '修改' :'保存' }}</button>
+  </form>
+</view>
+
+<view  style="z-index: {{hidden}};position: fixed;width:100%;" >
+  <view class="adress-blank" onTap="adressOnShow" data-state="1" ></view>
+  <view class="adress-context" >
+    <view style="flex: auto;" class="row">
+    <button style="float:left; margin-left:20rpx;margin-top:20rpx;margin-bottom:20rpx;" onTap="adressOnShow" data-state="1" type="primary" size="mini" >取消</button>
+    <button style="float:right; margin-right:20rpx;margin-top:20rpx;margin-bottom:20rpx;" onTap="adressOnShow" data-state="2" type="primary" size="mini" >确定</button>
+    </view>
+    <view class="pv-left">
+      <picker-view value="{{value}}" onChange="adressOnChange" >
+        <picker-view-column >
+          <view a:for="{{areaProArray}}">{{item.name}}</view>
+        </picker-view-column>
+        <picker-view-column >
+          <view a:for="{{areaCityArray}}">{{item.name}}</view>
+        </picker-view-column>
+        <picker-view-column >
+          <view a:for="{{areaCountyArray}}">{{item.name}}</view>
+        </picker-view-column>
+      </picker-view>
+    </view>
+  </view>
+</view>

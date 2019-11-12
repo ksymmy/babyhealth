@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "会议通知",
+  "usingComponents": {
+    "search-bar": "mini-antui/es/search-bar/index"
+  }
+}

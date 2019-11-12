@@ -1,0 +1,7 @@
+<view>
+  <modal show="{{modalOpened}}" onModalClick="onModalClick" onModalClose="onModalClose">
+    <view style="margin: 20px 0 10px 0;"></view>
+    <input placeholder="模板名称" onInput="handleTemplateInput"/>
+    <view slot="footer" onTap="reback">确定</view>
+  </modal>
+</view>

@@ -1,0 +1,40 @@
+<view class="page">
+  <form onSubmit="bindFormSubmit">
+      <view class="page-notice-section">
+          <view class="page-section-demo notice-title">
+            {{noticeInfo.title}}
+          </view>
+          <view hidden="hidden">
+            <input  name="type" value="1" />
+            <input  name="id" value="{{id}}" />
+          </view>
+      </view>
+      <view class="page-notice-section">
+        <view class="page-section-demo notice-context">
+          <text>{{noticeInfo.context}}</text>
+        </view>
+      </view>
+      <view class="page-notice-section">
+        <view class="form-row-label notice-fj" a:if="{{fileInfos.length != 0}}">附件</view>
+          <scroll-view scroll-y style="height: 90vh;" onScrollToLower="onScrollToLower">
+          <view a:if={{fileInfos}}>
+            <block a:for={{fileInfos}} a:for-index="idx">
+              <view class="row" onTap="previewFileInDingTalk" data-entity="{{item}}">
+                <view style="display: flex;align-items: center;
+                  margin-left:30rpx;align-items: center;">
+                  <image onError="imageOnError" data-index="{{index}}" mode="scaleToFill" 
+                  src="{{item.extension_b}}" style="width:90rpx;height:90rpx;"/>
+                </view>
+                <view>
+                  <view>{{item.name}}</view>
+                  <view class="byte-color">{{item.fileSize_b}}</view>
+                </view>
+              </view>
+            </block>
+          </view>
+        </scroll-view>
+      </view>
+  </form>
+    
+</view>
+

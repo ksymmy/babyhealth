@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "创建会议通知",
+  "usingComponents": {
+    "modal": "mini-antui/es/modal/index"
+  }
+}

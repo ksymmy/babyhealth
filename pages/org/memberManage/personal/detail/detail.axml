@@ -1,0 +1,26 @@
+<view class="page">
+    <view class="row-border-none">
+      <view class="w25">姓名:</view>
+      <view class="w75">{{userInfo.name}}</view>
+    </view>
+    <view class="row-border-none">
+      <view class="w25">证件类型:</view>
+      <view class="w75">{{arrIdType[arrIndex].name}}</view>
+    </view>
+    <view class="row-border-none">
+      <view class="w25">证件号码:</view>
+      <view class="w75">{{userInfo.idnumber}}</view>
+    </view>
+    <view class="row-border-none">
+      <view class="w25">手机号码:</view>
+      <view class="w75">{{userInfo.phome}}</view>
+    </view>
+    <view class="row-border-none">
+      <view class="w25">邮箱:</view>
+      <view class="w75">{{userInfo.email}}</view>
+    </view>
+    <view class="row-border-none">
+      <view class="w25">会员职位:</view>
+      <view class="w75">{{hylbArray[hylbIndex].name}}</view>
+    </view>
+</view>

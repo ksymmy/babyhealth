@@ -1,0 +1,69 @@
+<view class="page">
+   <tabs
+    tabs="{{tabs}}"
+    showPlus="{{false}}"
+    activeTab="{{activeTab}}"
+    onTabClick="handleTabClick"
+    onChange="handleTabChange"
+    swipeable="{{false}}"
+    tabBarInactiveTextColor="#3396fb"
+    tabBarUnderlineColor="none"
+    activeCls="activeTab"
+  >
+  <block a:for="{{tabs}}">
+      <tab-content key="{{index}}" tabId="{{index}}" activeTab="{{activeTab}}" a:if="{{index === 0}}">
+        <view class="tab-content">
+          <view style="justify-content:center;display:flex;" a:if="{{tabs[0].badgeText == 0}}">无记录</view>
+            <block a:for="{{checks}}" a:for-index="x" a:for-item="p">
+              <view class="item" a:if="{{p.state == 0}}">
+                <view class="left">
+                  <text class="title">{{p.userName}}</text>
+                  <text class="date">{{'报名时间:'+p.createTime}}</text>
+                </view>
+                <view class="btnGroup">
+                  <button size="mini" type="primary" plain onTap="pass" data-id="{{p.id}}" data-uid="{{p.userId}}">通过</button>
+                  <button size="mini" type="primary" plain onTap="noPass" data-id="{{p.id}}" data-uid="{{p.userId}}">不通过</button>
+                </view>
+            </view>
+            </block>
+        </view>
+      </tab-content>
+      <tab-content key="{{index}}" tabId="{{index}}" activeTab="{{activeTab}}" a:elif="{{index === 1}}">
+        <view class="tab-content">
+          <view style="justify-content:center;display:flex;" a:if="{{tabs[1].badgeText == 0}}">无记录</view>
+           <block a:for="{{checks}}" a:for-index="x" a:for-item="p">
+              <view class="item" a:if="{{p.state == 1}}">
+                <view class="left">
+                  <text class="title">{{p.userName}}</text>
+                  <text class="date">{{'报名时间:'+p.createTime}}</text>
+                  <text class="date" a:if="{{p.updateTime}}">{{'审核时间:'+p.updateTime}}</text>
+                </view>
+                <view class="btnGroup">
+                  <!-- <button size="mini" type="primary" plain>通过</button> -->
+                  <button size="mini" type="primary" plain onTap="cancel" data-id="{{p.id}}" data-uid="{{p.userId}}">取消参会</button>
+                </view>
+            </view>
+            </block>
+        </view>
+      </tab-content>
+      <tab-content key="{{index}}" tabId="{{index}}" activeTab="{{activeTab}}" a:else>
+        <view class="tab-content">
+          <view style="justify-content:center;display:flex;" a:if="{{tabs[2].badgeText == 0}}">无记录</view>
+           <block a:for="{{checks}}" a:for-index="x" a:for-item="p">
+              <view class="item" a:if="{{p.state == 2}}">
+                <view class="left">
+                  <text class="title">{{p.userName}}</text>
+                  <text class="date">{{'报名时间:'+p.createTime}}</text>
+                  <text class="date" a:if="{{p.updateTime}}">{{'审核时间:'+p.updateTime}}</text>
+                </view>
+                <!-- <view class="btnGroup">
+                  <button size="mini" type="primary" plain>通过</button>
+                  <button size="mini" type="primary" plain>不通过</button>
+                </view> -->
+            </view>
+            </block>
+        </view>
+      </tab-content>
+    </block>
+  </tabs>
+</view>

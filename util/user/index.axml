@@ -1,0 +1,20 @@
+<template name="grid">
+    <view class="grid" key="grid">
+        <view a:for="{{list}}" key="{{item.entitle}}" onTap="{{onItemTap}}" data-index="{{index}}" style="width:100%">
+            <!-- <view class="grid-item-wrapper">
+                <image src="{{item.icon}}" class="grid-icon" mode="aspectFit" />
+                <text class="grid-text">{{item.title}}</text>
+            </view> -->
+          <view class="page-section menu">
+          <view class="form-row row-bottom">
+            <image class="row-left-arrow" mode="scaleToFill" src="/image/menu{{index+1}}.png"/>
+            <view class="form-row-label" style="width:100%">{{item.title}}</view>
+            <image class="row-arrow" src="/image/arrowright.png" mode="aspectFill" />
+          </view>
+        </view>
+        </view>
+        <view class="page-section">
+        </view>
+        
+    </view>
+</template>

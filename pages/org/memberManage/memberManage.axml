@@ -1,0 +1,20 @@
+<view class="grid" key="grid">
+  <view class="grid-item">
+    <view class="grid-item-wrapper" onTap="onMembermManage">
+      <image src="/image/member.png" class="grid-icon" mode="aspectFit" />
+      <text class="grid-text">会员管理</text>
+    </view>
+  </view>
+  <view class="grid-item">
+    <view class="grid-item-wrapper" onTap="onDuesRecord">
+      <image src="/image/due_manage.png" class="grid-icon" mode="aspectFit" />
+      <text class="grid-text">会费管理</text>
+    </view>
+  </view>
+  <view class="grid-item">
+    <view class="grid-item-wrapper" onTap="onDuesNotice">
+      <image src="/image/due_remind.png" class="grid-icon" mode="aspectFit" />
+      <text class="grid-text">会费提醒</text>
+    </view>
+  </view>
+</view>

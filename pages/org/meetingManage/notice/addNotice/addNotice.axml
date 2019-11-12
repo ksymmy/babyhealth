@@ -1,0 +1,71 @@
+<view class="page">
+  <form onSubmit="onSubmit" onReset="onReset">
+    <!--<view class="row" hidden="{{insert == 'false'}}"> -->
+    <view class="row" hidden="{{true}}">
+      <view>
+        <text>选择模板</text>
+      </view>
+      <picker onChange="bindObjPickerChange" value="{{arrIndex}}" range="{{objectArray}}" range-key="name">
+        <view class="row">
+          <view class="row-extra">当前选择：{{objectArray[arrIndex].name}}</view>
+          <image class="row-arrow" src="/image/arrowright.png" mode="aspectFill" />
+        </view>
+      </picker>
+    </view>
+    <view class="row">
+      <view>
+        <text style="color:red">*</text>通知标题</view>
+      <input class="text-right" placeholder="通知标题" name="title" onInput="handleTitleInput" value="{{noticeRec.title}}"/>
+    </view>
+    <view class="row" style="height:600rpx;!important;border-bottom:none;">
+      <view>
+        <text style="color:red">*</text>通知内容</view>
+      <textarea style="height:86%" class="text-right" onBlur="bindTextAreaBlur" onInput="handleContextInput" placeholder="通知内容" name="context" maxlength="2000" value="{{noticeRec.context}}"/>
+    </view>
+    <view class="row" hidden="{{true}}">
+      <view>
+        <text style="color:red">*</text>发送方式</view>
+      <view>
+        <label>
+          <checkbox name="sendDingMsg" value="1" onChange="onSendDingMsg" checked="{{true}}"/>
+          <text class="checkbox-text">Ding通知</text>
+        </label>
+        <label>
+          <checkbox name="sendNotice1" value="{{sendNotice}}" onChange="onSendNotice" checked="{{sendNotice?true:false}}"/>
+          <text class="checkbox-text">站内信</text>
+        </label>
+        <label>
+          <checkbox name="sendEmail1" value="{{sendEmail}}" onChange="onSendEmail" checked="{{sendEmail?true:false}}"/>
+          <text class="checkbox-text">邮件</text>
+        </label>
+      </view>
+    </view>
+    <view hidden="{{true}}">
+      <view class="btnGroup">
+        <view a:if="{{insert == 'true'}}">
+          <button plain size="mini" onTap="openModal">另存为模板</button></view>
+        <view>
+          <button formType="submit" data-state='0' plain size="mini">保存</button></view>
+        <view>
+          <button formType="submit" data-state='1' plain size="mini">保存并发布</button></view>
+      </view>
+    </view>
+    <view class="btnGroup">
+      <button type="primary" formType="submit" data-state='0' size="mini">保存</button>
+      <button type="primary" formType="submit" data-state='1' size="mini">保存并发布</button>
+    </view>
+    </view>
+  </form>
+  <view class="modal" a:if="{{!hidden}}" key="modal">
+    <view class="modal-mask" animation="{{animMaskData}}"/>
+    <view class="modal-container" animation="{{animContentData}}">
+      <view class="modal-close" onTap="onModalCloseTap">×</view>
+      <view class="modal-content">
+        <view style="display:flex;flex-direction:column;align-items:center;">
+          <input placeholder="请输入模板名称" class="modal-input" onInput="handleTemplateInput"/>
+          <text class="modal-btn" onTap="onModalBtnClick">保存模板</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

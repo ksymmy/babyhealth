@@ -1,0 +1,25 @@
+<view class="page">
+  <view>
+    <button type="primary" onTap="uploadFile">上传附件</button>
+  </view>
+  <scroll-view scroll-y style="height: 90vh;" onScrollToLower="onScrollToLower">
+    <view a:if={{files}}>
+      <block a:for={{files}}>
+        <view class="row">
+          <view onTap="previewFileInDingTalk" data-entity="{{item}}">
+            <image onError="imageOnError" data-index="{{index}}" mode="scaleToFill" src="{{item.extension_b}}" style="width:100rpx;height:100rpx;"/>
+          </view>
+          <view onTap="previewFileInDingTalk" data-entity="{{item}}"}>
+            <view>{{item.name}}</view>
+            <view class="byte-color">{{item.fileSize_b}}</view>
+          </view>
+          <!--<button class="preview-btn" size="mini" type="default" onTap="previewFileInDingTalk" data-entity="{{item}}">预览</button> -->
+          <view onTap="deleteFile" data-entity="{{item}}">
+            <!--<icon type="clear" aria-label="clear" size="20"/> -->
+            <image mode="scaleToFill" style="height:50rpx;width:50rpx;" src="/image/clear.png"/>
+          </view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+</view>
