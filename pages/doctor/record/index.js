@@ -8,8 +8,8 @@ Page({
       header: 'list1',
       data: [
         {
-          title: '标题文字',
-          extra: '基本使用'
+          title: '姓名',
+          extra: '袁铭轩'
         }
       ]
     },

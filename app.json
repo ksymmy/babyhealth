@@ -1,6 +1,7 @@
 {
   "pages": [
-     "pages/doctor/index/index"
+     "pages/doctor/index/index",
+      "pages/doctor/record/index"
   ],
   "window": {
     "defaultTitle": "宝宝健康体检",
