@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "新建模板",
-  "usingComponents": {
-    "modal": "mini-antui/es/modal/index"
-  }
-}
