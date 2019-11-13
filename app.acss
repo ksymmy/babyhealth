@@ -96,10 +96,10 @@ page {
 .fixBottom button{
   font-size: 28rpx;
   width:262rpx;
-  height:58rpx;
-  line-height: 58rpx;
+  height:60rpx;
+  line-height: 60rpx;
   background: url(/image/bb.png) no-repeat 20rpx center;
-  background-size: contain;
+  background-size: 50rpx;
   padding-left:25rpx ;
 }
 

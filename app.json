@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/customer/baby-mgt/baby-mgt",
        "pages/doctor/cancel-remind/index",
     "pages/doctor/cancel-manage/index",
      "pages/customer/sign-in/sign-in",

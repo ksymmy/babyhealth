@@ -1,0 +1,23 @@
+<view class="page" key="container">
+    <view class="sendDate">
+       今天 10：00
+    </view>
+    <view class="orgInfo">
+       <image mode="scaleToFill" src="/image/org.png"/>
+       <text>闻堰社区卫生服务中心</text>
+    </view>
+    <view class="notice">
+        <view class="notice_title">
+          张子墨 - 30月龄儿童健康体检
+        </view>
+        <view class="notice_content">
+               
+张子墨家长您好，请您在宝宝30月龄体检完成后，在系统中及时点击<text class="text_blue">签到</text>按钮，谢谢！
+        </view>
+        <view class="notice_button btn_group">
+          <view animation="{{animationInfo}}" ><image mode="scaleToFill" src="/image/signIn.png"/></view>
+        </view>
+        
+    </view>
+  
+</view>

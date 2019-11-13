@@ -8,5 +8,10 @@ Page({
   },
 
   onShow() {},
+  toSignedIn(){
+    dd.navigateTo({
+      url: '../signed-in/signed-in'
+    });
+  }
 
 });

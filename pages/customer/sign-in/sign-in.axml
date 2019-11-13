@@ -17,7 +17,7 @@
 如果还未体检，请您明天带上宝宝，到闻堰社区服务中心进行体检，医生会为宝宝讲解喂养知识、宝宝生长发育注意事项等，祝您的宝宝健康成长。
         </view>
         <view class="notice_button btn_group">
-            <button size="default" type="primary" plain="true">签到</button>
+            <button size="default" type="primary" plain="true" onTap="toSignedIn">签到</button>
         </view>
     </view>
     <view class="fixBottom">

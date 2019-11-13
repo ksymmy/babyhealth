@@ -1,0 +1,30 @@
+<view class="page" key="container">
+    <view class="panel baby">
+         <view>
+            <image mode="scaleToFill" src="/image/girl.png"/>
+            <text>张子萱</text>
+         </view>
+         <view class="cur">
+            <image mode="scaleToFill" src="/image/boy.png"/>
+            <text>张子墨</text>
+         </view>
+         <view class="addBtn">
+           <image mode="scaleToFill" src="/image/add.png"/>
+           <text>新增</text>
+          </view>
+    </view>
+    <view class="panel medical">
+       <view class="panel_title">宝宝体检一览</view>
+       <flex wrap="wrap">
+          <view class="placeholder inline">Block</view>
+          <view class="placeholder inline">Block</view>
+          <view class="placeholder inline">Block</view>
+          <view class="placeholder inline">Block</view>
+          <view class="placeholder inline">Block</view>
+        </flex>
+    </view>
+    <view class="panel baby-info">
+        <view class="panel_title">宝宝档案信息</view>
+    </view>
+  
+</view>
