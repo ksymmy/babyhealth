@@ -1,0 +1,3 @@
+.notice .btn_group button{
+  width:100%;
+}

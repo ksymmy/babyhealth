@@ -1,0 +1,26 @@
+<view class="page" key="container">
+    <view class="sendDate">
+       今天 10：00
+    </view>
+    <view class="orgInfo">
+       <image mode="scaleToFill" src="/image/org.png"/>
+       <text>闻堰社区卫生服务中心</text>
+    </view>
+    <view class="notice">
+        <view class="notice_title">
+          张子墨 - 30月龄儿童健康体检签到
+        </view>
+        <view class="notice_content">
+          <view>张子墨家长您好！</view>
+         
+宝宝已到30月龄<text class="text_red">+5</text>天啦，如果30月龄已体检完成，请您点击下方按钮进行体检<text class="text_blue">签到</text>。
+如果还未体检，请您明天带上宝宝，到闻堰社区服务中心进行体检，医生会为宝宝讲解喂养知识、宝宝生长发育注意事项等，祝您的宝宝健康成长。
+        </view>
+        <view class="notice_button btn_group">
+            <button size="default" type="primary" plain="true">签到</button>
+        </view>
+    </view>
+    <view class="fixBottom">
+       <button size="default" type="primary" plain="true">宝宝管理</button>
+    </view>
+</view>

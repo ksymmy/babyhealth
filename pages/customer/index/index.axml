@@ -1,3 +1,24 @@
-<view class="container" key="container">
-  
+<view class="page" key="container">
+    <view class="sendDate">
+       今天 10：00
+    </view>
+    <view class="orgInfo">
+       <image mode="scaleToFill" src="/image/org.png"/>
+       <text>闻堰社区卫生服务中心</text>
+    </view>
+    <view class="notice">
+        <view class="notice_title">
+          张子墨 - 30月龄儿童健康体检通知
+        </view>
+        <view class="notice_content">
+          张子墨家长您好，您的宝宝已满30月龄，请近期携体检本先挂免费号后再前往儿保科体检。
+30月龄我们为宝宝提供<text class="text_blue">智能发育筛查（DDST）</text>评估儿童智力发展水平；<text class="text_blue">血常规免费检测</text>评估儿童贫血情况。
+
+            <view style="padding-top:56rpx">您能否按医生预约的日期来体检？</view>
+        </view>
+        <view class="notice_button btn_group">
+            <button size="default" type="default" style="border-right: 1px solid #d5d5d5;">申请改期</button>
+            <button size="default" type="primary" plain="true">可以</button>
+        </view>
+    </view>
 </view>
