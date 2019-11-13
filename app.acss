@@ -5,11 +5,104 @@ page {
 }
 
 .page {
-  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
-  font-size: 26rpx;
-  padding: 32rpx;
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, Microsoft YaHei,sans-serif;
+  font-size: 24rpx;
+  padding: 30rpx;
   flex: 1;
+  color:#5a5a5a;
 }
+.text_blue{
+  color:#2795fe
+}
+.text_red{
+  color:#ff0000
+}
+/* 家长端宝宝管理 */
+.page{
+  width: calc(100% - 30);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sendDate{
+  width:186rpx;
+  height:50rpx;
+  line-height: 50rpx;
+  background-color: #fff;
+  border-radius: 15rpx;
+  text-align: center;
+  margin:30rpx 0;
+  
+}
+.orgInfo{
+   align-self: flex-start;
+}
+.orgInfo image{
+  width:90rpx;
+  height:90rpx;
+  vertical-align: middle;
+  margin-right:26rpx;
+}
+.orgInfo text{
+  font-size: 28rpx;
+}
+.notice{
+  width: 520rpx;
+  min-height: 390rpx;
+  background: url("/image/noticeBg.png") no-repeat center top;
+   background-size: contain;
+  background-color: #fff;
+  box-shadow: 0 0 4px 3px #dcecf6;
+  border-radius: 30rpx;
+  overflow: hidden;
+}
+.notice .notice_title{
+   width:100%;
+   height:100rpx;
+   line-height: 100rpx;
+   font-size: 30rpx;
+   padding:0 30rpx;
+   color:#fff;
+}
+.notice .notice_content{
+  padding:0 45rpx;
+  padding-top:40rpx;
+  font-size: 28rpx;
+  line-height: 50rpx;
+  padding-bottom:38rpx;
+  border-bottom: 1px solid #d5d5d5;
+}
+
+.notice .btn_group{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.notice .btn_group button{
+  width:50%;
+  border:none;
+  border-radius: 0;
+  font-size: 32rpx;
+}
+.fixBottom{
+   width:100%;
+   height:100rpx;
+   padding-top:23rpx;
+   position: fixed;
+   bottom:0;
+   background: #fff;
+   padding-left: 30rpx;
+}
+.fixBottom button{
+  font-size: 28rpx;
+  width:262rpx;
+  height:58rpx;
+  line-height: 58rpx;
+  background: url(/image/bb.png) no-repeat 20rpx center;
+  background-size: contain;
+  padding-left:25rpx ;
+}
+
 
 
  
