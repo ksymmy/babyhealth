@@ -17,11 +17,12 @@ App({
             method: 'POST',
             dataType: 'json',
             headers: {
-              'token': t.data,//从前端缓存取
+              // 'token': t.data,//从前端缓存取
             },
             data: {
               authCode: res.authCode,
-              corpId: dd.corpId,
+              corpid: dd.corpId,
+              userid: t.data ? t.data.userid : '',
             },
             success: function(res) {
               if (res.data.code == "0000") {
@@ -62,7 +63,7 @@ function setStorage(userInfo) {
   });
 }
 
-let t = dd.getStorageSync({ key: 'token' });
+let t = dd.getStorageSync({ key: 'userInfo' });
 const config = {
   api_base_url: getApp().globalData.handerUrl,
   pageSize: 10, //页面分页条数,
