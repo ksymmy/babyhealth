@@ -1,16 +1,19 @@
 App({
   onLaunch(options) {
     console.log('App Launch', options);
-    console.log('getSystemInfoSync', dd.getSystemInfoSync());
-    console.log('SDKVersion', dd.SDKVersion);
+    this.login().then(function(userInfo) {
+      console.log(userInfo);
+      dd.redirectTo({
+        url: userInfo.admin ? '/pages/doctor/index/index' : '/pages/customer/index/index',
+      });
+    });
   },
-
-  login(){
-    return new Promise(function (resolve,reject){
+  login() {
+    return new Promise(function(resolve, reject) {
       dd.getAuthCode({
         success: function(res) {
           dd.httpRequest({
-            url: config.api_base_url+'loginApi/login',//登录请求
+            url: config.api_base_url + 'babyservice/login',//登录请求
             method: 'POST',
             dataType: 'json',
             headers: {
@@ -21,12 +24,10 @@ App({
               corpId: dd.corpId,
             },
             success: function(res) {
-              var userInfo = res.data.data;
-              console.log('userInfo',userInfo);
-              setStorage(userInfo);
-              if(res.data.code == "0000"){
-                resolve(res);
-              }else{
+              if (res.data.code == "0000") {
+                setStorage(res.data.data);
+                resolve(res.data.data);
+              } else {
                 reject('error');
               }
             },
@@ -43,35 +44,21 @@ App({
   },
 
   onShow() {
-    console.log('App Show');
   },
 
   onHide() {
-    console.log('App Hide');
   },
   globalData: {
     hasLogin: false,
-    // handerUrl: "http://localhost:8080/",
     handerUrl: "http://ksymmy.vaiwan.com/",
-    // handerUrl: "http://lijianping.vaiwan.com/",
   },
 });
 
-function setStorage(userInfo){
-  //把userToken放入本地缓存中
+function setStorage(userInfo) {
+  // 把userInfo放入本地缓存中
   dd.setStorageSync({
-    key: "token",
-    data: userInfo.token,
-  });
-  //把初始用户类型放入本地缓存中
-  dd.setStorageSync({
-    key: "userType",
-    data: userInfo.userType,
-  });
-  //把当前用户类型放入本地缓存中
-  dd.setStorageSync({
-    key: "curUserType",
-    data: userInfo.curUserType,
+    key: "userInfo",
+    data: userInfo,
   });
 }
 
