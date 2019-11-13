@@ -1,5 +1,0 @@
-<import src="/components/list/index.axml" />
-
-<view class="cust-list">
-    <template is="List" data={{...listData}}></template>
-</view>

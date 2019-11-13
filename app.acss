@@ -2,8 +2,6 @@ page {
   background-color: #f2f4f5;
   border: 1px solid rgba(0, 0, 0, 0);
   box-sizing: border-box;
-  margin-top: 10rpx;
-  background-color: #FFF;
 }
 
 .page {
@@ -12,3 +10,6 @@ page {
   padding: 32rpx;
   flex: 1;
 }
+
+
+ 

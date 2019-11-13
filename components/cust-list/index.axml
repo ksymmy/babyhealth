@@ -1,0 +1,26 @@
+<template name="List">
+<view class="cust-list">
+  <scroll-view scroll-y>
+    <view a:if={{data.list}} class="cust-list">
+      <block a:for={{data.list}} a:for-item="item">
+        <view class="cust-list-item">
+          <view class="cust-list-line">
+            <view class="list-item-name">{{item.name}}</view>
+            <view class="list-item-value">
+              <text>{{item.value}}</text>
+              <view a:if={{item.state}}>
+                <button type="primary" class="normal-radius-btn primary">发DING</button>
+                <button type="default" class="normal-radius-btn" a:if="{{item.state.value==0}}">未激活</button>
+                 <button type="default" class="normal-radius-btn activate" a:if="{{item.state.value==1}}">已激活</button>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view class="btn-box">
+       <button type="default"  onTap="{{btnTap}}">{{data.btnText}}</button>
+      </view>
+  </scroll-view>
+</view>
+</template>

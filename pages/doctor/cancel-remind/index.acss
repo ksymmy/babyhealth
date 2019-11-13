@@ -1,0 +1,64 @@
+page {
+  background-color: #fff;
+}
+
+.cust-list .cust-list-item {
+  background-color: #fff;
+  font-size: 32rpx;
+  padding-left: 30rpx;
+}
+
+.cust-list .cust-list-item .cust-list-line {
+  display: flex;
+  align-items: center;
+  min-height: 112rpx;
+  border-bottom: 1rpx solid #e2e4e5;
+  padding: 20rpx 30rpx 20rpx 0;
+  box-sizing: border-box;
+}
+
+.cust-list .cust-list-item .list-item-name {
+  color: #191f25;
+  flex-basis: 36%;
+}
+
+.cust-list .cust-list-item .list-item-value {
+  flex: 1;
+  color: #7e8185;
+  text-align: right;
+}
+
+button {
+  color: #111f2c;
+  font-size: 34rpx;
+}
+
+.normal-radius-btn {
+  height: 58rpx;
+  line-height: 58rpx;
+  border-radius: 29rpx;
+  display: inline-block;
+  padding: 0 28rpx;
+  text-align: center;
+  color: #bdc1c4;
+  font-size: 30rpx;
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+  border: 1rpx solid #bdc1c4;
+  background-color: #fff;
+}
+
+.normal-radius-btn.primary {
+  border: 1rpx solid #3295fa;
+  background-color: #3295fa;
+  color: #fff;
+}
+
+.normal-radius-btn.activate {
+  color: #47cc83;
+  border-color: #47cc83;
+}
+
+.btn-box {
+  padding: 52rpx 30rpx 30rpx;
+}

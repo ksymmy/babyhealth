@@ -1,0 +1,4 @@
+<!-- import '/components/cust-list/index.axml' -->
+<view>
+   <!-- <template is="cust-list/"></template> -->
+</view>
