@@ -1,24 +1,4 @@
-<view class="cust-list">
-  <scroll-view scroll-y>
-    <view a:if={{listData.data}} class="cust-list">
-      <block a:for={{listData.data}} a:for-item="item">
-        <view class="cust-list-item">
-          <view class="cust-list-line">
-            <view class="list-item-name">{{item.name}}</view>
-            <view class="list-item-value">
-              <text>{{item.value}}</text>
-              <view a:if={{item.state}}>
-                <button type="primary" class="normal-radius-btn primary">发DING</button>
-                <button type="default" class="normal-radius-btn" a:if="{{item.state.value==0}}">未激活</button>
-                <button type="default" class="normal-radius-btn activate" a:if="{{item.state.value==1}}">已激活</button>
-              </view>
-            </view>
-          </view>
-        </view>
-      </block>
-    </view>
-    <view class="btn-box">
-      <button type="default">取消儿童管理</button>
-    </view>
-  </scroll-view>
+<import src="/components/custlist/index.axml" />
+<view>
+   <template is="custlist" data={{...listData}}></template>
 </view>

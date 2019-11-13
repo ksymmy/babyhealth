@@ -1,9 +1,9 @@
 {
   "pages": [
+       "pages/doctor/cancel-remind/index",
+    "pages/doctor/cancel-manage/index",
      "pages/customer/sign-in/sign-in",
      "pages/customer/index/index",
-     "pages/doctor/cancel-manage/index",
-     "pages/doctor/cancel-remind/index",
      "pages/doctor/index/index"
       
   ],

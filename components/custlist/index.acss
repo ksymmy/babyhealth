@@ -62,3 +62,7 @@ button {
 .btn-box {
   padding: 52rpx 30rpx 30rpx;
 }
+
+.extra-text {
+  margin-left: 10rpx;
+}
