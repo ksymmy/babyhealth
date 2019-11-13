@@ -1,4 +1,4 @@
-<import src="/components/custlist/index.axml" />
+<import src="/util/custlist/index.axml" />
 <view>
    <template is="custlist" data={{...listData}}></template>
 </view>

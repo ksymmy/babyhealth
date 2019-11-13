@@ -1,1 +1,108 @@
+page {
+  background: #fff;
+  font-size: 26rpx;
+}
+
+.index-page {
+  padding: 30rpx;
+}
+
+.panel-box {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40rpx;
+}
+
+.panel-box .panel {
+  flex-basis: 29.5%;
+  height: 180rpx;
+  padding: 40rpx 0;
+  text-align: center;
+  /* font-size: 26rpx; */
+  color: #fff;
+}
+
+.panel-orange {
+  background: url(/image/doctor/panel_bg01.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+.panel-blue {
+  background: url(/image/doctor/panel_bg02.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+.panel-purple {
+  background: url(/image/doctor/panel_bg03.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+.panel-icon {
+  width: 60rpx;
+  height: 60rpx;
+  background: url(/image/doctor/panel_icon.png) no-repeat;
+  background-size: 100% 100%;
+  margin: 0 auto 30rpx;
+}
+
+.panel-box .panel .panel-text {
+  margin-top: 15rpx;
+}
+
+.panel-box .panel .data-num,.panel-list .panel-list-item .data-num {
+  font-size: 36rpx;
+}
+
+.panel-list .panel-list-item {
+  height: 170rpx;
+  border-radius: 10rpx;
+  box-shadow: 5rpx 5rpx 40rpx 5rpx rgba(199, 199, 199, 0.35);
+  padding: 0 60rpx 0 140rpx;
+  position: relative;
+  margin-bottom: 48rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #666;
+}
+
+.panel-list .panel-list-item::before {
+  content: '';
+  position: absolute;
+  left: 20rpx;
+  top: 11rpx;
+  width: 148rpx;
+  height: 148rpx;
+}
+
+.panel-list .panel-list-item.notify::before {
+  background: url(/image/doctor/icon01.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+.panel-list .panel-list-item.change::before {
+  background: url(/image/doctor/icon02.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+.panel-list .panel-list-item.total::before {
+  background: url(/image/doctor/icon03.png) no-repeat;
+  background-size: 100% 100%;
+}
+
+.panel-list .panel-list-item .name {
+  font-size: 30rpx;
+}
  
+.panel-list .panel-list-item.notify .data{
+  color:#fdaa1c;
+}
+.panel-list .panel-list-item.change .data{
+  color:#7ae463;
+}
+.panel-list .panel-list-item.total .data{
+  color:#3d9bfe;
+}
+.panel-list .panel-list-item .data-num{
+  margin-right: 10rpx;
+}

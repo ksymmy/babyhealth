@@ -1,0 +1,4 @@
+<import src="/util/msglist/index.axml" />
+<view>
+   <template is="msglist" data={{...listData}}></template>
+</view>

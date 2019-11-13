@@ -1,4 +1,4 @@
-import custlist from '/components/custlist';
+import custlist from '/util/custlist';
 Page({
   ...custlist,
   data: {

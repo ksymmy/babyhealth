@@ -1,0 +1,80 @@
+ page {
+   padding:0;
+   font-size: 28rpx;
+   color: #a3a8ad;
+ }
+
+ .msg-list .msg-list-item {
+   background-color: #fff;
+   border-radius: 10rpx;
+   padding: 14rpx 0 1rpx;
+   margin-bottom: 20rpx;
+ }
+
+ .msg-list .msg-list-item .msg-line {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 14rpx;
+   padding: 0 20rpx  ;
+ }
+
+ .msg-list .msg-list-item .msg-line>view {
+   display: flex;
+   align-items: center;
+ }
+
+ .msg-list .msg-list-item .msg-line .child-name {
+   color: #191f25;
+   font-size: 34rpx;
+   font-weight: bold;
+ }
+
+ .icon-sex {
+   width: 42rpx;
+   height: 42rpx;
+   display: inline-block;
+   margin: 0 26rpx;
+ }
+
+ .icon-sex.icon-female {
+   background: url(/image/doctor/icon_female.png) no-repeat;
+   background-size: 100% 100%;
+ }
+
+ .icon-sex.icon-male {
+   background: url(/image/doctor/icon_male.png) no-repeat;
+   background-size: 100% 100%;
+ }
+
+ .normal-radius-btn {
+   height: 50rpx;
+   line-height: 50rpx;
+   border-radius: 29rpx;
+   display: inline-block;
+   padding: 0 28rpx;
+   text-align: center;
+   color: #bdc1c4;
+   font-size: 30rpx;
+   border: 1rpx solid #bdc1c4;
+   background-color: #fff;
+ }
+
+ .normal-radius-btn.primary {
+   border: 1rpx solid #3295fa;
+   background-color: #3295fa;
+   color: #fff;
+ }
+
+ .ding-num {
+   color: #3296fa;
+   width: 142rpx;
+   text-align: right;
+ }
+
+ .res-con{
+   padding:14rpx  20rpx;
+   border-top:1rpx solid #e2e4e5;
+   line-height: 44rpx;
+ }
+ 

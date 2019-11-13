@@ -1,4 +1,4 @@
-import custlist from '/components/custlist';
+import custlist from '/util/custlist';
 Page({
   ...custlist,
   data: {
@@ -51,6 +51,7 @@ Page({
       btnText: '取消逾期提醒'
     },
   },
+  /*取消逾期提醒*/
   handleBtnTapTap(e) {
     dd.showToast({
       content: `55555`,
@@ -59,6 +60,7 @@ Page({
       },
     });
   },
+  /*Ding操作*/
   handleDingItemTap(e) {
     dd.showToast({
       content: `${e.currentTarget.dataset.value}`,

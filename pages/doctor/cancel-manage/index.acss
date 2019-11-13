@@ -1,1 +1,1 @@
-@import '/components/custlist/index.acss';
+@import '/util/custlist/index.acss';

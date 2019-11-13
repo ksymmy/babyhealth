@@ -1,0 +1,46 @@
+<template name="msglist">
+  <scroll-view scroll-y>
+    <view a:if={{list}} class="msg-list">
+      <block a:for={{list}} a:for-item="item">
+        <view class="msg-list-item">
+          <view class="msg-line">
+            <view>
+              <text class="child-name">{{item.name}}</text>
+              <view class="icon-sex icon-female" a:if="{{item.sex==0}}"></view>
+              <view class="icon-sex icon-male" a:if="{{item.sex==1}}"></view>
+              <text>{{item.birthday}}</text>
+            </view>
+            <view>
+                 {{item.age}}
+            </view>
+          </view>
+          <view class="msg-line">
+            <text>
+                  体检日期：{{item.textTime}}
+            </text>
+            <view a:if="{{type==1}}">
+              <button type="primary"  data-babyid={{item.babyId}} class="normal-radius-btn primary" onTap="{{delayOne}}">延后一天</button>
+            </view>
+            <text a:if="{{type==2}}">
+                 申请改期：{{item.changeTime}}
+            </text>
+            <view a:if="{{type==3}}">
+                     逾期{{item.overTime}}天
+              <text class="ding-num" a:if="{{item.dingNum>0}}">
+                     Ding {{item.dingNum}} 次
+              </text>
+               <text class="ding-num" a:else>
+                 </text>
+            </view>
+          </view>
+          <view class="res-con" a:if="{{type==2}}">
+            <view class="name">
+                   申请原因:
+            </view>
+            <text>{{item.result}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+</template>

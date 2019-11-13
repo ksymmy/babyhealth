@@ -1,1 +1,51 @@
- 
+<view class="index-page">
+  <view class="panel-box">
+    <view class="panel panel-orange" data-url="overtime-list" onTap="viewList">
+      <view class="panel-icon">
+      </view>
+      <view class="panel-text">
+               逾期7-14天
+      </view>
+      <view class="panel-text">
+        <text class="data-num">{{overTime.time1}}</text>人
+      </view>
+    </view>
+    <view class="panel panel-blue">
+      <view class="panel-icon">
+      </view>
+      <view class="panel-text">
+               逾期14-21天
+      </view>
+      <view class="panel-text">
+        <text class="data-num">{{overTime.time2}}</text>人
+      </view>
+    </view>
+    <view class="panel panel-purple">
+      <view class="panel-icon">
+      </view>
+      <view class="panel-text">
+               逾期21天以上
+      </view>
+      <view class="panel-text">
+        <text class="data-num">{{overTime.time3}}</text>人
+      </view>
+    </view>
+  </view>
+  <view class="panel-list">
+    <view data-url="notify-list" class="panel-list-item notify" onTap="viewList">
+      <text class="name">明日体检通知人数</text>
+      <view class="data">
+        <text class="data-num">{{personNum.notifyNum}}</text>人</view>
+    </view>
+    <view data-url="change-list" class="panel-list-item change"  onTap="viewList">
+      <text class="name">申请改期人数</text>
+      <view class="data">
+        <text class="data-num">{{personNum.changeNum}}</text>人</view>
+    </view>
+    <view data-url="total-list" class="panel-list-item total"  onTap="viewList">
+      <text class="name">总儿童人数</text>
+      <view class="data">
+        <text class="data-num">{{personNum.total}}</text>人</view>
+    </view>
+  </view>
+</view>
