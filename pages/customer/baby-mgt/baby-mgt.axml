@@ -8,23 +8,36 @@
             <image mode="scaleToFill" src="/image/boy.png"/>
             <text>张子墨</text>
          </view>
-         <view class="addBtn">
+         <view class="addBtn" onTap="addBaby">
            <image mode="scaleToFill" src="/image/add.png"/>
            <text>新增</text>
           </view>
     </view>
     <view class="panel medical">
        <view class="panel_title">宝宝体检一览</view>
-       <flex wrap="wrap">
-          <view class="placeholder inline">Block</view>
-          <view class="placeholder inline">Block</view>
-          <view class="placeholder inline">Block</view>
-          <view class="placeholder inline">Block</view>
-          <view class="placeholder inline">Block</view>
+       <flex wrap="wrap" class="list">
+          <view class="placeholder inline singedin">满月</view>
+          <view class="placeholder inline singedin">3月</view>
+          <view class="placeholder inline singedin">6月</view>
+          <view class="placeholder inline unmedical">8月</view>
+          <view class="placeholder inline">12月</view>
+          <view class="placeholder inline">18月</view>
+          <view class="placeholder inline">24月</view>
+          <view class="placeholder inline">30月</view>
+          <view class="placeholder inline ">36月</view>
         </flex>
     </view>
     <view class="panel baby-info">
         <view class="panel_title">宝宝档案信息</view>
+        <view class="list">
+            <my-list label="姓名" text="男"/>
+            <my-list label="出生日期" text="2018-04-30"/>
+            <my-list label="" text="张一明  15300001699"/>
+        </view>
+      
     </view>
-  
+    <view class="btnView">
+      <button type="default" class="del">删除</button>
+    </view>
+    
 </view>

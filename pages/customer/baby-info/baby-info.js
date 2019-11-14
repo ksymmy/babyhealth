@@ -3,11 +3,11 @@
 
 Page({
   data: {
-      
+      defaultTitle:'123'
   },
-  addBaby(){
-    dd.navigateTo({
-      url: '../baby-info/baby-info'
+  saveBaby(){
+    dd.navigateBack({
+      url: '../baby-mgt/baby-mgt'
     });
   }
 

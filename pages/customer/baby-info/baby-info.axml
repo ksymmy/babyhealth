@@ -1,0 +1,21 @@
+<view class="page" key="container">
+   
+    <view class="panel baby-info">
+        <view class="list">
+            <my-list label="姓名" text="张子墨"/>
+            <my-list label="性别" text="男"/>
+            <my-list label="出生日期" text="2017-03-30"/>
+            <my-list label="父亲姓名" text="张一明"/>
+            <my-list label="联系电话" text="15300006699"/>
+            <my-list label="母亲姓名" text="爱美丽"/>
+            <my-list label="联系电话" text="15300008866"/>
+            <my-list label="家庭地址" text="浙江省杭州市余杭区未来科技城
+1号楼1105室"/>
+        </view>
+      
+    </view>
+    <view class="btnView">
+      <button type="primary" class="save">保存</button>
+    </view>
+    
+</view>

@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "新增宝宝",
+  "usingComponents": {
+    "my-list":"/components/mylist/index"
+  }
+}

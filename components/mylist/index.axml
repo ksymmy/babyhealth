@@ -1,0 +1,4 @@
+<view class="item">
+   <view class="label">{{label}}</view>
+   <view class="text">{{text}}</view>
+</view>
