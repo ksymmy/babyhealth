@@ -1,6 +1,7 @@
 {
   "pages": [
-     "pages/doctor/index/index",
+    "pages/customer/baby-info/baby-info",
+    "pages/doctor/index/index",
     "pages/doctor/notify-list/index",
     "pages/doctor/change-list/index",
     "pages/doctor/overtime-list/index",
