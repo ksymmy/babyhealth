@@ -21,6 +21,6 @@
         </view>
     </view>
     <view class="fixBottom">
-       <button size="default" type="primary" plain="true">宝宝管理</button>
+       <button size="default" type="primary" plain="true" onTap="toBBMgt">宝宝管理</button>
     </view>
 </view>

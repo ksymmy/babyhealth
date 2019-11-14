@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "申请改期",
+  "usingComponents": {
+    "my-list":"/components/mylist/index"
+  }
+}

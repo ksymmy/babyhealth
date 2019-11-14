@@ -1,0 +1,58 @@
+.page{
+  padding:0;
+  background-color: #fff;
+  height: 100vh
+}
+.panel{
+  width: 100%;
+  background-color: #fff;
+  border-top: 15rpx solid #f2f4f5;
+}
+
+.panel .list{
+  padding:0 30rpx;
+}
+.panel .list .border{ 
+  border-bottom:1px solid #e2e4e5;
+}
+.panel .list .item{
+  border-top:none;
+}
+.arrow{
+  background-image: url('/image/arrow.png');
+  background-size: 40rpx;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+.panel .list .item.arrow .text{
+  padding-right: 45rpx;
+  color:#191f25;
+}
+.panel .list .item .label text{
+  color:red
+}
+.tip{
+  width:100%;
+  background-color: #f2f4f5;
+  height:50rpx;
+  line-height: 50rpx;
+  font-size: 24rpx;
+  padding-top:15rpx;
+  padding-left:30rpx;
+}
+textarea{
+  padding:15rpx;
+  min-height: 200rpx;
+}
+.btnView{
+  width:100%;
+  height:136rpx;
+  background-color: #fff;
+  position: fixed;
+  bottom: 30rpx;
+}
+.save{
+  background-color: #3295fa;
+  margin:0 30rpx;
+}
+
