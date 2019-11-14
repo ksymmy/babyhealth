@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/customer/baby-info/baby-info",
     "pages/doctor/index/index",
     "pages/doctor/notify-list/index",
@@ -17,6 +18,5 @@
     "pullRefresh": false,
     "allowsBounceVertical": "YES"
   },
- 
   "debug": true
 }

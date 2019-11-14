@@ -16,7 +16,7 @@ import { config } from '/app.js';
 class HTTP {
   request(params) {
     dd.getStorage({
-      key: 'token', success: (r) => {
+      key: 'userInfo', success: (r) => {
         dd.httpRequest({
           url: encodeURI(config.api_base_url + params.url),
           method: params.method || 'GET',
@@ -24,13 +24,14 @@ class HTTP {
           timeout: params.timeout || 10000,
           dataType: params.dataType || 'json',
           headers: {
-            'token': r.data,//从前端缓存取
+            'corpid': dd.corpId,
+            'userid': r.data ? r.data.userid : '',
             'Content-Type': 'application/json',
           },
           success: (res) => {
             if (res.data.code == "0000" && params.success) {
               params.success(res.data.data);
-            } else if (["0001", "0002"].indexOf(res.data.code) > -1) {
+            } else if (["0001"].indexOf(res.data.code) > -1) {
               // 关闭当前所有页面，跳转到首页
               dd.reLaunch({
                 url: '/pages/index/index'

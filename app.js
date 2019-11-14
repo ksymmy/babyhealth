@@ -1,12 +1,6 @@
 App({
   onLaunch(options) {
     console.log('App Launch', options);
-    this.login().then(function(userInfo) {
-      console.log(userInfo);
-      dd.redirectTo({
-        url: userInfo.admin ? '/pages/doctor/index/index' : '/pages/customer/index/index',
-      });
-    });
   },
   login() {
     return new Promise(function(resolve, reject) {
