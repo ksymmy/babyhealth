@@ -84,30 +84,52 @@ Page({
     tabs: [
       {
         title: '全部',
+        value: '',
         badgeType: 'text',
         badgeText: '22',
       },
       {
         title: '满月',
+        value: 1,
         badgeType: 'text',
         badgeText: '5',
       },
       {
         title: '3月',
+        value: 3,
         badgeType: 'text',
         badgeText: '6',
       },
       {
         title: '6月',
+        value: 6,
         badgeType: 'text',
         badgeText: '3',
       },
-      { title: '8月' },
-      { title: '12月' },
-      { title: '18月' },
-      { title: '24月' },
-      { title: '30月' },
-      { title: '36月' }
+      {
+        title: '8月',
+        value: 8
+      },
+      {
+        title: '12月',
+        value: 12
+      },
+      {
+        title: '18月',
+        value: 18
+      },
+      {
+        title: '24月',
+        value: 24
+      },
+      {
+        title: '30月',
+        value: 30
+      },
+      {
+        title: '36月',
+        value: 36
+      }
     ],
     popList: [{ title: 'DING 0 次', value: 0 }, { title: 'DING 1 次', value: 1 }, { title: 'DING 2 次', value: 2 }, { title: '3次及以上', value: 3 },],//筛选条件
     activeTab: 0,//当前选中tab序号
@@ -147,15 +169,15 @@ Page({
     })
   },
   //tab选项切换
-  handleTabClick({ index }) {
-    console.log(index)
+  handleTabClick(index, value) {
+    console.log(value)
     this.setData({
       activeTab: index,
     });
   },
   //tab选项切换
-  handleTabChange({ index }) {
-    console.log("8888888888888888888")
+  handleTabChange(index, value) {
+    console.log(value)
     this.setData({
       activeTab: index,
     });

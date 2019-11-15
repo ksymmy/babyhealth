@@ -1,5 +1,21 @@
  @import '/util/msglist/index.acss';
-  page {
-   padding: 52px 0 160rpx;
+ page {
+   padding: 140px 0 0;
    box-sizing: border-box;
+ }
+
+ .innerTab .am-tabs-bar-title {
+   border-bottom-color: #fff!important;
+   position: relative;
+ }
+
+ .innerTab .am-tabs-bar-title.tab-active-border:before {
+   content: '';
+   position: absolute;
+   left: -20rpx;
+   right: -20rpx;
+   border: 1rpx solid #52afff;
+   top:10rpx;
+   bottom:10rpx;
+   border-radius: 8rpx;
  }

@@ -1,12 +1,13 @@
 {
   "pages": [
+    "pages/doctor/total-list/index",
+    "pages/doctor/overtime-list/index",
     "pages/customer/index/index",
     "pages/index/index",
     "pages/doctor/index/index",
     "pages/doctor/notify-list/index",
     "pages/doctor/change-list/index",
-    "pages/doctor/overtime-list/index",
-    "pages/doctor/total-list/index",
+  
     "pages/doctor/cancel-remind/index",
     "pages/doctor/cancel-manage/index",
     "pages/customer/baby-info/baby-info",

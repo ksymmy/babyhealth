@@ -6,7 +6,7 @@
           <view class="msg-line">
             <view>
               <text class="child-name">{{item.name}}</text>
-              <view class="icon-sex icon-female" a:if="{{item.sex==0}}"></view>
+              <view class="icon-sex icon-female" a:if="{{item.sex==2}}"></view>
               <view class="icon-sex icon-male" a:if="{{item.sex==1}}"></view>
               <text>{{item.birthday}}</text>
             </view>

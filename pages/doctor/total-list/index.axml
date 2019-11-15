@@ -1,11 +1,18 @@
 <import src="/util/msglist/index.axml" />
 <view>
-  <view class="place"></view>
-  <tabs tabs="{{tabs}}" showPlus="{{false}}" onTabClick="handleTabClick" onChange="handleTabChange" onPlusClick="handlePlusClick" activeTab="{{activeTab}}" swipeable="{{true}}">
-    <block a:for="{{tabs}}">
+  <tabs class="" tabs="{{toptabs}}" showPlus="{{false}}" onTabClick="handleTopTabClick" tabBarUnderlineColor="#0089ff" tabBarActiveTextColor="#111f2c" tabBarInactiveTextColor="#7a8189" activeTab="{{topActiveTab}}" swipeable="{{false}}">
+    <block a:for="{{toptabs}}">
       <tab-content key="{{index}}">
         <view class="tab-content">
-          <template is="msglist" data={{...listData}}></template></view>
+          <tabs class="innerTab" tabs="{{item.subTabs}}" tabBarActiveTextColor="#52afff" tabBarInactiveTextColor="#7a8189"showPlus="{{false}}" activeCls="tab-active-border" onTabClick="handleTabClick" onChange="handleTabChange" onPlusClick="handlePlusClick" activeTab="{{activeTab[index]}}" swipeable="{{true}}">
+            <block a:for="{{item.subTabs}}">
+              <tab-content key="{{index}}">
+                <view class="tab-content">
+                  <template is="msglist" data={{...listData}}></template></view>
+              </tab-content>
+            </block>
+          </tabs>
+        </view>
       </tab-content>
     </block>
   </tabs>
