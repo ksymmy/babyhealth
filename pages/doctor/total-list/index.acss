@@ -1,0 +1,5 @@
+ @import '/util/msglist/index.acss';
+  page {
+   padding: 52px 0 160rpx;
+   box-sizing: border-box;
+ }

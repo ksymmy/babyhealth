@@ -1,0 +1,12 @@
+<import src="/util/msglist/index.axml" />
+<view>
+  <view class="place"></view>
+  <tabs tabs="{{tabs}}" showPlus="{{false}}" onTabClick="handleTabClick" onChange="handleTabChange" onPlusClick="handlePlusClick" activeTab="{{activeTab}}" swipeable="{{true}}">
+    <block a:for="{{tabs}}">
+      <tab-content key="{{index}}">
+        <view class="tab-content">
+          <template is="msglist" data={{...listData}}></template></view>
+      </tab-content>
+    </block>
+  </tabs>
+</view>
