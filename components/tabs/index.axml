@@ -7,7 +7,7 @@
         <view class="am-tabs-scroll-right"></view>
         <scroll-view scroll-left="{{util.calcScrollLeft(windowWidth, tabWidth, activeTab)}}" scroll-x="{{true}}" scroll-with-animation="{{animation}}" class="am-tabs-bar-content">
           <block a:for="{{tabs}}">
-            <view data-index="{{index}}" data-value="{{item.value?item.value:''}}" key="tabs-item-{{index}}" onTap="handleTabClick" style="{{
+            <view data-index="{{index}}"  key="tabs-item-{{index}}" onTap="handleTabClick" style="{{
                 backgroundColor: tabBarBackgroundColor,
                 color: index === activeTab ? tabBarActiveTextColor: tabBarInactiveTextColor,
                 width: (tabs.length > 3 ? 0.25 : 1 / tabs.length) * 100 + '%',
@@ -40,7 +40,7 @@
     </view>
   </view>
   <block a:if="{{swipeable}}">
-    <swiper circular="{{false}}" current="{{activeTab}}" currentVal="{{tabs[activeTab].value?tabs[activeTab].value:''}}" interval="99999999" autoplay="{{autoplay}}" duration="{{duration}}" onChange="handleSwiperChange" class="am-tabs-content-wrap {{util.compareVersion(version)< 0 ? 'fix' : ''}}">
+    <swiper circular="{{false}}" current="{{activeTab}}" currentVal="{{tabs}}" interval="99999999" autoplay="{{autoplay}}" duration="{{duration}}" onChange="handleSwiperChange" class="am-tabs-content-wrap {{util.compareVersion(version)< 0 ? 'fix' : ''}}">
       <slot></slot>
     </swiper>
   </block>

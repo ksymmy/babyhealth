@@ -123,7 +123,7 @@ view .am-tabs-content-wrap {
   background-color: transparent;
 }
 
-.am-tabs-content-wrap .am-tabs-pane-wrap .tab-content {
+.innerTab .am-tabs-content-wrap .am-tabs-pane-wrap .tab-content {
   padding: 20rpx 30rpx;
   box-sizing: border-box;
 }
@@ -146,7 +146,7 @@ view .am-tabs-content-wrap {
   right: 6px;
 }
 
-.am-tabs .am-tabs-bar {
+.only-tab-page .am-tabs .am-tabs-bar {
   position: fixed;
   left: 0;
   right: 0;

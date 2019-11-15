@@ -55,7 +55,7 @@ Component({
   methods: {
     handleSwiperChange: function handleSwiperChange(e) {
       var current = e.detail.current;
-      var currentVal = e.detail.currentVal;
+      var currentVal = this.props.tabs[current];
       if (this.props.onChange) {
         this.props.onChange(
           current,
@@ -65,7 +65,7 @@ Component({
     },
     handleTabClick: function handleTabClick(e) {
       var index = e.target.dataset.index;
-      var val = e.target.dataset.value;
+      var val = this.props.tabs[index];
       if (this.props.onTabClick) {
         this.props.onTabClick(
           index,
