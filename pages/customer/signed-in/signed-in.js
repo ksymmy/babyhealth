@@ -17,6 +17,11 @@ Page({
       animationInfo:animation.export()
     });
 
-  }
+  },
+   toBBMgt(){//去宝宝管理页面
+    dd.navigateTo({
+      url: '../baby-mgt/baby-mgt'
+    });
+  },
 
 });

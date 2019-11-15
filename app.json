@@ -1,16 +1,19 @@
 {
   "pages": [
+    "pages/customer/index/index",
     "pages/index/index",
-    "pages/customer/baby-info/baby-info",
     "pages/doctor/index/index",
     "pages/doctor/notify-list/index",
     "pages/doctor/change-list/index",
     "pages/doctor/overtime-list/index",
+    "pages/doctor/total-list/index",
     "pages/doctor/cancel-remind/index",
     "pages/doctor/cancel-manage/index",
+    "pages/customer/baby-info/baby-info",
+    "pages/customer/apply-changeDate/apply-changeDate",
     "pages/customer/baby-mgt/baby-mgt",
-    "pages/customer/sign-in/sign-in",
-    "pages/customer/index/index"
+    "pages/customer/signed-in/signed-in",
+    "pages/customer/sign-in/sign-in"
   ],
   "window": {
     "defaultTitle": "宝宝健康体检",

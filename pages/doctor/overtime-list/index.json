@@ -1,7 +1,7 @@
 {
   "defaultTitle": "宝宝健康体检",
    "usingComponents":{
-    "tabs": "mini-antui/es/tabs/index",
-    "tab-content": "mini-antui/es/tabs/tab-content/index"
+    "tabs": "/components/tabs/index",
+    "tab-content": "/components/tabs/tab-content/index"
   }
 }

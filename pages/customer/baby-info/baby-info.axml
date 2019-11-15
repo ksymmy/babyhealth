@@ -2,20 +2,45 @@
    
     <view class="panel baby-info">
         <view class="list">
-            <my-list label="姓名" text="张子墨"/>
-            <my-list label="性别" text="男"/>
-            <my-list label="出生日期" text="2017-03-30"/>
-            <my-list label="父亲姓名" text="张一明"/>
-            <my-list label="联系电话" text="15300006699"/>
-            <my-list label="母亲姓名" text="爱美丽"/>
-            <my-list label="联系电话" text="15300008866"/>
-            <my-list label="家庭地址" text="浙江省杭州市余杭区未来科技城
-1号楼1105室"/>
+           <view class="item">
+              <view class="label">姓名</view>
+              <view class="text"><input placeholder="张子墨" value="{{name}}"/></view>
+            </view>
+            <view class="item">
+              <view class="label">性别</view>
+              <view class="text"><input placeholder="女" value="{{sex}}"/></view>
+            </view>
+            <view class="item">
+              <view class="label">出生日期</view>
+              <view class="text" onTap="datePicker"><input placeholder="{{dateText}}" value="{{dateText}}"/></view>
+            </view>
+            <view class="item">
+              <view class="label">父亲姓名</view>
+              <view class="text"><input placeholder="张一明" value="{{fatherName}}" /></view>
+            </view>
+            <view class="item">
+              <view class="label">联系电话</view>
+              <view class="text"><input maxlength="11" placeholder="15300006699" value="{{fatherTel}}"/></view>
+            </view>
+            <view class="item">
+              <view class="label">母亲姓名</view>
+              <view class="text"><input placeholder="爱美丽" value="{{motherName}}"/></view>
+            </view>
+            <view class="item">
+              <view class="label">联系电话</view>
+              <view class="text"><input maxlength="11" placeholder="15300008866" value="{{motherTel}}"/></view>
+            </view>
+            <view class="item">
+              <view class="label">家庭地址</view>
+              <view class="text"><input placeholder="浙江省杭州市余杭区未来科技城
+1号楼1105室" value="{{addr}}"/></view>
+            </view>
+            
         </view>
       
     </view>
     <view class="btnView">
-      <button type="primary" class="save">保存</button>
+      <button type="primary" class="save" onTap="saveBaby">保存</button>
     </view>
     
 </view>

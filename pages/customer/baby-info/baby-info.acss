@@ -15,6 +15,12 @@
   border-bottom:1px solid #e2e4e5;
   border-top:none;
 }
+.baby-info .list .item input{
+  font-size: 32rpx;
+}
+.baby-info .list .item input[placeholder]{
+  color: #7e8185;
+}
 .btnView{
   width:100%;
   height:136rpx;

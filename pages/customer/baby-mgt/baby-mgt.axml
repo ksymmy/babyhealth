@@ -1,12 +1,9 @@
 <view class="page" key="container">
     <view class="panel baby">
-         <view>
-            <image mode="scaleToFill" src="/image/girl.png"/>
-            <text>张子萱</text>
-         </view>
-         <view class="cur">
-            <image mode="scaleToFill" src="/image/boy.png"/>
-            <text>张子墨</text>
+         <view a:for="{{babyList}}" class="{{curBaby==index?'cur':''}}" data-index={{index}} onTap="changeBaby">
+            <image a:if="{{item.sex==2}}" mode="scaleToFill" src="/image/girl.png"/>
+            <image a:else mode="scaleToFill" src="/image/boy.png"/>
+            <text>{{item.name}}</text>
          </view>
          <view class="addBtn" onTap="addBaby">
            <image mode="scaleToFill" src="/image/add.png"/>
@@ -16,28 +13,29 @@
     <view class="panel medical">
        <view class="panel_title">宝宝体检一览</view>
        <flex wrap="wrap" class="list">
-          <view class="placeholder inline singedin">满月</view>
-          <view class="placeholder inline singedin">3月</view>
-          <view class="placeholder inline singedin">6月</view>
-          <view class="placeholder inline unmedical">8月</view>
-          <view class="placeholder inline">12月</view>
-          <view class="placeholder inline">18月</view>
-          <view class="placeholder inline">24月</view>
-          <view class="placeholder inline">30月</view>
-          <view class="placeholder inline ">36月</view>
+          <view class="placeholder inline {{babyList[curBaby].signIn[0]==1?'singedin':''}}">满月</view>
+          <view class="placeholder inline {{babyList[curBaby].signIn[1]==1?'singedin':''}}">3月</view>
+          <view class="placeholder inline {{babyList[curBaby].signIn[2]==1?'singedin':''}}">6月</view>
+          <view class="placeholder inline {{babyList[curBaby].signIn[3]==1?'singedin':''}}" >8月</view>
+          <view class="placeholder inline {{babyList[curBaby].signIn[4]==1?'singedin':''}}">12月</view>
+          <view class="placeholder inline {{babyList[curBaby].signIn[5]==1?'singedin':''}}">18月</view>
+          <view class="placeholder inline {{babyList[curBaby].signIn[6]==1?'singedin':''}}">24月</view>
+          <view class="placeholder inline {{babyList[curBaby].signIn[7]==1?'singedin':''}}">30月</view>
+          <view class="placeholder inline {{babyList[curBaby].signIn[8]==1?'singedin':''}}">36月</view>
         </flex>
     </view>
     <view class="panel baby-info">
         <view class="panel_title">宝宝档案信息</view>
         <view class="list">
-            <my-list label="姓名" text="男"/>
-            <my-list label="出生日期" text="2018-04-30"/>
-            <my-list label="" text="张一明  15300001699"/>
+            <my-list a:if="{{babyList[curBaby].sex==2}}" label="性别" text="女"/>
+            <my-list a:else label="性别" text="男"/>
+            <my-list label="出生日期" text="{{babyList[curBaby].birthday}}"/>
+            <my-list label="" text="{{babyList[curBaby].fatherName}}  {{babyList[curBaby].fatherTel}}"/>
         </view>
       
     </view>
     <view class="btnView">
-      <button type="default" class="del">删除</button>
+      <button type="default" class="del" onTap="del">删除</button>
     </view>
     
 </view>

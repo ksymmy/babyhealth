@@ -1,4 +1,15 @@
  @import '/util/msglist/index.acss';
- page{
-   padding: 0
+ page {
+   padding: 52px 0 160rpx;
+   box-sizing: border-box;
+ }
+
+ .fixed-btn-box {
+   position: fixed;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   padding: 30rpx;
+   background-color: #f2f4f5;
+   font-size: 34rpx;
  }

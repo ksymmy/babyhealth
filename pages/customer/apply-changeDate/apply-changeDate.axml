@@ -1,0 +1,30 @@
+<view class="page" key="container">
+    <view class="panel">
+        <view class="list">
+            <view class="item border">
+              <view class="label">儿童姓名</view>
+              <view class="text">张子墨</view>
+            </view>
+            <view class="item">
+              <view class="label">体检项目</view>
+              <view class="text">体检项目</view>
+            </view>
+        </view>
+    </view>
+    <view class="tip">申请日期为医生正常工作日（双休日、法定节假日除外）</view>
+    <view class="panel">
+        <view class="list">
+            <view class="item arrow" onTap="datePicker">
+              <view class="label"><text>*</text>申请日期</view>
+              <view class="text">{{dateText}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="panel" style="border-bottom:15rpx solid #f2f4f5">
+       <textarea auto-height placeholder="点击输入改期原因…" />
+    </view>
+    <view class="btnView">
+      <button type="primary" class="save" onTap="saveApply">确定改期</button>
+    </view>
+    
+</view>
