@@ -7,11 +7,11 @@
         <view class="am-tabs-scroll-right"></view>
         <scroll-view scroll-left="{{util.calcScrollLeft(windowWidth, tabWidth, activeTab)}}" scroll-x="{{true}}" scroll-with-animation="{{animation}}" class="am-tabs-bar-content">
           <block a:for="{{tabs}}">
-            <view data-index="{{index}}" key="tabs-item-{{index}}" onTap="handleTabClick" style="{{
+            <view data-index="{{index}}" data-value="{{item.value?item.value:''}}" key="tabs-item-{{index}}" onTap="handleTabClick" style="{{
                 backgroundColor: tabBarBackgroundColor,
                 color: index === activeTab ? tabBarActiveTextColor: tabBarInactiveTextColor,
                 width: (tabs.length > 3 ? 0.25 : 1 / tabs.length) * 100 + '%',
-              }}" class="am-tabs-bar-tab {{tabBarCls}}">
+              }}" class="am-tabs-bar-tab {{tabBarCls}} ">
               <view class="am-tabs-bar-title {{ index === activeTab ? activeCls : '' }}" style="{{ borderBottomColor: index === activeTab ? tabBarUnderlineColor : '' }}">
                 <text>{{item.title}}</text>
                 <badge className="am-tabs-bar-badge {{item.badgeType ? item.badgeType : ''}}" a:if="{{item.badgeType}}" dot="{{item.badgeType == 'dot'}}" text="{{item.badgeText}}" />
@@ -24,8 +24,6 @@
         <view class="am-tabs-plus icon-choose"></view>筛选
       </view>
     </view>
-    <!--<popover position="{{position}}" show="{{popShow}}" showMask="{{showMask}}" onMaskClick="onMaskClick"><view slot="items"><block a:for="{{popList}}"><popover-item data-value="{{item.title}}" onItemClick="handleitemTap"><text>{{item.title}}</text></popover-item></block></view></popover> 
-    -->
   </view>
   <view class="popover-container" a:if="{{popShow}}">
     <view class="mask" a:if="{{showMask}}" onTap="onMaskClick"></view>
@@ -42,7 +40,7 @@
     </view>
   </view>
   <block a:if="{{swipeable}}">
-    <swiper circular="{{false}}" current="{{activeTab}}" interval="99999999" autoplay="{{autoplay}}" duration="{{duration}}" onChange="handleSwiperChange" class="am-tabs-content-wrap {{util.compareVersion(version)< 0 ? 'fix' : ''}}">
+    <swiper circular="{{false}}" current="{{activeTab}}" currentVal="{{tabs[activeTab].value?tabs[activeTab].value:''}}" interval="99999999" autoplay="{{autoplay}}" duration="{{duration}}" onChange="handleSwiperChange" class="am-tabs-content-wrap {{util.compareVersion(version)< 0 ? 'fix' : ''}}">
       <slot></slot>
     </swiper>
   </block>

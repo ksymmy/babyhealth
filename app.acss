@@ -118,7 +118,6 @@ page {
 }
 
 /*tab*/
-
 view .am-tabs-content-wrap {
   width: 100vw!important;
   background-color: transparent;

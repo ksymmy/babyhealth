@@ -1,9 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "badge": "../badge/index",
-    "popover": "mini-antui/es/popover/index",
-    "popover-item": "mini-antui/es/popover/popover-item/index"
-
+    "badge": "../badge/index"
   }
 }

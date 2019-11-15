@@ -55,20 +55,22 @@ Component({
   methods: {
     handleSwiperChange: function handleSwiperChange(e) {
       var current = e.detail.current;
-
+      var currentVal = e.detail.currentVal;
       if (this.props.onChange) {
-        this.props.onChange({
-          index: current
-        });
+        this.props.onChange(
+          current,
+          currentVal
+        );
       }
     },
     handleTabClick: function handleTabClick(e) {
       var index = e.target.dataset.index;
-
+      var val = e.target.dataset.value;
       if (this.props.onTabClick) {
-        this.props.onTabClick({
-          index: index
-        });
+        this.props.onTabClick(
+          index,
+          val
+        );
       }
     },
     handlePlusClick: function handlePlusClick() {
@@ -82,10 +84,10 @@ Component({
       }
     },
     onPopClick: function onPopClick(e) {
-       var chooseNum=e.target.dataset.value
+      var chooseNum = e.target.dataset.value
       if (this.props.onPopClick) {
         this.props.onPopClick({
-            chooseNum:chooseNum
+          chooseNum: chooseNum
         });
       }
 
