@@ -30,13 +30,14 @@ page {
 }
 
 .sendDate {
-  width: 186rpx;
+  /* width: 186rpx; */
   height: 50rpx;
   line-height: 50rpx;
   background-color: #fff;
-  border-radius: 15rpx;
+  border-radius: 30rpx;
   text-align: center;
   margin: 30rpx 0;
+  padding:0 24rpx;
 }
 
 .orgInfo {

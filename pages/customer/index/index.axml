@@ -1,6 +1,6 @@
 <view class="page" key="container">
     <view class="sendDate">
-       今天 10：00
+       {{sendDate}} {{sendTime}}
     </view>
     <view class="orgInfo">
        <image mode="scaleToFill" src="/image/org.png"/>

@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/customer/index/index",
     "pages/index/index",
     "pages/doctor/index/index",
     "pages/doctor/notify-list/index",
@@ -12,8 +13,7 @@
     "pages/customer/apply-changeDate/apply-changeDate",
     "pages/customer/baby-mgt/baby-mgt",
     "pages/customer/signed-in/signed-in",
-    "pages/customer/sign-in/sign-in",
-    "pages/customer/index/index"
+    "pages/customer/sign-in/sign-in"
   ],
   "window": {
     "defaultTitle": "宝宝健康体检",

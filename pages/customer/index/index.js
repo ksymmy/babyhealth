@@ -1,13 +1,23 @@
 // import { HTTP } from '/util/http.js';
-// import { config } from '/app.js';
-// let http = new HTTP();
+import { showText } from '/app.js';
 
 Page({
   data: {
-
+      sendDate:'',
+      sendTime:''
   },
   onLoad(query) {
-    // 页面加载
+    // 初始发送日期
+    var d = '2019-11-13';
+    this.setData({
+      sendDate:showText(d)
+    })
+    // 初始发送时间
+     var d = '10:00';
+    this.setData({
+      sendTime:d
+    })
+     
   },
   toSignIn(){//点击可以，去签到页面
     dd.navigateTo({
