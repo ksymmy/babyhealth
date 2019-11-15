@@ -1,6 +1,32 @@
 import msglist from '/util/msglist';
+import {HTTP} from '/util/http.js';
+let http = new HTTP();
 Page({
   ...msglist,
+  onLoad(query){
+    var overduestart = query.overduestart,
+        overdueend = query.overdueend;
+    var that = this;
+    var timeperiod;
+    if(overdueend=="undefined"&&overduestart!="undefined"){
+      timeperiod={"overdueStart":overduestart}
+    }else if(overdueend!="undefined"&&overduestart!="undefined"){
+      console.log('fffffffffffff')
+      timeperiod={"overdueStart":overduestart,"overdueEnd":overdueend}
+    }
+    console.log(timeperiod)
+    http.request({
+      url:"baby/overduelist",
+      method:'POST',
+      data:JSON.stringify({
+        "param":timeperiod,"page":1,"size":10
+      }),
+      success:function(res){
+        
+        console.log(res)
+      }
+    })
+  },
   data: {
     listData: {
       list: [{

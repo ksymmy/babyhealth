@@ -17,7 +17,7 @@ Page({
   onLoad(){
     var that = this;
     http.request({
-      url:"/baby/indexCount",
+      url:"baby/indexCount",
       success:function(res){
         console.log(res)
         that.setData({
@@ -39,7 +39,7 @@ Page({
   // 跳转页面
   viewList(e) {
     dd.navigateTo({
-      url: `/pages/doctor/${ e.currentTarget.dataset.url}/index`
+      url: `/pages/doctor/${ e.currentTarget.dataset.url}/index?overduestart=${e.currentTarget.dataset.overduestart}&overdueend=${e.currentTarget.dataset.overdueend}`
     })
 
   }

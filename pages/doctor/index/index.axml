@@ -1,6 +1,6 @@
 <view class="index-page">
   <view class="panel-box">
-    <view class="panel panel-orange" data-url="overtime-list" onTap="viewList">
+    <view class="panel panel-orange" data-url="overtime-list" data-overduestart="7" data-overdueend="14" onTap="viewList">
       <view class="panel-icon">
       </view>
       <view class="panel-text">
@@ -10,7 +10,7 @@
         <text class="data-num">{{overTime.time1}}</text>人
       </view>
     </view>
-    <view class="panel panel-blue">
+    <view class="panel panel-blue" data-url="overtime-list" data-overduestart="14" data-overdueend="21" onTap="viewList">
       <view class="panel-icon">
       </view>
       <view class="panel-text">
@@ -20,7 +20,7 @@
         <text class="data-num">{{overTime.time2}}</text>人
       </view>
     </view>
-    <view class="panel panel-purple">
+    <view class="panel panel-purple" data-url="overtime-list" data-overduestart="21" onTap="viewList">
       <view class="panel-icon">
       </view>
       <view class="panel-text">
