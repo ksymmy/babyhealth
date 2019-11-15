@@ -19,7 +19,7 @@ Page({
     http.request({
       url:"baby/indexCount",
       success:function(res){
-        console.log(res)
+        // console.log(res)
         that.setData({
           overTime: {
             time1: res.overdueDays7,

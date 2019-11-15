@@ -3,30 +3,6 @@ import {HTTP} from '/util/http.js';
 let http = new HTTP();
 Page({
   ...msglist,
-  onLoad(query){
-    var overduestart = query.overduestart,
-        overdueend = query.overdueend;
-    var that = this;
-    var timeperiod;
-    if(overdueend=="undefined"&&overduestart!="undefined"){
-      timeperiod={"overdueStart":overduestart}
-    }else if(overdueend!="undefined"&&overduestart!="undefined"){
-      console.log('fffffffffffff')
-      timeperiod={"overdueStart":overduestart,"overdueEnd":overdueend}
-    }
-    console.log(timeperiod)
-    http.request({
-      url:"baby/overduelist",
-      method:'POST',
-      data:JSON.stringify({
-        "param":timeperiod,"page":1,"size":10
-      }),
-      success:function(res){
-        
-        console.log(res)
-      }
-    })
-  },
   data: {
     //展示数据，请求时更改
     listData: {
@@ -134,10 +110,41 @@ Page({
       { title: '36月' }
     ],
     popList: [{ title: 'DING 0 次', value: 0 }, { title: 'DING 1 次', value: 1 }, { title: 'DING 2 次', value: 2 }, { title: '3次及以上', value: 3 },],//筛选条件
-    activeTab: 2,//当前选中tab序号
+    activeTab: 0,//当前选中tab序号
     position: 'bottomRight',//弹出方向
     popshow: false,//弹出
     showMask: true,//遮罩层
+  },
+  onLoad(query){
+    var overduestart = query.overduestart,
+        overdueend = query.overdueend;
+    var that = this;
+    var timeperiod;
+    if(overdueend=="undefined"&&overduestart!="undefined"){
+      timeperiod={"overdueStart":overduestart}
+    }else if(overdueend!="undefined"&&overduestart!="undefined"){
+      // console.log('fffffffffffff')
+      timeperiod={"overdueStart":overduestart,"overdueEnd":overdueend}
+    }
+    // console.log(timeperiod)
+    http.request({
+      url:"baby/overduelist",
+      method:'POST',
+      data:JSON.stringify({
+        "param":timeperiod,"page":1,"size":10
+      }),
+      success:function(res){
+        console.log(res)
+        var all_data
+        all_data = []
+        for(var key in res){
+            all_data.push(res[key])
+        }
+        that.setData({
+          // 'listData.list':all_data
+        })
+      }
+    })
   },
   //tab选项切换
   handleTabClick({ index }) {
@@ -148,6 +155,7 @@ Page({
   },
   //tab选项切换
   handleTabChange({ index }) {
+    console.log("8888888888888888888")
     this.setData({
       activeTab: index,
     });
