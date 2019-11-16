@@ -6,6 +6,8 @@ Page({
   ...msglist,
   data: {
     listData: {
+      toLower: 'toLower',
+      pageHeight: 1200,
       list: [
         // {
         //   name: '任慕瑶',
@@ -25,6 +27,9 @@ Page({
     this.setData({
       ['listData.list']: [],
     });
+    this.onRequest();
+  },
+  toLower(e) {
     this.onRequest();
   },
   onRequest() {
