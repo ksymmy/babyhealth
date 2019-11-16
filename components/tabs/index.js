@@ -28,7 +28,7 @@ Component({
   },
   data: {
     windowWidth: windowWidth,
-    tabWidth: 0.25,
+    tabWidth: 0.2,
     autoplay: false,
     animation: false,
     version: my.SDKVersion
@@ -38,7 +38,7 @@ Component({
       tabs = _this$props.tabs,
       animation = _this$props.animation;
     this.setData({
-      tabWidth: tabs.length > 3 ? 0.25 : 1 / tabs.length,
+      tabWidth: tabs.length > 4 ? 0.2 : 1 / tabs.length,
       animation: animation,
       autoplay: true
     });
@@ -48,7 +48,7 @@ Component({
 
     if (prevProps.tabs.length !== tabs.length) {
       this.setData({
-        tabWidth: tabs.length > 3 ? 0.25 : 1 / tabs.length
+        tabWidth: tabs.length > 4 ? 0.2 : 1 / tabs.length
       });
     }
   },

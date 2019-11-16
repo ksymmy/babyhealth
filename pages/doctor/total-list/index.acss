@@ -1,7 +1,25 @@
  @import '/util/msglist/index.acss';
  page {
-   padding: 140px 0 0;
+   padding: 94px 0 0;
    box-sizing: border-box;
+ }
+
+ .am-tabs-tab-bar-wrap {
+   position: fixed;
+   top: 52px;
+   width: 100vw;
+ }
+
+ .innerTab {
+   padding-top: 42px;
+ }
+
+ .innerTab .am-tabs-tab-bar-wrap {
+   top: 0;
+ }
+
+ .am-tabs .am-tabs-content-wrap {
+   margin-top: 0;
  }
 
  .innerTab .am-tabs-bar-title {
@@ -15,7 +33,45 @@
    left: -20rpx;
    right: -20rpx;
    border: 1rpx solid #52afff;
-   top:10rpx;
-   bottom:10rpx;
+   top: 10rpx;
+   bottom: 10rpx;
    border-radius: 8rpx;
+ }
+
+ .search-con {
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   padding: 8px 30rpx;
+   background-color: #fff;
+ }
+
+ .search-box {
+   background-color: #ecedef;
+   height: 36px;
+   border-radius: 18px;
+   display: flex;
+   align-items: center;
+   padding: 0 20rpx;
+ }
+
+ .search-box::before {
+   content: '';
+   background: url(/image/doctor/icon_search.png) left center no-repeat;
+   width: 36rpx;
+   height: 36rpx;
+   background-size: 100% 100%;
+   display: block;
+ }
+
+ .search-box>input {
+   flex: 1;
+   background-color: transparent;
+   font-size: 29rpx;
+   color:#111f2c;
+ }
+
+ .search-box>input::-webkit-input-placeholder {
+   color: #333;
  }
