@@ -118,6 +118,9 @@ page {
 }
 
 /*tab*/
+.am-tabs{
+  position: relative;
+}
 view .am-tabs-content-wrap {
   width: 100vw!important;
   background-color: transparent;
@@ -213,7 +216,7 @@ view .am-tabs-content-wrap {
 }
 
 .popover-container .popover-box {
-  top: 120rpx;
+  top: 20rpx;
   right: 14rpx;
   position: absolute;
   z-index: 100;
