@@ -1,5 +1,5 @@
 <template name="msglist">
-  <scroll-view scroll-y>
+  <scroll-view scroll-y   style="max-height:{{pageHeight}}rpx;" onScrollToLower="{{toLower}}">
     <view a:if={{list}} class="msg-list">
       <block a:for={{list}} a:for-item="item">
         <view class="msg-list-item">
@@ -11,7 +11,7 @@
               <text>{{item.birthday}}</text>
             </view>
             <view>
-                 {{item.age}}
+                 {{item.age}}月龄
             </view>
           </view>
           <view class="msg-line">

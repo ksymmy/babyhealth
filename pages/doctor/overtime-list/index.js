@@ -1,11 +1,16 @@
 import msglist from '/util/msglist';
 import {HTTP} from '/util/http.js';
 let http = new HTTP();
+var timeperiod;
+var page;
 Page({
   ...msglist,
   data: {
+    pagesize:10,
     //展示数据，请求时更改
     listData: {
+      toLower:'toLower',
+      pageHeight:1200,
       list: [{
         name: '任慕瑶',
         sex: 0,
@@ -137,18 +142,8 @@ Page({
     popshow: false,//弹出
     showMask: true,//遮罩层
   },
-  onLoad(query){
-    var overduestart = query.overduestart,
-        overdueend = query.overdueend;
-    var that = this;
-    var timeperiod;
-    if(overdueend=="undefined"&&overduestart!="undefined"){
-      timeperiod={"overdueStart":overduestart}
-    }else if(overdueend!="undefined"&&overduestart!="undefined"){
-      // console.log('fffffffffffff')
-      timeperiod={"overdueStart":overduestart,"overdueEnd":overdueend}
-    }
-    // console.log(timeperiod)
+  firstRequest(){
+    let that = this;
     http.request({
       url:"baby/overduelist",
       method:'POST',
@@ -156,21 +151,80 @@ Page({
         "param":timeperiod,"page":1,"size":10
       }),
       success:function(res){
+        page=1
         console.log(res)
         var all_data
         all_data = []
         for(var key in res){
+            // res[key]["textTime"]=res[key]["examinationDate"]
+            // res[key]["overTime"]=res[key]["overdueDays"]
+            // res[key]["dingNum"]=res[key]["dingTimes"]
+            // res[key]["age"]=res[key]["examinationType"]
             all_data.push(res[key])
+            all_data.push(res[key])
+            all_data.push(res[key])
+            all_data.push(res[key])
+           all_data.push(res[key])
+          //  all_data.push(res[key])
         }
         that.setData({
-          // 'listData.list':all_data
+          'listData.list':all_data
         })
       }
     })
   },
+  onLoad(query){
+    this.data.listData.pageHeight=132*this.data.pagesize;
+    var overduestart = query.overduestart,
+        overdueend = query.overdueend;
+    var that = this;
+    
+    if(overdueend=="undefined"&&overduestart!="undefined"){
+      timeperiod={"overdueStart":overduestart}
+    }else if(overdueend!="undefined"&&overduestart!="undefined"){
+      // console.log('fffffffffffff')
+      timeperiod={"overdueStart":overduestart,"overdueEnd":overdueend}
+    }
+    // console.log(timeperiod)
+    this.firstRequest()
+  },
+  onRequest(){
+    let that = this;
+    page++
+    http.request({
+      url:"baby/overduelist",
+      method:"POST",
+      data:JSON.stringify({
+          "param":timeperiod,"page":page,"size":10
+      }),
+      success:function(res){
+        page++
+        var newData,result_data,newpagesize;
+        newData=[]
+        for(var key in res){
+            newData.push(res[key])
+        }
+        var oldData = that.data.listData.list;
+        newpagesize = that.data.pagesize+10
+        result_data = oldData.concat(newData)
+        that.setData({
+          'listData.list':result_data,
+          'pagesize':newpagesize
+        })
+      }
+    })
+  },
+  toLower(e){
+    let that = this;
+    this.onRequest();
+    console.log("iuuuuuuuuuuuuuuuuuu")
+  },
   //tab选项切换
   handleTabClick(index, value) {
+    console.log("iiiiiiiiiiiiiiiiii");
     console.log(value)
+    timeperiod["examinationType"]=value.value
+    this.firstRequest()
     this.setData({
       activeTab: index,
     });
@@ -178,6 +232,8 @@ Page({
   //tab选项切换
   handleTabChange(index, value) {
     console.log(value)
+    timeperiod["examinationType"]=value.value
+    this.firstRequest()
     this.setData({
       activeTab: index,
     });
