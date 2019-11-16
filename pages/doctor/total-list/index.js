@@ -2,20 +2,27 @@ import msglist from '/util/msglist';
 import { HTTP } from '/util/http.js';
 import { config } from '/app.js';
 let http = new HTTP(), page = 1;
+var _my$getSystemInfoSync = my.getSystemInfoSync(), windowHeight = _my$getSystemInfoSync.windowHeight;
+var scrollHeight = windowHeight - 160;
 Page({
   ...msglist,
   data: {
     listData: {
+      toLower: 'toLower',//触底函数
+      pageHeight: 1200,//scroll-view触底高度
+      scrollHeight: 0,//最小scroll-view高度
+      dataFinish: false,//数据加载完全
+      noDataState: false,//无数据状态
       list: [
-      //   {
-      //   name: '任慕瑶',
-      //   sex: 0,
-      //   birthday: '2019-06-30',
-      //   age: '3月龄',
-      //   textTime: '2019-09-30',
-      //   overTime: 14,
-      //   dingNum: 3
-      // }
+        //   {
+        //   name: '任慕瑶',
+        //   sex: 0,
+        //   birthday: '2019-06-30',
+        //   age: '3月龄',
+        //   textTime: '2019-09-30',
+        //   overTime: 14,
+        //   dingNum: 3
+        // }
       ],
       // type: 3 //封装列表页面展示类型，1为明日体检列表，2为改期列表，3为逾期列表
     },
@@ -76,13 +83,18 @@ Page({
         ]
       }
     ],
-    topActiveTab: 0,
-    activeTab: [0, 0],
+    topActiveTab: 0,//上方tab选中序号
+    activeTab: [0, 0],//下方tab选中序号
     inputValue: '',
     age: '',
     year: ''
   },
   onLoad() {
+    let h = 135 * config.pageSize ;
+    this.setData({
+      'listData.scrollHeight': scrollHeight,
+      'listData.pageHeight': h
+    })
     /*获取当前年份最近四年*/
     let date = new Date;
     let y = date.getFullYear();
@@ -106,12 +118,15 @@ Page({
   onSearch: function() {
     page = 1;
     this.setData({
+      ['listData.noDataState']: false,
+      ['listData.dataFinish']: false,
       ['listData.list']: [],
-    });
+    })
     this.onRequest();
   },
   onRequest() {
-    let that = this;
+    var that = this;
+    let len = 0;
     http.request({
       url: "baby/allbabyslist",
       method: 'post',
@@ -125,8 +140,32 @@ Page({
         size: config.pageSize,
       }),
       success: (res) => {
-        if (res.length == 0) {
+        let len = res.length;
+
+        if (page == 1) {
+          if (len < config.pageSize) {
+            let h = 135 * len;
+            that.setData({
+              'listData.pageHeight': h
+            })
+          }
+          if (len == 0) {
+            that.setData({
+              'listData.noDataState': true
+
+            })
+            return
+          }
+        } else if (len == 0) {
+          that.setData({
+            'listData.dataFinish': true
+          })
           return
+        }
+        if (len < config.pageSize) {
+          that.setData({
+            'listData.dataFinish': true
+          })
         }
         page++;
         var data = that.data.listData.list;
@@ -135,9 +174,6 @@ Page({
         that.setData({
           [listIndex]: data,
         });
-
-        console.log(that)
-
       },
       fail: function(res) {
         dd.alert({ content: JSON.stringify(res), buttonText: '好的' });
@@ -150,26 +186,20 @@ Page({
     });
   },
   //上方tab选项切换
-  handleTopTabClick(index, value) {
+  handleTopTabClick(e) {
+    let index = e.currentTarget.dataset.index;
     this.setData({
       topActiveTab: index,
       [index ? 'age' : 'year']: ''
     });
   },
-  //上方tab选项切换
-  handleTopTabChange(index, value) {
-    this.setData({
-      topActiveTab: index,
-      [index ? 'age' : 'year']: ''
-    });
-  },
+
   //下方tab选项切换
   handleTabClick(index, value) {
     var newIndex = 'activeTab[' + this.data.topActiveTab + ']'
     this.setData({
       [newIndex]: index,
     });
-    console.log(value)
     if (!isNaN(value.title)) {//年份
       this.setData({
         ['age']: '',
@@ -203,4 +233,9 @@ Page({
     }
     this.onSearch();
   },
+  /*下拉 */
+  toLower(e) {
+    let that = this;
+    this.onRequest();
+  }
 })

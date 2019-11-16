@@ -1,8 +1,7 @@
  @import '/util/msglist/index.acss';
  page {
-   padding: 52px 0 80px;
+   padding: 52px 0 78px;
    box-sizing: border-box;
-   height: 100vh;
  }
 
  .fixed-btn-box {

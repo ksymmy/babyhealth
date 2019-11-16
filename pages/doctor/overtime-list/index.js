@@ -17,6 +17,8 @@ Page({
       pageHeight: 1200,
       scrollHeight: 0,
       list: [],
+      dataFinish: false,//数据加载完全
+      noDataState: false,//无数据状态
       type: 3 //封装列表页面展示类型，1为明日体检列表，2为改期列表，3为逾期列表
     },
     //tab选项内容，badgeText为数字，没有请无需加badgeType，badgeText
@@ -70,7 +72,7 @@ Page({
         value: 36
       }
     ],
-    popList: [{ title: 'DING 0 次', value: 0 }, { title: 'DING 1 次', value: 1 }, { title: 'DING 2 次', value: 2 }, { title: '3次及以上', value: 3 },{ title: '全部', value: '' }],//筛选条件
+    popList: [{ title: 'DING 0 次', value: 0 }, { title: 'DING 1 次', value: 1 }, { title: 'DING 2 次', value: 2 }, { title: '3次及以上', value: 3 }, { title: '全部', value: '' }],//筛选条件
     activeTab: 0,//当前选中tab序号
     position: 'bottomRight',//弹出方向
     popshow: false,//弹出
@@ -78,7 +80,7 @@ Page({
   },
   firstRequest() {
     let that = this;
-    let len=0;
+    let len = 0;
     http.request({
       url: "baby/overduelist",
       method: 'POST',
@@ -87,28 +89,32 @@ Page({
       }),
       success: function(res) {
         page = 1
-        len=res.length;
-        if (len < that.data.pagesize) {
-          that.data.listData.pageHeight = 150 * len;
-        }
-        if (len < that.data.pagesize) {
+        len = res.length;
+        if (len == 0) {
           that.setData({
-            'listData.pageHeight': 150 *len
+            'listData.noDataState': true
+          })
+          return
+        } else if (len < that.data.pagesize) {
+          that.setData({
+            'listData.pageHeight': 135 * len,
+            'listData.dataFinish': true
           })
 
         }
+
         var all_data
         all_data = []
-        for(var key in res){
-            // res[key]["textTime"]=res[key]["examinationDate"]
-            // res[key]["overTime"]=res[key]["overdueDays"]
-            // res[key]["dingNum"]=res[key]["dingTimes"]
-            // res[key]["age"]=res[key]["examinationType"]
-            all_data.push(res[key])
-            all_data.push(res[key])
-            all_data.push(res[key])
-            all_data.push(res[key])
-           all_data.push(res[key])
+        for (var key in res) {
+          // res[key]["textTime"]=res[key]["examinationDate"]
+          // res[key]["overTime"]=res[key]["overdueDays"]
+          // res[key]["dingNum"]=res[key]["dingTimes"]
+          // res[key]["age"]=res[key]["examinationType"]
+          all_data.push(res[key])
+          all_data.push(res[key])
+          all_data.push(res[key])
+          all_data.push(res[key])
+          all_data.push(res[key])
           //  all_data.push(res[key])
         }
         that.setData({
@@ -123,8 +129,11 @@ Page({
     var overduestart = query.overduestart,
       overdueend = query.overdueend;
     var that = this;
-    this.data.listData.scrollHeight = scrollHeight;
-    this.data.listData.pageHeight = 150 * this.data.pagesize;
+    this.setData({
+      'listData.scrollHeight': scrollHeight,
+      'listData.pageHeight': 135 * this.data.pagesize
+    })
+
     if (overdueend == "undefined" && overduestart != "undefined") {
       timeperiod = { "overdueStart": overduestart }
     } else if (overdueend != "undefined" && overduestart != "undefined") {
@@ -145,7 +154,12 @@ Page({
       }),
       success: function(res) {
         page++
+        if (res.length < that.data.pagesize) {
+          that.setData({
+            'listData.dataFinish': true
+          })
 
+        }
         var newData, result_data, newpagesize;
         newData = []
         for (var key in res) {
@@ -167,7 +181,7 @@ Page({
   },
   //tab选项切换
   handleTabClick(index, value) {
-    timeperiod["examinationType"]=value.value
+    timeperiod["examinationType"] = value.value
     this.firstRequest()
     this.setData({
       activeTab: index,
@@ -175,7 +189,7 @@ Page({
   },
   //tab选项切换
   handleTabChange(index, value) {
-    timeperiod["examinationType"]=value.value
+    timeperiod["examinationType"] = value.value
     this.firstRequest()
     this.setData({
       activeTab: index,
@@ -196,8 +210,8 @@ Page({
   },
   //筛选条件点击
   onPopClick({ chooseNum }) {
-    timeperiod["dingTimes"]=chooseNum
-    if(String(chooseNum)===""){
+    timeperiod["dingTimes"] = chooseNum
+    if (String(chooseNum) === "") {
       delete timeperiod["dingTimes"];
     }
     this.setData({

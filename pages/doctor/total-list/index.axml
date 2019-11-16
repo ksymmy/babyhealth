@@ -1,24 +1,30 @@
 <import src="/util/msglist/index.axml" />
 <view>
-  <view class="search-con">
-    <view class="search-box">
-      <input onInput="bindKeyInput" value="{{inputValue}}" placeholder="搜索" onConfirm="onSearch"/>
+  <view class="fixed-con">
+    <view class="search-con">
+      <view class="search-box">
+        <input onInput="bindKeyInput" value="{{inputValue}}" placeholder="搜索" onConfirm="onSearch"/>
+      </view>
+    </view>
+    <view class="my-tab">
+      <block a:for="{{toptabs}}">
+        <view class="my-tab-item {{index==topActiveTab?'tab-active':''}}" data-index="{{index}}" onTap="handleTopTabClick">
+          <view>{{item.title}}</view>
+        </view>
+      </block>
     </view>
   </view>
-  <tabs class="" tabs="{{toptabs}}" showPlus="{{false}}" onTabClick="handleTopTabClick" tabBarUnderlineColor="#0089ff" tabBarActiveTextColor="#111f2c" tabBarInactiveTextColor="#7a8189" activeTab="{{topActiveTab}}" swipeable="{{false}}">
-    <block a:for="{{toptabs}}">
+  <!--<tabs class="" tabs="{{toptabs}}" showPlus="{{false}}" onTabClick="handleTopTabClick" tabBarUnderlineColor="#0089ff" tabBarActiveTextColor="#111f2c" tabBarInactiveTextColor="#7a8189" activeTab="{{topActiveTab}}" swipeable="{{false}}"><block a:for="{{toptabs}}"><tab-content key="{{index}}"> -->
+  <!--<view class="tab-content"> -->
+  <tabs class="innerTab" tabs="{{toptabs[topActiveTab].subTabs}}" tabBarActiveTextColor="#52afff" tabBarInactiveTextColor="#7a8189" showPlus="{{false}}" activeCls="tab-active-border" onTabClick="handleTabClick" onChange="handleTabChange" onPlusClick="handlePlusClick" activeTab="{{activeTab[topActiveTab]}}" swipeable="{{true}}">
+    <block a:for="{{toptabs[topActiveTab].subTabs}}">
       <tab-content key="{{index}}">
         <view class="tab-content">
-          <tabs class="innerTab" tabs="{{item.subTabs}}" tabBarActiveTextColor="#52afff" tabBarInactiveTextColor="#7a8189" showPlus="{{false}}" activeCls="tab-active-border" onTabClick="handleTabClick" onChange="handleTabChange" onPlusClick="handlePlusClick" activeTab="{{activeTab[index]}}" swipeable="{{true}}">
-            <block a:for="{{item.subTabs}}">
-              <tab-content key="{{index}}">
-                <view class="tab-content">
-                  <template is="msglist" data={{...listData}}></template></view>
-              </tab-content>
-            </block>
-          </tabs>
+          <template is="msglist" data={{...listData}}></template>
         </view>
       </tab-content>
     </block>
   </tabs>
+  <!--</view> -->
+  <!--</tab-content></block></tabs> -->
 </view>
