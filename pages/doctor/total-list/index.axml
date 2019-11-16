@@ -1,15 +1,15 @@
 <import src="/util/msglist/index.axml" />
 <view>
- <view class="search-con">
+  <view class="search-con">
     <view class="search-box">
-      <input onInput="bindKeyInput" placeholder="搜索" onConfirm=""/>
+      <input onInput="bindKeyInput" value="{{inputValue}}" placeholder="搜索" onConfirm="onSearch"/>
     </view>
   </view>
   <tabs class="" tabs="{{toptabs}}" showPlus="{{false}}" onTabClick="handleTopTabClick" tabBarUnderlineColor="#0089ff" tabBarActiveTextColor="#111f2c" tabBarInactiveTextColor="#7a8189" activeTab="{{topActiveTab}}" swipeable="{{false}}">
     <block a:for="{{toptabs}}">
       <tab-content key="{{index}}">
         <view class="tab-content">
-          <tabs class="innerTab" tabs="{{item.subTabs}}" tabBarActiveTextColor="#52afff" tabBarInactiveTextColor="#7a8189"showPlus="{{false}}" activeCls="tab-active-border" onTabClick="handleTabClick" onChange="handleTabChange" onPlusClick="handlePlusClick" activeTab="{{activeTab[index]}}" swipeable="{{true}}">
+          <tabs class="innerTab" tabs="{{item.subTabs}}" tabBarActiveTextColor="#52afff" tabBarInactiveTextColor="#7a8189" showPlus="{{false}}" activeCls="tab-active-border" onTabClick="handleTabClick" onChange="handleTabChange" onPlusClick="handlePlusClick" activeTab="{{activeTab[index]}}" swipeable="{{true}}">
             <block a:for="{{item.subTabs}}">
               <tab-content key="{{index}}">
                 <view class="tab-content">

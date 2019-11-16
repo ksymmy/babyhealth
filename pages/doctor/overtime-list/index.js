@@ -1,90 +1,22 @@
 import msglist from '/util/msglist';
-import {HTTP} from '/util/http.js';
+import { HTTP } from '/util/http.js';
 let http = new HTTP();
 var timeperiod;
 var page;
+var _my$getSystemInfoSync = my.getSystemInfoSync(),
+  windowHeight = _my$getSystemInfoSync.windowHeight;
+var scrollHeight = windowHeight - 132;
+
 Page({
   ...msglist,
   data: {
-    pagesize:10,
+    pagesize: 10,
     //展示数据，请求时更改
     listData: {
-      toLower:'toLower',
-      pageHeight:1200,
-      list: [
-      //   {
-      //   name: '任慕瑶',
-      //   sex: 0,
-      //   birthday: '2019-06-30',
-      //   age: '3月龄',
-      //   textTime: '2019-09-30',
-      //   overTime: 14,
-      //   dingNum: 3
-      // },
-      // {
-      //   name: '任慕瑶',
-      //   sex: 0,
-      //   birthday: '2019-04-04',
-      //   age: '6月龄',
-      //   textTime: '2019-10-04',
-      //   overTime: 14,
-      //   dingNum: 2
-      // },
-      // {
-      //   name: '袁明轩',
-      //   sex: 1,
-      //   birthday: '2019-07-04',
-      //   age: '3月龄',
-      //   textTime: '2019-10-04',
-      //   overTime: 14,
-      //   dingNum: 1
-      // },
-      // {
-      //   name: '袁明轩',
-      //   sex: 1,
-      //   birthday: '2019-07-04',
-      //   age: '3月龄',
-      //   textTime: '2019-10-04',
-      //   overTime: 14,
-      //   dingNum: 0
-      // },
-      // {
-      //   name: '袁明轩',
-      //   sex: 1,
-      //   birthday: '2019-07-04',
-      //   age: '3月龄',
-      //   textTime: '2019-10-04',
-      //   overTime: 14,
-      //   dingNum: 0
-      // },
-      // {
-      //   name: '袁明轩',
-      //   sex: 1,
-      //   birthday: '2019-07-04',
-      //   age: '3月龄',
-      //   textTime: '2019-10-04',
-      //   overTime: 14,
-      //   dingNum: 0
-      // },
-      // {
-      //   name: '袁明轩',
-      //   sex: 1,
-      //   birthday: '2019-07-04',
-      //   age: '3月龄',
-      //   textTime: '2019-10-04',
-      //   overTime: 14,
-      //   dingNum: 0
-      // },
-      // {
-      //   name: '袁明轩',
-      //   sex: 1,
-      //   birthday: '2019-07-04',
-      //   age: '3月龄',
-      //   textTime: '2019-10-04',
-      //   overTime: 14,
-      //   dingNum: 0
-      // }
-      ],
+      toLower: 'toLower',
+      pageHeight: 1200,
+      scrollHeight: 0,
+      list: [],
       type: 3 //封装列表页面展示类型，1为明日体检列表，2为改期列表，3为逾期列表
     },
     //tab选项内容，badgeText为数字，没有请无需加badgeType，badgeText
@@ -144,19 +76,29 @@ Page({
     popshow: false,//弹出
     showMask: true,//遮罩层
   },
-  firstRequest(){
+  firstRequest() {
     let that = this;
+    let len=0;
     http.request({
-      url:"baby/overduelist",
-      method:'POST',
-      data:JSON.stringify({
-        "param":timeperiod,"page":1,"size":10
+      url: "baby/overduelist",
+      method: 'POST',
+      data: JSON.stringify({
+        "param": timeperiod, "page": 1, "size": 10
       }),
-      success:function(res){
-        page=1
+      success: function(res) {
+        page = 1
+        len=res.length;
+        if (len < that.data.pagesize) {
+          that.data.listData.pageHeight = 150 * len;
+        }
+        if (len < that.data.pagesize) {
+          that.setData({
+            'listData.pageHeight': 150 *len
+          })
+
+        }
         var all_data
         all_data = []
-        console.log(res)
         for(var key in res){
             // res[key]["textTime"]=res[key]["examinationDate"]
             // res[key]["overTime"]=res[key]["overdueDays"]
@@ -170,53 +112,56 @@ Page({
           //  all_data.push(res[key])
         }
         that.setData({
-          'listData.list':all_data
+          'listData.list': all_data
         })
       }
     })
+
+
   },
-  onLoad(query){
-    this.data.listData.pageHeight=132*this.data.pagesize;
+  onLoad(query) {
     var overduestart = query.overduestart,
-        overdueend = query.overdueend;
+      overdueend = query.overdueend;
     var that = this;
-    
-    if(overdueend=="undefined"&&overduestart!="undefined"){
-      timeperiod={"overdueStart":overduestart}
-    }else if(overdueend!="undefined"&&overduestart!="undefined"){
+    this.data.listData.scrollHeight = scrollHeight;
+    this.data.listData.pageHeight = 150 * this.data.pagesize;
+    if (overdueend == "undefined" && overduestart != "undefined") {
+      timeperiod = { "overdueStart": overduestart }
+    } else if (overdueend != "undefined" && overduestart != "undefined") {
       // console.log('fffffffffffff')
-      timeperiod={"overdueStart":overduestart,"overdueEnd":overdueend}
+      timeperiod = { "overdueStart": overduestart, "overdueEnd": overdueend }
     }
     // console.log(timeperiod)
     this.firstRequest()
   },
-  onRequest(){
+  onRequest() {
     let that = this;
-    page++
+    page++;
     http.request({
-      url:"baby/overduelist",
-      method:"POST",
-      data:JSON.stringify({
-          "param":timeperiod,"page":page,"size":10
+      url: "baby/overduelist",
+      method: "POST",
+      data: JSON.stringify({
+        "param": timeperiod, "page": page, "size": 10
       }),
-      success:function(res){
+      success: function(res) {
         page++
-        var newData,result_data,newpagesize;
-        newData=[]
-        for(var key in res){
-            newData.push(res[key])
+
+        var newData, result_data, newpagesize;
+        newData = []
+        for (var key in res) {
+          newData.push(res[key])
         }
         var oldData = that.data.listData.list;
-        newpagesize = that.data.pagesize+10
+        newpagesize = that.data.pagesize + 10
         result_data = oldData.concat(newData)
         that.setData({
-          'listData.list':result_data,
-          'pagesize':newpagesize
+          'listData.list': result_data
+          // 'pagesize':newpagesize
         })
       }
     })
   },
-  toLower(e){
+  toLower(e) {
     let that = this;
     this.onRequest();
   },
