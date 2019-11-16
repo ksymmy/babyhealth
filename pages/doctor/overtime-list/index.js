@@ -11,78 +11,80 @@ Page({
     listData: {
       toLower:'toLower',
       pageHeight:1200,
-      list: [{
-        name: '任慕瑶',
-        sex: 0,
-        birthday: '2019-06-30',
-        age: '3月龄',
-        textTime: '2019-09-30',
-        overTime: 14,
-        dingNum: 3
-      },
-      {
-        name: '任慕瑶',
-        sex: 0,
-        birthday: '2019-04-04',
-        age: '6月龄',
-        textTime: '2019-10-04',
-        overTime: 14,
-        dingNum: 2
-      },
-      {
-        name: '袁明轩',
-        sex: 1,
-        birthday: '2019-07-04',
-        age: '3月龄',
-        textTime: '2019-10-04',
-        overTime: 14,
-        dingNum: 1
-      },
-      {
-        name: '袁明轩',
-        sex: 1,
-        birthday: '2019-07-04',
-        age: '3月龄',
-        textTime: '2019-10-04',
-        overTime: 14,
-        dingNum: 0
-      },
-      {
-        name: '袁明轩',
-        sex: 1,
-        birthday: '2019-07-04',
-        age: '3月龄',
-        textTime: '2019-10-04',
-        overTime: 14,
-        dingNum: 0
-      },
-      {
-        name: '袁明轩',
-        sex: 1,
-        birthday: '2019-07-04',
-        age: '3月龄',
-        textTime: '2019-10-04',
-        overTime: 14,
-        dingNum: 0
-      },
-      {
-        name: '袁明轩',
-        sex: 1,
-        birthday: '2019-07-04',
-        age: '3月龄',
-        textTime: '2019-10-04',
-        overTime: 14,
-        dingNum: 0
-      },
-      {
-        name: '袁明轩',
-        sex: 1,
-        birthday: '2019-07-04',
-        age: '3月龄',
-        textTime: '2019-10-04',
-        overTime: 14,
-        dingNum: 0
-      }],
+      list: [
+      //   {
+      //   name: '任慕瑶',
+      //   sex: 0,
+      //   birthday: '2019-06-30',
+      //   age: '3月龄',
+      //   textTime: '2019-09-30',
+      //   overTime: 14,
+      //   dingNum: 3
+      // },
+      // {
+      //   name: '任慕瑶',
+      //   sex: 0,
+      //   birthday: '2019-04-04',
+      //   age: '6月龄',
+      //   textTime: '2019-10-04',
+      //   overTime: 14,
+      //   dingNum: 2
+      // },
+      // {
+      //   name: '袁明轩',
+      //   sex: 1,
+      //   birthday: '2019-07-04',
+      //   age: '3月龄',
+      //   textTime: '2019-10-04',
+      //   overTime: 14,
+      //   dingNum: 1
+      // },
+      // {
+      //   name: '袁明轩',
+      //   sex: 1,
+      //   birthday: '2019-07-04',
+      //   age: '3月龄',
+      //   textTime: '2019-10-04',
+      //   overTime: 14,
+      //   dingNum: 0
+      // },
+      // {
+      //   name: '袁明轩',
+      //   sex: 1,
+      //   birthday: '2019-07-04',
+      //   age: '3月龄',
+      //   textTime: '2019-10-04',
+      //   overTime: 14,
+      //   dingNum: 0
+      // },
+      // {
+      //   name: '袁明轩',
+      //   sex: 1,
+      //   birthday: '2019-07-04',
+      //   age: '3月龄',
+      //   textTime: '2019-10-04',
+      //   overTime: 14,
+      //   dingNum: 0
+      // },
+      // {
+      //   name: '袁明轩',
+      //   sex: 1,
+      //   birthday: '2019-07-04',
+      //   age: '3月龄',
+      //   textTime: '2019-10-04',
+      //   overTime: 14,
+      //   dingNum: 0
+      // },
+      // {
+      //   name: '袁明轩',
+      //   sex: 1,
+      //   birthday: '2019-07-04',
+      //   age: '3月龄',
+      //   textTime: '2019-10-04',
+      //   overTime: 14,
+      //   dingNum: 0
+      // }
+      ],
       type: 3 //封装列表页面展示类型，1为明日体检列表，2为改期列表，3为逾期列表
     },
     //tab选项内容，badgeText为数字，没有请无需加badgeType，badgeText
@@ -136,7 +138,7 @@ Page({
         value: 36
       }
     ],
-    popList: [{ title: 'DING 0 次', value: 0 }, { title: 'DING 1 次', value: 1 }, { title: 'DING 2 次', value: 2 }, { title: '3次及以上', value: 3 },],//筛选条件
+    popList: [{ title: 'DING 0 次', value: 0 }, { title: 'DING 1 次', value: 1 }, { title: 'DING 2 次', value: 2 }, { title: '3次及以上', value: 3 },{ title: '全部', value: '' }],//筛选条件
     activeTab: 0,//当前选中tab序号
     position: 'bottomRight',//弹出方向
     popshow: false,//弹出
@@ -152,9 +154,9 @@ Page({
       }),
       success:function(res){
         page=1
-        console.log(res)
         var all_data
         all_data = []
+        console.log(res)
         for(var key in res){
             // res[key]["textTime"]=res[key]["examinationDate"]
             // res[key]["overTime"]=res[key]["overdueDays"]
@@ -217,12 +219,9 @@ Page({
   toLower(e){
     let that = this;
     this.onRequest();
-    console.log("iuuuuuuuuuuuuuuuuuu")
   },
   //tab选项切换
   handleTabClick(index, value) {
-    console.log("iiiiiiiiiiiiiiiiii");
-    console.log(value)
     timeperiod["examinationType"]=value.value
     this.firstRequest()
     this.setData({
@@ -231,7 +230,6 @@ Page({
   },
   //tab选项切换
   handleTabChange(index, value) {
-    console.log(value)
     timeperiod["examinationType"]=value.value
     this.firstRequest()
     this.setData({
@@ -253,10 +251,16 @@ Page({
   },
   //筛选条件点击
   onPopClick({ chooseNum }) {
+    timeperiod["dingTimes"]=chooseNum
+    if(String(chooseNum)===""){
+      delete timeperiod["dingTimes"];
+    }
     this.setData({
       popshow: false,
     });
-    console.log(chooseNum)
+    this.firstRequest()
+
+
   },
   //全部ding
   allDing() {
