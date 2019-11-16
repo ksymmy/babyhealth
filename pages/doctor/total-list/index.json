@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "宝宝健康体检",
+  "defaultTitle": "总管理人数",
   "usingComponents":{
     "tabs": "/components/tabs/index",
     "tab-content": "/components/tabs/tab-content/index"

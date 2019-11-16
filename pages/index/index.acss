@@ -1,4 +1,4 @@
-view,image{
-  width: 100%;
+view, image {
+  width: 100vw;
   height: 100vh;
 }
