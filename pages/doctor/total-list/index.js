@@ -237,54 +237,56 @@ Page({
     this.onRequest();
   },
   cancelManage(e) {
-    let baby = e.currentTarget.dataset.val;
-    let result = [
-      {
-        name: '姓名',
-        value: baby.name
-      },
-      {
-        name: '性别',
-        value: baby.sex == 1 ? '男' : baby.sex == 2 ? '女' : ''
-      },
-      {
-        name: '出生日期',
-        value: baby.birthday
-      },
-      {
-        name: '体检',
-        value: baby.age == 1 ? '满月' : baby.age + '月龄'
-      },
-      {
-        name: '体检日期',
-        value: baby.textTime
-      },
-      {
-        name: '逾期',
-        value: ''
-      },
-      {
-        name: '父亲',
-        value: '袁一明',
-        extraText: '15300001699',
-        state: {
-          value: 0
-        }
+    let baby = e.currentTarget.dataset.val, result = [];
+    http.request({
+      url: 'baby/babyparentinfo?babyid=' + baby.babyId,
+      success: res => {
+        result = [
+          {
+            name: '姓名',
+            value: baby.name
+          },
+          {
+            name: '性别',
+            value: baby.sex == 1 ? '男' : baby.sex == 2 ? '女' : ''
+          },
+          {
+            name: '出生日期',
+            value: baby.birthday
+          },
+          {
+            name: '体检',
+            value: baby.age == 1 ? '满月' : baby.age + '月龄'
+          },
+          {
+            name: '体检日期',
+            value: baby.textTime
+          },
+          {
+            name: '逾期',
+            value: ''
+          },
+          {
+            name: '父亲',
+            value: res.fatherName,
+            extraText: res.fatherMobile,
+            state: {
+              value: (res.fatherActive && res.fatherActive == 1) ? 1 : 0
+            }
+          },
+          {
+            name: '母亲',
+            value: res.motherName,
+            extraText: res.motherMobile,
+            state: {
+              value: (res.motherActive && res.motherActive == 1) ? 1 : 0
+            }
+          }
+        ]
+        dd.navigateTo({
+          url: `/pages/doctor/cancel-manage/index?babyId=` + baby.babyId + `&list=` + JSON.stringify(result)
+        })
       }
-      ,
-      {
-        name: '父亲',
-        value: '爱美丽',
-        extraText: '15300001699',
-        state: {
-          value: 1
-        }
-      }
-    ]
-
-    console.log(e.currentTarget.dataset.val)
-    dd.navigateTo({
-      url: `/pages/doctor/cancel-manage/index?babyId=` + baby.babyId + `&list=` + JSON.stringify(result)
     })
   }
 })
