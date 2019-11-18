@@ -46,6 +46,9 @@
       <image mode="scaleToFill" src="/image/doctor/nodata.png"/>
       <text>暂无数据</text>
     </view>
+    <view a:if="{{loadingState}}" class="loading">
+      <image mode="scaleToFill" src="/image/loading.gif"/>
+    </view>
     <view a:if="{{dataFinish}}" class="desc">---没有更多数据啦---</view>
   </scroll-view>
 </template>

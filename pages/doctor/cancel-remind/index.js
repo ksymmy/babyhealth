@@ -5,6 +5,7 @@ Page({
     listData: {
       dingTap: 'handleDingItemTap',
       btnTap: 'handleBtnTapTap',
+      
       list: [
         {
           name: '姓名',
