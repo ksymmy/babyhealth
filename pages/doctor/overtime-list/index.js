@@ -97,6 +97,7 @@ Page({
         if (len == 0) {
           that.setData({
             'listData.noDataState': true,
+            'listData.pageHeight': scrollHeight,
             'listData.dataFinish': false,
             'listData.loadingState': false
           })

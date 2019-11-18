@@ -154,7 +154,8 @@ Page({
           if (len == 0) {
             that.setData({
               'listData.noDataState': true,
-              'listData.loadingState': false
+              'listData.loadingState': false,
+               'listData.pageHeight': scrollHeight
             })
             return
           }

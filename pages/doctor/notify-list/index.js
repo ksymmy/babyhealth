@@ -5,7 +5,7 @@ let http = new HTTP();
 let timeperiod = {}
 var page;
 var _my$getSystemInfoSync = my.getSystemInfoSync(), windowHeight = _my$getSystemInfoSync.windowHeight;
-var scrollHeight = windowHeight;
+var scrollHeight = windowHeight-40;
 Page({
   ...msglist,
   data: {
@@ -80,6 +80,7 @@ Page({
           if (len == 0) {
             that.setData({
               'listData.noDataState': true,
+              'listData.pageHeight':scrollHeight,
               'listData.loadingState': false
             })
             return

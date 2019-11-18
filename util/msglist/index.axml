@@ -1,5 +1,5 @@
 <template name="msglist">
-  <scroll-view scroll-y style="min-height:{{scrollHeight}}px;height:{{pageHeight}}rpx;" onScrollToLower="{{toLower}}">
+  <scroll-view scroll-y style="min-height:{{scrollHeight}}px;height:{{pageHeight}}rpx;position:relative;" onScrollToLower="{{toLower}}">
     <view a:if={{list.length!=0}} class="msg-list">
       <block a:for={{list}} a:for-item="item">
         <view class="msg-list-item" data-val="{{item}}" onTap="{{showDetail}}">

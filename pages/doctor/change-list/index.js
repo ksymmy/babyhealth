@@ -29,7 +29,7 @@ Page({
   },
   onLoad(param) {
     dd.setNavigationBar({
-      title: '申请改期 ('+param.num+')'
+      title: '申请改期 (' + param.num + ')'
     });
     let h = 135 * config.pageSize;
     this.setData({
@@ -47,7 +47,7 @@ Page({
   },
   onRequest() {
     let that = this;
-     this.setData({
+    this.setData({
       'listData.loadingState': true
     })
     http.request({
@@ -59,7 +59,7 @@ Page({
         size: config.pageSize,
       }),
       success: (res) => {
-         let len = res.length;
+        let len = res.length;
         if (page == 1) {
           if (len < config.pageSize) {
             let h = 135 * len;
@@ -70,7 +70,8 @@ Page({
           if (len == 0) {
             that.setData({
               'listData.noDataState': true,
-               'listData.loadingState': false
+              'listData.pageHeight': scrollHeight,
+              'listData.loadingState': false
 
             })
             return
@@ -78,13 +79,13 @@ Page({
         } else if (len == 0) {
           that.setData({
             'listData.dataFinish': true,
-             'listData.loadingState': false
+            'listData.loadingState': false
           })
           return
         }
         if (len < config.pageSize) {
           that.setData({
-            'listData.dataFinish': true         
+            'listData.dataFinish': true
           })
         }
         page++;
