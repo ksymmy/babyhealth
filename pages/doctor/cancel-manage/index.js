@@ -1,5 +1,6 @@
 import custlist from '/util/custlist';
 import { HTTP } from '/util/http.js';
+import ding from '/util/ding.js';
 let http = new HTTP();
 Page({
   ...custlist,
@@ -72,6 +73,9 @@ Page({
           duration: 1000
         });
         setTimeout(() => {
+          let pages = getCurrentPages();
+          let prevPage = pages[pages.length - 2];
+          prevPage.onSearch();
           dd.navigateBack();
         }, 1000)
       }
@@ -79,12 +83,29 @@ Page({
 
   },
   handleDingItemTap(e) {
-    dd.showToast({
-      content: `${e.currentTarget.dataset.value}`,
-      success: (res) => {
-
+    let mobile = `${e.currentTarget.dataset.value}`;
+    if (!mobile || mobile == "undefind") {
+      return
+    }
+    let users = [];
+    dd.showLoading({
+      content: '请稍后...'
+    })
+    http.request({
+      url: `baby/getuseridbbymobile?mobile=` + mobile,
+      success: res => {
+        if (res) {
+          users.push(res);
+        }
+        ding.createDing({
+          users,
+          corpId: dd.corpId,
+          text: ''
+        });
       },
-    });
+      complete: res => {
+        dd.hideLoading();
+      }
+    })
   }
-
 })
