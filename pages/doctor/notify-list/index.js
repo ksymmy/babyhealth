@@ -124,7 +124,10 @@ Page({
       }
     })
   },
-  onLoad() {
+  onLoad(param) {
+    my.setNavigationBar({
+      title: '明日通知人数 ('+param.num+')'
+    });
     let h = 135 * config.pageSize;
     this.setData({
       'listData.scrollHeight': scrollHeight,

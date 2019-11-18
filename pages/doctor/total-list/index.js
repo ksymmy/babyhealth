@@ -90,7 +90,10 @@ Page({
     age: '',
     year: ''
   },
-  onLoad() {
+  onLoad(param) {
+     my.setNavigationBar({
+      title: '总管理人数 ('+param.num+')'
+    });
     let h = 135 * config.pageSize + 10;
     this.setData({
       'listData.scrollHeight': scrollHeight,

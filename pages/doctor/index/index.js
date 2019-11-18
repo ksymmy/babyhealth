@@ -39,7 +39,7 @@ Page({
   // 跳转页面
   viewList(e) {
     dd.navigateTo({
-      url: `/pages/doctor/${ e.currentTarget.dataset.url}/index?overduestart=${e.currentTarget.dataset.overduestart}&overdueend=${e.currentTarget.dataset.overdueend}`
+      url: `/pages/doctor/${ e.currentTarget.dataset.url}/index?overduestart=${e.currentTarget.dataset.overduestart}&overdueend=${e.currentTarget.dataset.overdueend}&num=${e.currentTarget.dataset.num}`
     })
 
   }

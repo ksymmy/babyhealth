@@ -99,7 +99,7 @@ Page({
           that.setData({
             'listData.pageHeight': 135 * len,
             'listData.dataFinish': true,
-             'listData.noDataState': false
+            'listData.noDataState': false
           })
 
         }
@@ -127,8 +127,17 @@ Page({
 
   },
   onLoad(query) {
-    var overduestart = query.overduestart,
-      overdueend = query.overdueend;
+    var overduestart = query.overduestart,overdueend = query.overdueend;
+    let titleStr = "逾期 "
+    if (!isNaN(overdueend)) {
+      titleStr += overduestart + "~" + overdueend + " 天"
+
+    } else {
+      titleStr += overduestart + " 天以上"
+    }
+    my.setNavigationBar({
+      title: titleStr
+    });
     var that = this;
     this.setData({
       'listData.scrollHeight': scrollHeight,

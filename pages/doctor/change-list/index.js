@@ -27,7 +27,10 @@ Page({
       type: 2  //封装列表页面展示类型，1为明日体检列表，2为改期列表，3为逾期列表
     }
   },
-  onLoad() {
+  onLoad(param) {
+    my.setNavigationBar({
+      title: '申请改期 ('+param.num+')'
+    });
     let h = 135 * config.pageSize;
     this.setData({
       'listData.scrollHeight': scrollHeight,

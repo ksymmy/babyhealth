@@ -32,17 +32,17 @@
     </view>
   </view>
   <view class="panel-list">
-    <view data-url="notify-list" class="panel-list-item notify" onTap="viewList">
+    <view data-url="notify-list" data-num="{{personNum.notifyNum}}" class="panel-list-item notify" onTap="viewList">
       <text class="name">明日体检通知人数</text>
       <view class="data">
         <text class="data-num">{{personNum.notifyNum}}</text>人</view>
     </view>
-    <view data-url="change-list" class="panel-list-item change"  onTap="viewList">
+    <view data-url="change-list" data-num="{{personNum.changeNum}}"  class="panel-list-item change" onTap="viewList">
       <text class="name">申请改期人数</text>
       <view class="data">
         <text class="data-num">{{personNum.changeNum}}</text>人</view>
     </view>
-    <view data-url="total-list" class="panel-list-item total"  onTap="viewList">
+    <view data-url="total-list" data-num="{{personNum.total}}"  class="panel-list-item total" onTap="viewList">
       <text class="name">总儿童人数</text>
       <view class="data">
         <text class="data-num">{{personNum.total}}</text>人</view>
