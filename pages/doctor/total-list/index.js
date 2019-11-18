@@ -91,14 +91,15 @@ Page({
     year: ''
   },
   onLoad(param) {
-     my.setNavigationBar({
-      title: '总管理人数 ('+param.num+')'
+    my.setNavigationBar({
+      title: '总管理人数 (' + param.num + ')'
     });
     let h = 135 * config.pageSize + 10;
     this.setData({
       'listData.scrollHeight': scrollHeight,
       'listData.pageHeight': h
     })
+    this.onSearch();
     /*获取当前年份最近四年*/
     let date = new Date;
     let y = date.getFullYear();
@@ -111,13 +112,6 @@ Page({
     this.setData({
       [newTabs]: tabArr,
     });
-  },
-  onShow() {
-    page = 1;
-    this.setData({
-      duesrecs: []
-    })
-    this.onRequest();
   },
   onSearch: function() {
     page = 1;
@@ -243,6 +237,54 @@ Page({
     this.onRequest();
   },
   cancelManage(e) {
+    let baby = e.currentTarget.dataset.val;
+    let result = [
+      {
+        name: '姓名',
+        value: baby.name
+      },
+      {
+        name: '性别',
+        value: baby.sex == 1 ? '男' : baby.sex == 2 ? '女' : ''
+      },
+      {
+        name: '出生日期',
+        value: baby.birthday
+      },
+      {
+        name: '体检',
+        value: baby.age == 1 ? '满月' : baby.age + '月龄'
+      },
+      {
+        name: '体检日期',
+        value: baby.textTime
+      },
+      {
+        name: '逾期',
+        value: ''
+      },
+      {
+        name: '父亲',
+        value: '袁一明',
+        extraText: '15300001699',
+        state: {
+          value: 0
+        }
+      }
+      ,
+      {
+        name: '父亲',
+        value: '爱美丽',
+        extraText: '15300001699',
+        state: {
+          value: 1
+        }
+      }
+    ]
+
     console.log(e.currentTarget.dataset.val)
+    dd.navigateTo({
+      url: `/pages/doctor/cancel-manage/index?babyId=` + baby.babyId + `&list=` + JSON.stringify(result)
+    })
   }
 })

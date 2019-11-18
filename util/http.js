@@ -17,7 +17,7 @@ class HTTP {
   request(params) {
     dd.getStorage({
       key: 'userInfo', success: (r) => {
-        dd.showLoading({ content: '加载中...' });
+        // dd.showLoading({ content: '加载中...' });
         dd.httpRequest({
           url: encodeURI(config.api_base_url + params.url),
           method: params.method || 'GET',
@@ -48,7 +48,7 @@ class HTTP {
             if (params.fail) params.fail(res);
           },
           complete: (res) => {
-            dd.hideLoading();
+            // dd.hideLoading();
             if (params.complete) params.complete(res);
           }
         })
