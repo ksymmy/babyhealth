@@ -80,7 +80,7 @@
 
  .nodata {
    text-align: center;
-   margin-top: 20vh;
+   margin-top: 30vh;
  }
 
  .nodata>text {
@@ -98,4 +98,10 @@
    text-align: center;
    height: 36rpx;
    line-height: 36rpx;
+ }
+ .loading>image {
+   display: block;
+   width: 160rpx;
+   height: 90rpx;
+   margin: 0 auto 30rpx;
  }

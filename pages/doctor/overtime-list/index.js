@@ -19,6 +19,7 @@ Page({
       list: [],
       dataFinish: false,//数据加载完全
       noDataState: false,//无数据状态
+      loadingState: false,//加载状态
       type: 3 //封装列表页面展示类型，1为明日体检列表，2为改期列表，3为逾期列表
     },
     //tab选项内容，badgeText为数字，没有请无需加badgeType，badgeText
@@ -127,7 +128,7 @@ Page({
 
   },
   onLoad(query) {
-    var overduestart = query.overduestart,overdueend = query.overdueend;
+    var overduestart = query.overduestart, overdueend = query.overdueend;
     let titleStr = "逾期 "
     if (!isNaN(overdueend)) {
       titleStr += overduestart + "~" + overdueend + " 天"
@@ -156,6 +157,9 @@ Page({
   onRequest() {
     let that = this;
     page++;
+    this.setData({
+      'listData.loadingState': true
+    })
     http.request({
       url: "baby/overduelist",
       method: "POST",
@@ -178,6 +182,7 @@ Page({
         newpagesize = that.data.pagesize + 10
         result_data = oldData.concat(newData)
         that.setData({
+           'listData.loadingState': false,
           'listData.list': result_data
           // 'pagesize':newpagesize
         })

@@ -14,6 +14,7 @@ Page({
       scrollHeight: 0,//最小scroll-view高度
       dataFinish: false,//数据加载完全
       noDataState: false,//无数据状态
+      loadingState: false,//加载状态
       list: [
         //   {
         //   name: '任慕瑶',
@@ -125,6 +126,9 @@ Page({
   onRequest() {
     var that = this;
     let len = 0;
+    this.setData({
+      'listData.loadingState': true
+    })
     http.request({
       url: "baby/allbabyslist",
       method: 'post',
@@ -147,16 +151,11 @@ Page({
               'listData.pageHeight': h
             })
           }
-          if (len == 0) {
-            that.setData({
-              'listData.noDataState': true
-
-            })
-            return
-          }
-        } else if (len == 0) {
+        }
+        if (len == 0) {
           that.setData({
-            'listData.dataFinish': true
+            'listData.dataFinish': true,
+            'listData.loadingState': false
           })
           return
         }
@@ -171,7 +170,9 @@ Page({
         var listIndex = 'listData.list';
         that.setData({
           [listIndex]: data,
+          'listData.loadingState': false
         });
+        dd.hideKeyboard();
       },
       fail: function(res) {
         dd.alert({ content: JSON.stringify(res), buttonText: '好的' });
