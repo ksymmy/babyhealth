@@ -110,21 +110,9 @@ Page({
           })
 
         }
-
-        // var all_data
-        // all_data = []
-        // for (var key in res) {
-        //   // res[key]["textTime"]=res[key]["examinationDate"]
-        //   // res[key]["overTime"]=res[key]["overdueDays"]
-        //   // res[key]["dingNum"]=res[key]["dingTimes"]
-        //   // res[key]["age"]=res[key]["examinationType"]
-        //   all_data.push(res[key])
-        //   all_data.push(res[key])
-        //   all_data.push(res[key])
-        //   all_data.push(res[key])
-        //   all_data.push(res[key])
-        //   //  all_data.push(res[key])
-        // }
+        for (var key in res) {
+          all_data.push(res[key])
+        }
         that.setData({
           'listData.list': all_data,
           'listData.loadingState': false
