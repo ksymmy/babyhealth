@@ -9,6 +9,7 @@ Page({
   data: {
     listData: {
       toLower: 'toLower',//触底函数
+      showDetail: 'cancelManage',//取消儿童管理
       pageHeight: 1200,//scroll-view触底高度
       scrollHeight: 0,//最小scroll-view高度
       dataFinish: false,//数据加载完全
@@ -90,7 +91,7 @@ Page({
     year: ''
   },
   onLoad() {
-    let h = 135 * config.pageSize ;
+    let h = 135 * config.pageSize + 10;
     this.setData({
       'listData.scrollHeight': scrollHeight,
       'listData.pageHeight': h
@@ -144,7 +145,7 @@ Page({
 
         if (page == 1) {
           if (len < config.pageSize) {
-            let h = 135 * len;
+            let h = 135 * len + 10;
             that.setData({
               'listData.pageHeight': h
             })
@@ -237,5 +238,8 @@ Page({
   toLower(e) {
     let that = this;
     this.onRequest();
+  },
+  cancelManage(e) {
+    console.log(e.currentTarget.dataset.val)
   }
 })

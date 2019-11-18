@@ -88,13 +88,12 @@ Page({
         "param": timeperiod, "page": 1, "size": 10
       }),
       success: function(res) {
-        page = 1
+        page = 1;
         len = res.length;
         if (len == 0) {
           that.setData({
             'listData.noDataState': true
           })
-          return
         } else if (len < that.data.pagesize) {
           that.setData({
             'listData.pageHeight': 135 * len,
