@@ -5,7 +5,7 @@ var timeperiod;
 var page;
 var _my$getSystemInfoSync = my.getSystemInfoSync(),
   windowHeight = _my$getSystemInfoSync.windowHeight;
-var scrollHeight = windowHeight - 132;
+var scrollHeight = windowHeight - 160;
 
 Page({
   ...msglist,
@@ -92,12 +92,14 @@ Page({
         len = res.length;
         if (len == 0) {
           that.setData({
-            'listData.noDataState': true
+            'listData.noDataState': true,
+            'listData.dataFinish': false
           })
         } else if (len < that.data.pagesize) {
           that.setData({
             'listData.pageHeight': 135 * len,
-            'listData.dataFinish': true
+            'listData.dataFinish': true,
+             'listData.noDataState': false
           })
 
         }
@@ -130,7 +132,7 @@ Page({
     var that = this;
     this.setData({
       'listData.scrollHeight': scrollHeight,
-      'listData.pageHeight': 135 * this.data.pagesize
+      'listData.pageHeight': 135 * this.data.pagesize,
     })
 
     if (overdueend == "undefined" && overduestart != "undefined") {
@@ -155,9 +157,8 @@ Page({
         page++
         if (res.length < that.data.pagesize) {
           that.setData({
-            'listData.dataFinish': true
+            'listData.dataFinish': true,
           })
-
         }
         var newData, result_data, newpagesize;
         newData = []
