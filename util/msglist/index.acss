@@ -94,3 +94,8 @@
    height: 200rpx;
    margin: 0 auto 30rpx;
  }
+ .desc{
+   text-align: center;
+   height: 36rpx;
+   line-height: 36rpx;
+ }

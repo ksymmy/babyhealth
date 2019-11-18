@@ -2,12 +2,17 @@ import msglist from '/util/msglist';
 import { HTTP } from '/util/http.js';
 import { config } from '/app.js';
 let http = new HTTP(), page = 1;
+var _my$getSystemInfoSync = my.getSystemInfoSync(), windowHeight = _my$getSystemInfoSync.windowHeight;
+var scrollHeight = windowHeight;
 Page({
   ...msglist,
   data: {
     listData: {
       toLower: 'toLower',
-      pageHeight: 1200,
+      pageHeight: 1200,//scroll-view触底高度
+      scrollHeight: 0,//最小scroll-view高度
+      dataFinish: false,//数据加载完全
+      noDataState: false,//无数据状态
       list: [
         // {
         //   name: '任慕瑶',
@@ -22,7 +27,15 @@ Page({
       type: 2  //封装列表页面展示类型，1为明日体检列表，2为改期列表，3为逾期列表
     }
   },
-  onLoad() {
+  onLoad(param) {
+    my.setNavigationBar({
+      title: '申请改期 ('+param.num+')'
+    });
+    let h = 135 * config.pageSize;
+    this.setData({
+      'listData.scrollHeight': scrollHeight,
+      'listData.pageHeight': h
+    })
     page = 1;
     this.setData({
       ['listData.list']: [],
@@ -43,8 +56,31 @@ Page({
         size: config.pageSize,
       }),
       success: (res) => {
-        if (res.length == 0) {
+         let len = res.length;
+        if (page == 1) {
+          if (len < config.pageSize) {
+            let h = 135 * len;
+            that.setData({
+              'listData.pageHeight': h
+            })
+          }
+          if (len == 0) {
+            that.setData({
+              'listData.noDataState': true
+
+            })
+            return
+          }
+        } else if (len == 0) {
+          that.setData({
+            'listData.dataFinish': true
+          })
           return
+        }
+        if (len < config.pageSize) {
+          that.setData({
+            'listData.dataFinish': true
+          })
         }
         page++;
         var data = that.data.listData.list;

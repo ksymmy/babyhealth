@@ -1,21 +1,49 @@
  @import '/util/msglist/index.acss';
  page {
-   padding: 94px 0 0;
+   padding: 136px 0 20rpx;
    box-sizing: border-box;
+   height: 100vh;
+ }
+
+ .fixed-con {
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   z-index: 9;
+ }
+
+ .my-tab {
+   background: rgb(255, 255, 255);
+   width: 100%;
+   overflow: hidden;
+   height: 41.5px;
+    display:flex;
+   padding-bottom: 2px;
+   box-sizing: border-box;
+   border-bottom: 1rpx solid #e2e4e5
+ }
+
+ .my-tab-item {
+   flex: 1;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   color: #7a8189;
+ }
+
+ .my-tab-item.tab-active>view {
+   height: 40px;
+   line-height: 40px;
+   border-bottom: 2px solid #0089ff;
+   color: #111f2c;
  }
 
  .am-tabs-tab-bar-wrap {
    position: fixed;
-   top: 52px;
+   top: 94px;
    width: 100vw;
- }
-
- .innerTab {
-   padding-top: 42px;
- }
-
- .innerTab .am-tabs-tab-bar-wrap {
-   top: 0;
+   z-index: 9;
  }
 
  .am-tabs .am-tabs-content-wrap {
@@ -39,10 +67,10 @@
  }
 
  .search-con {
-   position: fixed;
+   /* position: fixed;
    top: 0;
    left: 0;
-   right: 0;
+   right: 0; */
    padding: 8px 30rpx;
    background-color: #fff;
  }
@@ -69,7 +97,7 @@
    flex: 1;
    background-color: transparent;
    font-size: 29rpx;
-   color:#111f2c;
+   color: #111f2c;
  }
 
  .search-box>input::-webkit-input-placeholder {

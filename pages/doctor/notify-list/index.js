@@ -1,16 +1,22 @@
 import msglist from '/util/msglist';
-import {HTTP} from '/util/http.js';
-
+import { HTTP } from '/util/http.js';
+import { config } from '/app.js';
 let http = new HTTP();
 let timeperiod = {}
 var page;
+var _my$getSystemInfoSync = my.getSystemInfoSync(), windowHeight = _my$getSystemInfoSync.windowHeight;
+var scrollHeight = windowHeight;
 Page({
   ...msglist,
   data: {
-    pagesize:10,
+    pagesize: 10,
     listData: {
-      toLower:'toLower',
+      toLower: 'toLower',
       delayOne: 'handleDelay',
+      pageHeight: 1200,//scroll-view触底高度
+      scrollHeight: 0,//最小scroll-view高度
+      dataFinish: false,//数据加载完全
+      noDataState: false,//无数据状态
       list: [
       //   {
       //   babyId: 1,
@@ -49,21 +55,48 @@ Page({
     }
 
   },
-  onRequest(page){
+  onRequest(page) {
     let that = this;
     console.log("||||||||||||||||")
     console.log(timeperiod)
     http.request({
-      url:"baby/tomorrowexaminationbabyslist",
-      method:'POST',
-      data:JSON.stringify({
-        "param":timeperiod,"page":page,"size":10
+      url: "baby/tomorrowexaminationbabyslist",
+      method: 'POST',
+      data: JSON.stringify({
+        "param": timeperiod, "page": page, "size":  config.pageSize
       }),
-      success:function(res){
-        
-        var newData,result_data,newpagesize,add_size;
-        newData=[]
-        console.log(res)
+      success: function(res) {
+        let len = res.length;
+
+        if (page == 1) {
+          if (len < config.pageSize) {
+            let h = 135 * len + 10;
+            that.setData({
+              'listData.pageHeight': h
+            })
+          }
+          if (len == 0) {
+            that.setData({
+              'listData.noDataState': true
+
+            })
+            return
+          }
+        } else if (len == 0) {
+          that.setData({
+            'listData.dataFinish': true
+          })
+          return
+        }
+        if (len < config.pageSize) {
+          that.setData({
+            'listData.dataFinish': true
+          })
+        }
+        var newData, result_data, newpagesize, add_size;
+        newData = []
+
+
         for(var key in res){
             newData.push(res[key])
             // newData.push(res[key])
@@ -93,11 +126,19 @@ Page({
       }
     })
   },
-  onLoad(){
-    page=1
+  onLoad(param) {
+    my.setNavigationBar({
+      title: '明日通知人数 ('+param.num+')'
+    });
+    let h = 135 * config.pageSize;
+    this.setData({
+      'listData.scrollHeight': scrollHeight,
+      'listData.pageHeight': h
+    })
+    page = 1
     this.onRequest(page)
   },
-  toLower(e){
+  toLower(e) {
 
     let that = this;
     this.onRequest(page);
@@ -106,7 +147,7 @@ Page({
   handleDelay(e) {
     let that = this
     let examid = e.currentTarget.dataset.id
-    
+
     // dd.showToast({
     //   content: `${e.currentTarget.dataset.id}`,
     //   success: (res) => {
@@ -139,8 +180,8 @@ Page({
     }
   })
 
-      
-    
-    
+
+
+
   }
 })

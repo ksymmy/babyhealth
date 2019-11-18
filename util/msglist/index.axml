@@ -2,7 +2,7 @@
   <scroll-view scroll-y style="min-height:{{scrollHeight}}px;height:{{pageHeight}}rpx;" onScrollToLower="{{toLower}}">
     <view a:if={{list.length!=0}} class="msg-list">
       <block a:for={{list}} a:for-item="item">
-        <view class="msg-list-item">
+        <view class="msg-list-item" data-val="{{item.babyId?item.babyId:''}}" onTap="{{showDetail}}">
           <view class="msg-line">
             <view>
               <text class="child-name">{{item.name}}</text>
@@ -42,9 +42,10 @@
         </view>
       </block>
     </view>
-    <view a:else class="nodata">
+    <view a:if="{{noDataState}}" class="nodata">
       <image mode="scaleToFill" src="/image/doctor/nodata.png"/>
       <text>暂无数据</text>
-      </view>
+    </view>
+    <view a:if="{{dataFinish}}" class="desc">---没有更多数据啦---</view>
   </scroll-view>
 </template>

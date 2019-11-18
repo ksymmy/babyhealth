@@ -1,11 +1,12 @@
 <import src="/util/msglist/index.axml" />
 <view class="only-tab-page">
   <view class="place"></view>
-  <tabs class="innerTab" tabs="{{tabs}}" showPlus="{{true}}" tabBarUnderlineColor="#0089ff" tabBarActiveTextColor="#111f2c" tabBarInactiveTextColor="#7a8189"  onTabClick="handleTabClick" onChange="handleTabChange" onPlusClick="handlePlusClick" activeTab="{{activeTab}}" swipeable="{{true}}" popList="{{popList}}"  popShow="{{popshow}}" position="{{position}}" onMaskClick="onMaskClick" showMask="{{showMask}}" onPopClick="onPopClick">
+  <tabs class="innerTab" tabs="{{tabs}}" showPlus="{{true}}" tabBarUnderlineColor="#0089ff" tabBarActiveTextColor="#111f2c" tabBarInactiveTextColor="#7a8189" onTabClick="handleTabClick" onChange="handleTabChange" onPlusClick="handlePlusClick" activeTab="{{activeTab}}" swipeable="{{true}}" popList="{{popList}}" popShow="{{popshow}}" position="{{position}}" onMaskClick="onMaskClick" showMask="{{showMask}}" onPopClick="onPopClick">
     <block a:for="{{tabs}}">
       <tab-content key="{{index}}">
         <view class="tab-content">
-          <template is="msglist" data={{...listData}}></template></view>
+          <template is="msglist" data={{...listData}}></template>
+        </view>
       </tab-content>
     </block>
   </tabs>
