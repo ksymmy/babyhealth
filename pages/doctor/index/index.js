@@ -14,7 +14,7 @@ Page({
     //   total: 1026
     // }
   },
-  onLoad(){
+  onRequest(){
     var that = this;
     http.request({
       url:"baby/indexCount",
@@ -34,6 +34,12 @@ Page({
         })
       }
     })
+  },
+  onLoad(){
+    this.onRequest()
+  },
+  onShow(){
+    this.onRequest()
   },
   
   // 跳转页面

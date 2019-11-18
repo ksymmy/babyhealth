@@ -19,7 +19,7 @@
                   体检日期：{{item.textTime}}
             </text>
             <view a:if="{{type==1}}">
-              <button type="primary" data-babyid={{item.babyId}} class="normal-radius-btn primary" onTap="{{delayOne}}">延后一天</button>
+              <button type="primary" data-id={{item.id}} class="normal-radius-btn primary" onTap="{{delayOne}}">延后一天</button>
             </view>
             <text a:if="{{type==2}}">
                  申请改期：{{item.changeTime}}
