@@ -121,6 +121,9 @@ page {
 .am-tabs{
   position: relative;
 }
+.am-tabs .am-tabs-scroll-right{
+  width: 24px;
+}
 view .am-tabs-content-wrap {
   width: 100vw!important;
   background-color: transparent;

@@ -47,9 +47,13 @@ button {
   border: 1rpx solid #bdc1c4;
   background-color: #fff;
 }
+.normal-radius-btn.unable-btn{
+  background-color: #fff!important;
+  color: #bdc1c4!important;
+}
 
 .normal-radius-btn.primary {
-  border: 1rpx solid #3295fa;
+  border: 1rpx solid #3295fa!important;
   background-color: #3295fa;
   color: #fff;
 }

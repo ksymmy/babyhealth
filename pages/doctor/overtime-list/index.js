@@ -82,6 +82,9 @@ Page({
   firstRequest() {
     let that = this;
     let len = 0;
+    this.setData({
+      'listData.loadingState': true
+    })
     http.request({
       url: "baby/overduelist",
       method: 'POST',
@@ -94,8 +97,11 @@ Page({
         if (len == 0) {
           that.setData({
             'listData.noDataState': true,
-            'listData.dataFinish': false
+            'listData.pageHeight': scrollHeight,
+            'listData.dataFinish': false,
+            'listData.loadingState': false
           })
+          return
         } else if (len < that.data.pagesize) {
           that.setData({
             'listData.pageHeight': 135 * len,
@@ -104,23 +110,12 @@ Page({
           })
 
         }
-
-        var all_data
-        all_data = []
         for (var key in res) {
-          // res[key]["textTime"]=res[key]["examinationDate"]
-          // res[key]["overTime"]=res[key]["overdueDays"]
-          // res[key]["dingNum"]=res[key]["dingTimes"]
-          // res[key]["age"]=res[key]["examinationType"]
           all_data.push(res[key])
-          all_data.push(res[key])
-          all_data.push(res[key])
-          all_data.push(res[key])
-          all_data.push(res[key])
-          //  all_data.push(res[key])
         }
         that.setData({
-          'listData.list': all_data
+          'listData.list': all_data,
+          'listData.loadingState': false
         })
       }
     })
@@ -136,7 +131,7 @@ Page({
     } else {
       titleStr += overduestart + " 天以上"
     }
-    my.setNavigationBar({
+    dd.setNavigationBar({
       title: titleStr
     });
     var that = this;
@@ -182,7 +177,7 @@ Page({
         newpagesize = that.data.pagesize + 10
         result_data = oldData.concat(newData)
         that.setData({
-           'listData.loadingState': false,
+          'listData.loadingState': false,
           'listData.list': result_data
           // 'pagesize':newpagesize
         })
