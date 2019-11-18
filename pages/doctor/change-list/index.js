@@ -28,7 +28,7 @@ Page({
     }
   },
   onLoad(param) {
-    my.setNavigationBar({
+    dd.setNavigationBar({
       title: '申请改期 ('+param.num+')'
     });
     let h = 135 * config.pageSize;
@@ -47,6 +47,9 @@ Page({
   },
   onRequest() {
     let that = this;
+     this.setData({
+      'listData.loadingState': true
+    })
     http.request({
       url: "baby/changedatebabyslist",
       method: 'post',
@@ -66,20 +69,22 @@ Page({
           }
           if (len == 0) {
             that.setData({
-              'listData.noDataState': true
+              'listData.noDataState': true,
+               'listData.loadingState': false
 
             })
             return
           }
         } else if (len == 0) {
           that.setData({
-            'listData.dataFinish': true
+            'listData.dataFinish': true,
+             'listData.loadingState': false
           })
           return
         }
         if (len < config.pageSize) {
           that.setData({
-            'listData.dataFinish': true
+            'listData.dataFinish': true         
           })
         }
         page++;
@@ -88,6 +93,7 @@ Page({
         var listIndex = 'listData.list';
         that.setData({
           [listIndex]: data,
+          'listData.loadingState': false
         });
       },
       fail: function(res) {

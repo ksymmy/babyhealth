@@ -92,7 +92,7 @@ Page({
     year: ''
   },
   onLoad(param) {
-    my.setNavigationBar({
+    dd.setNavigationBar({
       title: '总管理人数 (' + param.num + ')'
     });
     let h = 135 * config.pageSize + 10;
@@ -151,8 +151,14 @@ Page({
               'listData.pageHeight': h
             })
           }
-        }
-        if (len == 0) {
+          if (len == 0) {
+            that.setData({
+              'listData.noDataState': true,
+              'listData.loadingState': false
+            })
+            return
+          }
+        } else if (len == 0) {
           that.setData({
             'listData.dataFinish': true,
             'listData.loadingState': false
