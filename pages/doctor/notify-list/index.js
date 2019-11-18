@@ -63,27 +63,28 @@ Page({
         
         var newData,result_data,newpagesize,add_size;
         newData=[]
+        console.log(res)
         for(var key in res){
             newData.push(res[key])
-            newData.push(res[key])
-            newData.push(res[key])
-            newData.push(res[key])
-            newData.push(res[key])
-            newData.push(res[key])
-            newData.push(res[key])
-            newData.push(res[key])
-            newData.push(res[key])
-            newData.push(res[key])
+            // newData.push(res[key])
+            // newData.push(res[key])
+            // newData.push(res[key])
+            // newData.push(res[key])
+            // newData.push(res[key])
+            // newData.push(res[key])
+            // newData.push(res[key])
+            // newData.push(res[key])
+            // newData.push(res[key])
         }
-        var oldData = that.data.listData.list;
         if(page===1){
           add_size=0
+          result_data=newData
         }else{
+          var oldData = that.data.listData.list;
           add_size=10
-          console.log("__________laqu_______________")
+          result_data = oldData.concat(newData)
         }
         newpagesize = that.data.pagesize+add_size
-        result_data = oldData.concat(newData)
         page++
         that.setData({
           'listData.list':result_data,
@@ -103,12 +104,43 @@ Page({
   },
   //延后一天操作
   handleDelay(e) {
-    console.log('dssd')
-    dd.showToast({
-      content: `${e.currentTarget.dataset.babyid}`,
-      success: (res) => {
+    let that = this
+    let examid = e.currentTarget.dataset.id
+    
+    // dd.showToast({
+    //   content: `${e.currentTarget.dataset.id}`,
+    //   success: (res) => {
 
-      },
-    });
+    //   },
+    // });
+    http.request({
+    // url:"baby/delayoneday",
+    url:"baby/delayoneday?examId="+examid,
+    method:'POST',
+    // data:JSON.stringify({
+    //   "examId":examid
+    // }),
+    success:function(res){
+      dd.showToast({
+        content: '已延后',
+        duration:'1000',
+        success:function(res){
+        },
+        fail:function(res){
+        },
+        complete:function(res){
+          dd.hideToast()
+        }
+      })
+      page=1
+      that.onRequest(page)
+    },
+    complete:function(res){
+    }
+  })
+
+      
+    
+    
   }
 })
