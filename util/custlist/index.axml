@@ -9,9 +9,10 @@
               <text>{{item.value}}</text>
               <text class="extra-text" a:if={{item.extraText}}>{{item.extraText}}</text>
               <view a:if={{item.state}}>
-                <button type="primary" data-value={{item.extraText}} onTap="{{dingTap}}" class="normal-radius-btn primary">发DING</button>
-                <button type="default" class="normal-radius-btn" a:if="{{item.state.value==0}}">未激活</button>
-                <button type="default" class="normal-radius-btn activate" a:if="{{item.state.value==1}}">已激活</button>
+                <button a:if={{item.value}} type="primary" data-value={{item.extraText}} onTap="{{dingTap}}" class="normal-radius-btn primary">发DING</button>
+                  <button a:else type="default" class="unable-btn normal-radius-btn" >发DING</button>
+                <button type="default" class="unable-btn normal-radius-btn" a:if="{{item.state.value==0}}">未激活</button>
+                <button type="default" class="unable-btn normal-radius-btn activate"    a:if="{{item.state.value==1}}">已激活</button>
               </view>
             </view>
           </view>
