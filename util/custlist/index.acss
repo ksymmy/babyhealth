@@ -53,7 +53,7 @@ button {
 }
 
 .normal-radius-btn.primary {
-  border: 1rpx solid #3295fa;
+  border: 1rpx solid #3295fa!important;
   background-color: #3295fa;
   color: #fff;
 }
