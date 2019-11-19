@@ -5,7 +5,7 @@ let http = new HTTP();
 let timeperiod = {}
 var page;
 var _my$getSystemInfoSync = my.getSystemInfoSync(), windowHeight = _my$getSystemInfoSync.windowHeight;
-var scrollHeight = windowHeight;
+var scrollHeight = windowHeight-40;
 Page({
   ...msglist,
   data: {
@@ -17,6 +17,7 @@ Page({
       scrollHeight: 0,//最小scroll-view高度
       dataFinish: false,//数据加载完全
       noDataState: false,//无数据状态
+      loadingState: false,//加载状态
       list: [
       //   {
       //   babyId: 1,
@@ -57,13 +58,14 @@ Page({
   },
   onRequest(page) {
     let that = this;
-    console.log("||||||||||||||||")
-    console.log(timeperiod)
+    this.setData({
+      'listData.loadingState': true
+    })
     http.request({
       url: "baby/tomorrowexaminationbabyslist",
       method: 'POST',
       data: JSON.stringify({
-        "param": timeperiod, "page": page, "size":  config.pageSize
+        "param": timeperiod, "page": page, "size": config.pageSize
       }),
       success: function(res) {
         let len = res.length;
@@ -77,14 +79,16 @@ Page({
           }
           if (len == 0) {
             that.setData({
-              'listData.noDataState': true
-
+              'listData.noDataState': true,
+              'listData.pageHeight':scrollHeight,
+              'listData.loadingState': false
             })
             // return
           }
         } else if (len == 0) {
           that.setData({
-            'listData.dataFinish': true
+            'listData.dataFinish': true,
+            'listData.loadingState': false
           })
           // return
         }
@@ -111,15 +115,16 @@ Page({
         newpagesize = that.data.pagesize+add_size
         page++
         that.setData({
-          'listData.list':result_data,
-          'pagesize':newpagesize
+          'listData.list': result_data,
+          'pagesize': newpagesize,
+          'listData.loadingState': false
         })
       }
     })
   },
   onLoad(param) {
-    my.setNavigationBar({
-      title: '明日通知人数 ('+param.num+')'
+    dd.setNavigationBar({
+      title: '明日通知人数 (' + param.num + ')'
     });
     let h = 135 * config.pageSize;
     this.setData({

@@ -79,8 +79,11 @@
  }
 
  .nodata {
+   position: absolute;
+   top: 50%;
+   left:50%;
+   transform: translate(-50%, -50%);
    text-align: center;
-   margin-top: 20vh;
  }
 
  .nodata>text {
@@ -94,8 +97,16 @@
    height: 200rpx;
    margin: 0 auto 30rpx;
  }
- .desc{
+
+ .desc {
    text-align: center;
    height: 36rpx;
    line-height: 36rpx;
+ }
+
+ .loading>image {
+   display: block;
+   width: 160rpx;
+   height: 90rpx;
+   margin: 0 auto 30rpx;
  }

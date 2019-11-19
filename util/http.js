@@ -30,16 +30,13 @@ class HTTP {
             'Content-Type': 'application/json',
           },
           success: (res) => {
-            dd.hideLoading();
-            // console.log(params.success)
-            // res.data.code="0000"
             if (res.data.code == "0000" && params.success) {
               params.success(res.data.data);
             } else if (["0001"].indexOf(res.data.code) > -1) {
               // 关闭当前所有页面，跳转到首页
               dd.reLaunch({
                 url: '/pages/index/index'
-              });
+              })
             } else if (["9999", "4444"].indexOf(res.data.code) > -1) {
               this._show_msg('网络异常，请重试');
             } else {
@@ -52,24 +49,16 @@ class HTTP {
           },
           complete: (res) => {
             // dd.hideLoading();
-            if (params.complete){
-              params.complete(res);
-              }
-            
+            if (params.complete) params.complete(res);
           }
-        })  
-      // dd.hideLoading();
+        })
       }
-      
     });
   }
 
   _show_msg(msg) {
     dd.showToast({
-      content: msg,
-      success: () => {
-        dd.hideToast()
-      }
+      content: msg
     });
   }
 }

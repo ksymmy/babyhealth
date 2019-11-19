@@ -14,6 +14,7 @@ Page({
       scrollHeight: 0,//最小scroll-view高度
       dataFinish: false,//数据加载完全
       noDataState: false,//无数据状态
+      loadingState: false,//加载状态
       list: [
         //   {
         //   name: '任慕瑶',
@@ -91,14 +92,15 @@ Page({
     year: ''
   },
   onLoad(param) {
-     my.setNavigationBar({
-      title: '总管理人数 ('+param.num+')'
+    dd.setNavigationBar({
+      title: '总管理人数 (' + param.num + ')'
     });
     let h = 135 * config.pageSize + 10;
     this.setData({
       'listData.scrollHeight': scrollHeight,
       'listData.pageHeight': h
     })
+    this.onSearch();
     /*获取当前年份最近四年*/
     let date = new Date;
     let y = date.getFullYear();
@@ -112,13 +114,6 @@ Page({
       [newTabs]: tabArr,
     });
   },
-  onShow() {
-    page = 1;
-    this.setData({
-      duesrecs: []
-    })
-    this.onRequest();
-  },
   onSearch: function() {
     page = 1;
     this.setData({
@@ -131,6 +126,9 @@ Page({
   onRequest() {
     var that = this;
     let len = 0;
+    this.setData({
+      'listData.loadingState': true
+    })
     http.request({
       url: "baby/allbabyslist",
       method: 'post',
@@ -155,14 +153,16 @@ Page({
           }
           if (len == 0) {
             that.setData({
-              'listData.noDataState': true
-
+              'listData.noDataState': true,
+              'listData.loadingState': false,
+               'listData.pageHeight': scrollHeight
             })
             return
           }
         } else if (len == 0) {
           that.setData({
-            'listData.dataFinish': true
+            'listData.dataFinish': true,
+            'listData.loadingState': false
           })
           return
         }
@@ -177,7 +177,9 @@ Page({
         var listIndex = 'listData.list';
         that.setData({
           [listIndex]: data,
+          'listData.loadingState': false
         });
+        dd.hideKeyboard();
       },
       fail: function(res) {
         dd.alert({ content: JSON.stringify(res), buttonText: '好的' });
@@ -243,6 +245,56 @@ Page({
     this.onRequest();
   },
   cancelManage(e) {
-    console.log(e.currentTarget.dataset.val)
+    let baby = e.currentTarget.dataset.val, result = [];
+    http.request({
+      url: 'baby/babyparentinfo?babyid=' + baby.babyId,
+      success: res => {
+        result = [
+          {
+            name: '姓名',
+            value: baby.name
+          },
+          {
+            name: '性别',
+            value: baby.sex == 1 ? '男' : baby.sex == 2 ? '女' : ''
+          },
+          {
+            name: '出生日期',
+            value: baby.birthday
+          },
+          {
+            name: '体检',
+            value: baby.age == 1 ? '满月' : baby.age + '月龄'
+          },
+          {
+            name: '体检日期',
+            value: baby.textTime
+          },
+          {
+            name: '逾期',
+            value: ''
+          },
+          {
+            name: '父亲',
+            value: res.fatherName,
+            extraText: res.fatherMobile,
+            state: {
+              value: (res.fatherActive && res.fatherActive == 1) ? 1 : 0
+            }
+          },
+          {
+            name: '母亲',
+            value: res.motherName,
+            extraText: res.motherMobile,
+            state: {
+              value: (res.motherActive && res.motherActive == 1) ? 1 : 0
+            }
+          }
+        ]
+        dd.navigateTo({
+          url: `/pages/doctor/cancel-manage/index?babyId=` + baby.babyId + `&list=` + JSON.stringify(result)
+        })
+      }
+    })
   }
 })
