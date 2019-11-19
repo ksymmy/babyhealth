@@ -7,7 +7,7 @@ App({
       dd.getAuthCode({
         success: function(res) {
           dd.httpRequest({
-            url: config.api_base_url + 'babyservice/login',//登录请求
+            url: config.api_base_url + 'login',//登录请求
             method: 'POST',
             dataType: 'json',
             headers: {
@@ -48,7 +48,7 @@ App({
     handerUrl: "http://ksymmy.vaiwan.com/",
   }
 
-  
+
 });
 
 function setStorage(userInfo) {
@@ -88,5 +88,5 @@ let showText = function(timeString) {
   return timeString
 }
 export {
-  config,showText
+  config, showText
 }
