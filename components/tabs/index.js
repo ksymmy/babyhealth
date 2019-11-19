@@ -21,7 +21,6 @@ Component({
     tabBarCls: '',
     // tabbar的自定义样式class
     duration: 500,
-    position: '',
     popShow: false,
     showMask: true,
     popList: []

@@ -221,11 +221,11 @@ Page({
   },
   //下方tab选项切换
   handleTabChange(index, value) {
+    //index为选择序号，value为选中的值
     var newIndex = 'activeTab[' + this.data.topActiveTab + ']'
     this.setData({
       [newIndex]: index,
     });
-    console.log(value)
     if (!isNaN(value.title)) {//年份
       this.setData({
         ['age']: '',

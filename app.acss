@@ -30,14 +30,14 @@ page {
 }
 
 .sendDate {
-  /* width: 186rpx; */
+  display: inline-block;
   height: 50rpx;
   line-height: 50rpx;
   background-color: #fff;
   border-radius: 30rpx;
   text-align: center;
-  margin: 30rpx 0;
-  padding:0 24rpx;
+  margin: 30rpx auto;
+  padding: 0 24rpx;
 }
 
 .orgInfo {
@@ -118,12 +118,15 @@ page {
 }
 
 /*tab*/
-.am-tabs{
+
+.am-tabs {
   position: relative;
 }
-.am-tabs .am-tabs-scroll-right{
+
+.am-tabs .am-tabs-scroll-right {
   width: 24px;
 }
+
 view .am-tabs-content-wrap {
   width: 100vw!important;
   background-color: transparent;
