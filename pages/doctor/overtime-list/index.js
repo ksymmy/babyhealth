@@ -1,5 +1,6 @@
 import msglist from '/util/msglist';
 import { HTTP } from '/util/http.js';
+import ding from '/util/ding.js';
 let http = new HTTP();
 var timeperiod;
 var page;
@@ -13,6 +14,7 @@ Page({
     pagesize: 10,
     //展示数据，请求时更改
     listData: {
+      showDetail: 'cancelRemind',
       toLower: 'toLower',
       pageHeight: 1200,
       scrollHeight: 0,
@@ -101,7 +103,7 @@ Page({
             'listData.dataFinish': false,
             'listData.loadingState': false
           })
-          return
+          // return
         } else if (len < that.data.pagesize) {
           that.setData({
             'listData.pageHeight': 135 * len,
@@ -125,6 +127,112 @@ Page({
 
 
   },
+  //全部ding
+  allDing() {
+    console.log(timeperiod)
+    var url_path_data=""
+    var item_index=0
+    dd.showLoading({
+          content: '请稍后...'
+        })
+    for(var url_key in timeperiod){
+      if(item_index){
+        url_path_data = url_path_data+"&"+url_key+"="+timeperiod[url_key]
+      }else{
+        url_path_data = "?"+url_key+"="+timeperiod[url_key]
+      }
+      item_index++
+    }
+    http.request({
+      url:"baby/overdueDingUserid"+url_path_data,
+      method:"GET",
+      type:"json",
+      // data:JSON.stringify({
+      // timeperiod
+      // }),
+      success: function(res) {
+        console.log(res)
+        dd.hideLoading();
+        let users = res['users'];
+        var text_template
+        if (timeperiod.hasOwnProperty("examinationType")){
+          text_template="家长你好！宝宝已经到"+timeperiod["examinationType"]+"月龄了，请您明天带上宝宝，到社区服务中心进行"+timeperiod["examinationType"]+"月龄体检，祝宝宝健康成长。"
+        }else{
+          text_template="家长你好！宝宝已经到体检时间啦，请您明天带上宝宝，到社区服务中心进行体检，祝宝宝健康成长。"
+        }
+        console.log(timeperiod)
+        ding.createDing({
+              users,
+              corpId: dd.corpId,
+              text: text_template,
+              success:function(res){
+                console.log("ding success")
+                console.log(res)
+              },
+              fail:function(res){
+                
+              }
+            });
+        // console.log(res)
+      }
+    })
+  },
+  cancelRemind(e) {
+    let baby = e.currentTarget.dataset.val, result = [];
+    http.request({
+      url: 'baby/babyparentinfo?babyid=' + baby.babyId,
+      success: res => {
+        result = [
+          {
+            name: '姓名',
+            value: baby.name
+          },
+          {
+            name: '性别',
+            value: baby.sex == 1 ? '男' : baby.sex == 2 ? '女' : ''
+          },
+          {
+            name: '出生日期',
+            value: baby.birthday
+          },
+          {
+            name: '体检',
+            value: baby.age == 1 ? '满月' : baby.age + '月龄'
+          },
+          {
+            name: '体检日期',
+            value: baby.textTime
+          },
+          {
+            name: '逾期',
+            value: ''
+          },
+          {
+            name: '父亲',
+            value: res.fatherName,
+            extraText: res.fatherMobile,
+            state: {
+              value: (res.fatherActive && res.fatherActive == 1) ? 1 : 0
+            }
+          },
+          {
+            name: '母亲',
+            value: res.motherName,
+            extraText: res.motherMobile,
+            state: {
+              value: (res.motherActive && res.motherActive == 1) ? 1 : 0
+            }
+          }
+        ]
+        console.log("%%%%%^^^^^^^^^^^  ^           %%%%%%%%%%%%%")
+        console.log(result)
+        var test = baby
+        dd.navigateTo({
+          url: `/pages/doctor/cancel-remind/index?babyId=` + baby.babyId +'&examid='+baby.id+'&examinationtype='+baby.age+ `&list=` + JSON.stringify(result)
+        })
+      }
+    })
+  },
   onLoad(query) {
     var overduestart = query.overduestart,overdueend = query.overdueend;
     var that = this;
@@ -147,22 +255,37 @@ Page({
         for (var old_data_item_key in that.data["tabs"]){
           item_index++
           var all_num=0;
+          var value_if = true
           for(var new_data_item_key in res){
             if(old_data[old_data_item_key]['value']===res[new_data_item_key].examinationType&&String(old_data[old_data_item_key]['value'])!==""){
+            value_if = false
             old_data[old_data_item_key]["badgeType"]="text"
             old_data[old_data_item_key]["badgeText"]=res[new_data_item_key]["cnt"]
             }else if(String(old_data[old_data_item_key]['value'])===""){
               all_num = all_num + res[new_data_item_key]["cnt"]
-
+              value_if = false
             }
           }
-          if(String(old_data[old_data_item_key].value)==""&&all_num!==0){
+          
+          if(String(old_data[old_data_item_key]["value"])==""&&all_num!==0){
             old_data[old_data_item_key]["badgeType"]="text"
             old_data[old_data_item_key]["badgeText"]=all_num
           }
+          if(value_if){
+            delete old_data[old_data_item_key]
+          }
+        }
+        var result_tab = []
+        for(var delete_item in old_data){
+          console.log(delete_item)
+          console.log(old_data[delete_item])
+          if (old_data[delete_item]){
+            result_tab.push(old_data[delete_item])
+          }
+          
         }
         that.setData({
-          "tabs":old_data
+          "tabs":result_tab
         })
       }
     })
@@ -271,9 +394,5 @@ Page({
     this.firstRequest()
 
 
-  },
-  //全部ding
-  allDing() {
-    console.log("111")
   }
 })

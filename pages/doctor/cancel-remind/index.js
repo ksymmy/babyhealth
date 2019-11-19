@@ -1,11 +1,15 @@
 import custlist from '/util/custlist';
+import { HTTP } from '/util/http.js';
+import ding from '/util/ding.js';
+let http = new HTTP();
+var examinationtype
+var examid
 Page({
   ...custlist,
   data: {
     listData: {
       dingTap: 'handleDingItemTap',
       btnTap: 'handleBtnTapTap',
-      
       list: [
         {
           name: '姓名',
@@ -52,25 +56,50 @@ Page({
       btnText: '取消逾期提醒'
     },
   },
+  onLoad(param) {
+    this.setData({
+      ['listData.list']: JSON.parse(param.list),
+      babyId: param.babyId
+    })
+    examid = param.examid
+    examinationtype = param.examinationtype
+  },
   /*取消逾期提醒*/
   handleBtnTapTap(e) {
-
+    http.request({
+      url:"baby/cancelremind?examid="+examid,
+      method:"POST",
+      success:function(res){
+        dd.navigateBack();
+      }
+    })
   },
   /*Ding操作*/
   handleDingItemTap(e) {
-    dd.createDing({
-      users: ["manager9778","145747316320902437","294118325321603293","012224366432353450"], //默认选中用户工号列表；类型: Array<String>
-      corpId: "dinge3e211ad45c983df35c2f4657eb6378f", // 类型: String
-      alertType: 0, // 钉发送方式 0:电话, 1:短信, 2：应用内；类型 Number
-      alertDate: { "format": "yyyy-MM-dd HH:mm", "value": "2019-08-29 08:25" }, // 非必选，定时发送时间, 非定时DING不需要填写
-      type: 1,// 附件类型 1：image, 2：link；类型: Number
-      text: '1465jkh',  // 正文
-      bizType: 0, // 业务类型 0：通知DING；1：任务；2：会议；
-      success: function(res) {
-        console.log('success')
+    let mobile = `${e.currentTarget.dataset.value}`;
+    if (!mobile || mobile == "undefind") {
+      return
+    }
+    let users = [];
+    dd.showLoading({
+      content: '请稍后...'
+    })
+    console.log(`${e}`)
+    var text_template="家长你好！宝宝已经到"+examinationtype+"月龄了，请您明天带上宝宝，到社区服务中心进行"+examinationtype+"月龄体检，祝宝宝健康成长。"
+    http.request({
+      url: `baby/getuseridbbymobile?mobile=` + mobile,
+      success: res => {
+        if (res) {
+          users.push(res);
+        }
+        ding.createDing({
+          users,
+          corpId: dd.corpId,
+          text: text_template
+        });
       },
-      fail: function(err) {
-        console.log(err)
+      complete: res => {
+        dd.hideLoading();
       }
     })
   }
