@@ -102,7 +102,7 @@
    text-align: center;
    height: 36rpx;
    line-height: 36rpx;
-   margin:30rpx 0;
+   margin:50rpx 0 0;
  }
 
  .loading>image {
