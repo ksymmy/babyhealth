@@ -45,7 +45,7 @@ App({
   },
   globalData: {
     hasLogin: false,
-    handerUrl: "http://ksymmy.vaiwan.com/",
+    handerUrl: "http://luohongbing888.vaiwan.com/",
   }
 
 
