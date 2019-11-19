@@ -80,13 +80,13 @@ Page({
               'listData.noDataState': true
 
             })
-            return
+            // return
           }
         } else if (len == 0) {
           that.setData({
             'listData.dataFinish': true
           })
-          return
+          // return
         }
         if (len < config.pageSize) {
           that.setData({
@@ -99,15 +99,6 @@ Page({
 
         for(var key in res){
             newData.push(res[key])
-            // newData.push(res[key])
-            // newData.push(res[key])
-            // newData.push(res[key])
-            // newData.push(res[key])
-            // newData.push(res[key])
-            // newData.push(res[key])
-            // newData.push(res[key])
-            // newData.push(res[key])
-            // newData.push(res[key])
         }
         if(page===1){
           add_size=0
@@ -164,7 +155,7 @@ Page({
     success:function(res){
       dd.showToast({
         content: '已延后',
-        duration:'1000',
+        duration:3000,
         success:function(res){
         },
         fail:function(res){

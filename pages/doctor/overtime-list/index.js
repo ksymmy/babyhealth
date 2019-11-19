@@ -26,26 +26,26 @@ Page({
       {
         title: '全部',
         value: '',
-        badgeType: 'text',
-        badgeText: '22',
+        // badgeType: 'text',
+        // badgeText: '22',
       },
       {
         title: '满月',
         value: 1,
-        badgeType: 'text',
-        badgeText: '5',
+        // badgeType: 'text',
+        // badgeText: '5',
       },
       {
         title: '3月',
         value: 3,
-        badgeType: 'text',
-        badgeText: '6',
+        // badgeType: 'text',
+        // badgeText: '6',
       },
       {
         title: '6月',
         value: 6,
-        badgeType: 'text',
-        badgeText: '3',
+        // badgeType: 'text',
+        // badgeText: '3',
       },
       {
         title: '8月',
@@ -112,10 +112,10 @@ Page({
           // res[key]["dingNum"]=res[key]["dingTimes"]
           // res[key]["age"]=res[key]["examinationType"]
           all_data.push(res[key])
-          all_data.push(res[key])
-          all_data.push(res[key])
-          all_data.push(res[key])
-          all_data.push(res[key])
+          // all_data.push(res[key])
+          // all_data.push(res[key])
+          // all_data.push(res[key])
+          // all_data.push(res[key])
           //  all_data.push(res[key])
         }
         that.setData({
@@ -128,6 +128,45 @@ Page({
   },
   onLoad(query) {
     var overduestart = query.overduestart,overdueend = query.overdueend;
+    var that = this;
+    var url_data
+    if(String(overdueend)==="undefined"){
+      url_data = "overdueStart="+overduestart
+    }else{
+      url_data = "overdueStart="+overduestart+"&overdueEnd="+overdueend
+    }
+    http.request({
+      url:'baby/overduelistcount?'+url_data,
+      method:"GET",
+      // data:JSON.stringify({
+      //   "overdueStart":overduestart,"overdueEnd":overdueend
+      // }),
+      success:function(res){
+        let new_data = []
+        let old_data = that.data["tabs"]
+        let item_index = 0
+        for (var old_data_item_key in that.data["tabs"]){
+          item_index++
+          var all_num=0;
+          for(var new_data_item_key in res){
+            if(old_data[old_data_item_key]['value']===res[new_data_item_key].examinationType&&String(old_data[old_data_item_key]['value'])!==""){
+            old_data[old_data_item_key]["badgeType"]="text"
+            old_data[old_data_item_key]["badgeText"]=res[new_data_item_key]["cnt"]
+            }else if(String(old_data[old_data_item_key]['value'])===""){
+              all_num = all_num + res[new_data_item_key]["cnt"]
+
+            }
+          }
+          if(String(old_data[old_data_item_key].value)==""&&all_num!==0){
+            old_data[old_data_item_key]["badgeType"]="text"
+            old_data[old_data_item_key]["badgeText"]=all_num
+          }
+        }
+        that.setData({
+          "tabs":old_data
+        })
+      }
+    })
     let titleStr = "逾期 "
     if (!isNaN(overdueend)) {
       titleStr += overduestart + "~" + overdueend + " 天"
@@ -135,10 +174,11 @@ Page({
     } else {
       titleStr += overduestart + " 天以上"
     }
+
     my.setNavigationBar({
       title: titleStr
     });
-    var that = this;
+    
     this.setData({
       'listData.scrollHeight': scrollHeight,
       'listData.pageHeight': 135 * this.data.pagesize,
@@ -152,6 +192,7 @@ Page({
     }
     // console.log(timeperiod)
     this.firstRequest()
+
   },
   onRequest() {
     let that = this;
