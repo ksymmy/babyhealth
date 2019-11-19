@@ -16,10 +16,10 @@ function createDing(params) {
     text: params.text || '',  // 正文
     bizType: 0, // 业务类型 0：通知DING；1：任务；2：会议；
     success: function(res) {
-      console.log('success' + res)
+      params.success(res);
     },
-    fail: function(err) {
-
+    fail: function(res) {
+      if (params.fail) params.fail(res);
     }
   })
 }
