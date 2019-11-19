@@ -162,7 +162,7 @@ Page({
         } else if (len == 0) {
           that.setData({
             'listData.dataFinish': true,
-            'listData.loadingState': false
+             'listData.loadingState': false
           })
           return
         }

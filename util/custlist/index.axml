@@ -20,7 +20,7 @@
       </block>
     </view>
     <view class="btn-box">
-      <button type="default" onTap="{{btnTap}}">{{btnText}}</button>
+      <button type="default" onTap="{{btnTap}}" disabled="{{isDisable}}">{{btnText}}</button>
     </view>
   </scroll-view>
 </template>

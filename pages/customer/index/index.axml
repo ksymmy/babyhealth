@@ -1,27 +1,48 @@
 <view class="page" key="container">
-    <view class="sendDate">
-       {{sendDate}} {{sendTime}}
-    </view>
-    <view class="orgInfo">
-       <image mode="scaleToFill" src="/image/org.png"/>
-       <text>闻堰社区卫生服务中心</text>
-    </view>
-    <view class="notice">
-        <view class="notice_title">
-          张子墨 - 30月龄儿童健康体检通知
-        </view>
-        <view class="notice_content">
-          张子墨家长您好，您的宝宝已满30月龄，请近期携体检本先挂免费号后再前往儿保科体检。
-30月龄我们为宝宝提供<text class="text_blue">智能发育筛查（DDST）</text>评估儿童智力发展水平；<text class="text_blue">血常规免费检测</text>评估儿童贫血情况。
-
-            <view style="padding-top:56rpx">您能否按医生预约的日期来体检？</view>
-        </view>
-        <view class="notice_button btn_group">
-            <button size="default" type="default" style="border-right: 1px solid #d5d5d5;" onTap="toApplyDate">申请改期</button>
-            <button size="default" type="primary" plain="true" onTap="toSignIn">可以</button>
-        </view>
-    </view>
+  <scroll-view scroll-y style="min-height:{{scrollHeight}}px;height:{{pageHeight}}rpx;" onScrollToUpper="{{toUpper}}">
+    <block a:for={{list}} a:for-item="item">
+      <view class="sendDate">
+        {{item.newsTime}}
+      </view>
+      <view class="orgInfo">
+        <image mode="scaleToFill" src="/image/org.png"/>
+        <text>{{item.hospitalName}}</text>
+      </view>
+      <view class="notice">
+          <view class="notice_title">
+           {{item.title}}
+          </view>
+          <view class="notice_content">
+            {{item.context}}
+            <view style="padding-top:56rpx" a:if={{ item.type == 0 && item.signIn == 0 }}>
+              您能否按医生预约的日期来体检？
+            </view>
+          </view>
+          <view class="notice_button btn_group">
+            <block a:if={{ item.signIn == 1 }}>
+              <!--  已签到 -->
+              <view class="notice_button btn_group">
+                <view  ><image mode="scaleToFill" src="/image/signIn.png"/></view>
+              </view>
+            </block>
+            <block a:if={{ item.signIn == 0 }}>
+               <!-- 未签到 -->
+              <block a:if={{ item.type == 0 }}>
+                <!-- 提前提醒，可以改期 --> 
+                <button size="default" type="default" style="border-right: 1px solid #d5d5d5;" onTap="toApplyDate" data-val="{{ item.examinationId}}">申请改期</button>
+                <button size="default" type="primary" plain="true" onTap="toConfirm" data-val="{{ item.examinationId }}" a:if="{{ item.confirm != 1}}">可以</button>
+               </block>
+              <block a:if={{ item.type == 1 || item.type == 2 }}>
+                 <!-- 体检当天或逾期提醒，可以签到 --> 
+                <button size="default" type="primary" plain="true" onTap="toSignIn" data-val="{{ item.examinationId }}" >签到</button>
+              </block>
+            </block>
+          </view>
+      </view>
+    </block>
+  </scroll-view>
     <view class="fixBottom">
        <button size="default" type="primary" plain="true" onTap="toBBMgt">宝宝管理</button>
     </view>
 </view>
+

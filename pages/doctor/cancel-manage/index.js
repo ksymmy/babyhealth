@@ -9,6 +9,7 @@ Page({
       babyId: '',
       dingTap: 'handleDingItemTap',
       btnTap: 'handleBtnTapTap',
+      isDisable: false,
       list: [
         // {
         //   name: '姓名',
@@ -63,6 +64,9 @@ Page({
   },
   handleBtnTapTap(e) {
     let that = this;
+    that.setData({
+      'listData.isDisable': true
+    })
     http.request({
       url: 'baby/cancelbaby?id=' + that.data.babyId,
       method: 'post',
@@ -75,6 +79,9 @@ Page({
         setTimeout(() => {
           let pages = getCurrentPages();
           let prevPage = pages[pages.length - 2];
+          that.setData({
+            'listData.isDisable': false
+          })
           prevPage.onSearch();
           dd.navigateBack();
         }, 1000)

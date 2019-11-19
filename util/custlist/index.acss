@@ -59,7 +59,7 @@ button {
 }
 
 .normal-radius-btn.activate {
-  color: #47cc83;
+  color: #47cc83!important;
   border-color: #47cc83;
 }
 

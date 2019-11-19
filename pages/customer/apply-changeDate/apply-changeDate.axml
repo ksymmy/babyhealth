@@ -3,11 +3,11 @@
         <view class="list">
             <view class="item border">
               <view class="label">儿童姓名</view>
-              <view class="text">张子墨</view>
+              <view class="text">{{name}}</view>
             </view>
             <view class="item">
               <view class="label">体检项目</view>
-              <view class="text">体检项目</view>
+              <view class="text">{{examinationType}}</view>
             </view>
         </view>
     </view>

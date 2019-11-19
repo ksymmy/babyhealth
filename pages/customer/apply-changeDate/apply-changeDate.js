@@ -1,11 +1,19 @@
 // import lodash from 'lodash';
 // import custlist from '/components/custlist';
+import { HTTP } from '/util/http.js';
+let http = new HTTP();
 
 Page({
   data: {
-      dateText:''
+      name:'',
+      examinationType:'',
+      examinationId:'',
+      dateText:'',
+      delayDate:'',
+      delayReason:''
   },
   onLoad(query) {
+    this.onRequest(query.examinationId);
     // 页面加载
     this.setData({
       dateText: this.curDate()+' '+this.weekDay(new Date())//系统默认日期
@@ -33,24 +41,67 @@ Page({
         format: 'yyyy-MM-dd',
         currentDate: this.curDate(),
         success: (res) => {
-          if(res.error){//用户取消操作
+          if(typeof(res.date)=="undefined"){//用户取消操作
             this.setData({
-                dateText: this.curDate()+' '+this.weekDay(new Date())//系统默认日期
+              delayDate:'',
+              dateText: ''
             })
           }else{           
-           this.setData({
+            this.setData({
+              delayDate: res.date,
               dateText: res.date+' '+this.weekDay(res.date)
-           })
+            })
           }
           
         }
       });
   },
   saveApply(){
-    dd.navigateBack({
-      url: '../index/index'
-    });
-  }
+    if (this.data.delayDate=='') {
+         dd.showToast({
+          type: 'warn',
+          content: '申请日期不能为空',
+          duration: 2000
+        });
+    } else {
+      http.request({
+        url: "baby/confirmDelay?examinationId=" + this.data.examinationId+'&delayDate='+this.data.delayDate+'&delayReason='+this.data.delayReason,
+        method: 'GET',
+        success: (res) => {
+           dd.showToast({
+            type: 'warn',
+            content: '延期成功',
+            duration: 2000
+          });
+          dd.navigateBack({
+            url: '../index/index'
+          });
+        },
+        fail: function(res) {
+          // dd.alert({ content: JSON.stringify(res), buttonText: '好的' });
+        }
+      })
+      
+    }
+    
+  },
+  onRequest(examinationId) {
+    let that = this;
+    http.request({
+      url: "baby/applyDelay?examinationId=" + examinationId,
+      method: 'post',
+      success: (res) => {
+        that.setData({
+            name: res.name,
+            examinationType: res.examinationType,
+            examinationId: res.examinationId
+        });
+      },
+      fail: function(res) {
+        // dd.alert({ content: JSON.stringify(res), buttonText: '好的' });
+      }
+    })
+  },
 
 
 });
