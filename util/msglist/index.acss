@@ -81,7 +81,7 @@
  .nodata {
    position: absolute;
    top: 50%;
-   left:50%;
+   left: 50%;
    transform: translate(-50%, -50%);
    text-align: center;
  }
@@ -106,7 +106,7 @@
 
  .loading>image {
    display: block;
-   width: 160rpx;
-   height: 90rpx;
+   width: 320rpx;
+   height:60rpx;
    margin: 0 auto 30rpx;
  }
