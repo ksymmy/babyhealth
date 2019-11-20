@@ -27,16 +27,18 @@ Page({
       confirmButtonText: '确认',
       cancelButtonText: '取消',
       success: (result) => {
-        http.request({
-          url: "baby/delBaby?babyId="+ e.target.dataset.val,
-          method: 'post',
-          success: (res) => {
-              this.onRequest();
-          },
-          fail: function(res) {
-            // dd.alert({ content: JSON.stringify(res), buttonText: '好的' });
-          }
-        })
+        if (result.confirm){
+          http.request({
+            url: "baby/delBaby?babyId="+ e.target.dataset.val,
+            method: 'post',
+            success: (res) => {
+                this.onRequest();
+            },
+            fail: function(res) {
+              // dd.alert({ content: JSON.stringify(res), buttonText: '好的' });
+            }
+          })
+        }
       },
     });
       
@@ -54,9 +56,9 @@ Page({
       url: "baby/myBabys",
       method: 'post',
       success: (res) => {
-          // that.setData({
-          //   babyList: res
-          // })
+          that.setData({
+            babyList: res
+          })
       },
       fail: function(res) {
         // dd.alert({ content: JSON.stringify(res), buttonText: '好的' });
