@@ -1,46 +1,52 @@
+<form onSubmit="formSubmit" onReset="formReset">
 <view class="page" key="container">
    
     <view class="panel baby-info">
         <view class="list">
            <view class="item">
               <view class="label">姓名</view>
-              <view class="text"><input placeholder="张子墨" value="{{name}}"/></view>
+              <view class="text"><input placeholder="" name="name" value="{{name}}"/></view>
             </view>
             <view class="item">
               <view class="label">性别</view>
-              <view class="text"><input placeholder="女" value="{{sex}}"/></view>
+              <view class="text">
+                <radio-group class="radio-group"  name="sex">
+                   <radio value="1" checked="true"/>男 
+                   <radio value="2" />女</view>
+                </radio-group>
+                
             </view>
             <view class="item">
               <view class="label">出生日期</view>
-              <view class="text" onTap="datePicker"><input placeholder="{{dateText}}" value="{{dateText}}"/></view>
+              <view class="text" onTap="datePicker"><input placeholder=""  name="birthday" value="{{birthday}}"/></view>
             </view>
             <view class="item">
               <view class="label">父亲姓名</view>
-              <view class="text"><input placeholder="张一明" value="{{fatherName}}" /></view>
+              <view class="text"><input placeholder="" name="fatherName" value="{{fatherName}}" /></view>
             </view>
             <view class="item">
               <view class="label">联系电话</view>
-              <view class="text"><input maxlength="11" placeholder="15300006699" value="{{fatherTel}}"/></view>
+              <view class="text"><input maxlength="11" placeholder="" name="fatherMobile" value="{{fatherMobile}}"/></view>
             </view>
             <view class="item">
               <view class="label">母亲姓名</view>
-              <view class="text"><input placeholder="爱美丽" value="{{motherName}}"/></view>
+              <view class="text"><input placeholder="" name="motherName" value="{{motherName}}"/></view>
             </view>
             <view class="item">
               <view class="label">联系电话</view>
-              <view class="text"><input maxlength="11" placeholder="15300008866" value="{{motherTel}}"/></view>
+              <view class="text"><input maxlength="11" placeholder="" name="motherMobile" value="{{motherMobile}}"/></view>
             </view>
             <view class="item">
               <view class="label">家庭地址</view>
-              <view class="text"><input placeholder="浙江省杭州市余杭区未来科技城
-1号楼1105室" value="{{addr}}"/></view>
+              <view class="text"><input placeholder="" name="address" value="{{address}}"/></view>
             </view>
             
         </view>
       
     </view>
     <view class="btnView">
-      <button type="primary" class="save" onTap="saveBaby">保存</button>
+      <button formType="submit" type="primary" class="save">保存</button>
     </view>
     
 </view>
+</form>

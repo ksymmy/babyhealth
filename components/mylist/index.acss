@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: space-between;
   height:106rpx;
-  border-top:1px solid #e2e4e5;
+  border-top:1rpx solid #e2e4e5;
   align-items: center;
   font-size: 32rpx;
   color: #7e8185
