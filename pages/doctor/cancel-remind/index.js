@@ -92,10 +92,23 @@ Page({
         if (res) {
           users.push(res);
         }
+        var examid_list=[]
+        examid_list.push(examid)
         ding.createDing({
           users,
           corpId: dd.corpId,
-          text: text_template
+          text: text_template,
+          success:function(res){
+            http.request({
+                  url:"baby/updatedingtimes?examIds="+examid_list,
+                  method:"POST",
+                  // data:JSON.stringify({
+                  //   examIds:examid_list
+                  // }),
+                  success:function(res){
+                  }
+                })
+          }
         });
       },
       complete: res => {

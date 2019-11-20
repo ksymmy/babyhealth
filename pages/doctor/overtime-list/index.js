@@ -161,6 +161,18 @@ Page({
           text_template="家长你好！宝宝已经到体检时间啦，请您明天带上宝宝，到社区服务中心进行体检，祝宝宝健康成长。"
         }
         console.log(timeperiod)
+        var examid_list = res['examIds']
+        // console.log("(((((((((((999999999999))))))")
+        // http.request({
+        //           url:"baby/updatedingtimes?examIds="+examid_list,
+        //           method:"POST",
+        //           // data:JSON.stringify({
+        //           //   examIds:examid_list
+        //           // }),
+        //           success:function(res){
+        //              console.log("&&&&&&&&7777777777777&&&&&&&&&")
+        //           }
+        //         })
         ding.createDing({
               users,
               corpId: dd.corpId,
@@ -168,12 +180,22 @@ Page({
               success:function(res){
                 console.log("ding success")
                 console.log(res)
+                http.request({
+                  url:"baby/updatedingtimes?examIds="+examid_list,
+                  method:"POST",
+                  // data:JSON.stringify({
+                  //   examIds:examid_list
+                  // }),
+                  success:function(res){
+                     console.log("&&&&&&&&7777777777777&&&&&&&&&")
+                  }
+                })
               },
               fail:function(res){
                 
               }
             });
-        // console.log(res)
+        console.log(res)
       }
     })
   },
@@ -233,10 +255,69 @@ Page({
       }
     })
   },
-  onLoad(query) {
-    var overduestart = query.overduestart,overdueend = query.overdueend;
+  onShow(){
+    console.log("********88888888888888*********")
+    this.firstRequest()
+    if(timeperiod.hasOwnProperty("overdueEnd")){
+      overdueEnd = timeperiod['overdueEnd']
+    }else{
+      var overdueEnd
+    }
+    this.onTapRequest(timeperiod["overdueStart"],overdueEnd)
+  },
+  onTapRequest(overduestart,overdueend){
     var that = this;
     var url_data
+    var referer_list =[
+      {
+        title: '全部',
+        value: '',
+        // badgeType: 'text',
+        // badgeText: '22',
+      },
+      {
+        title: '满月',
+        value: 1,
+        // badgeType: 'text',
+        // badgeText: '5',
+      },
+      {
+        title: '3月',
+        value: 3,
+        // badgeType: 'text',
+        // badgeText: '6',
+      },
+      {
+        title: '6月',
+        value: 6,
+        // badgeType: 'text',
+        // badgeText: '3',
+      },
+      {
+        title: '8月',
+        value: 8
+      },
+      {
+        title: '12月',
+        value: 12
+      },
+      {
+        title: '18月',
+        value: 18
+      },
+      {
+        title: '24月',
+        value: 24
+      },
+      {
+        title: '30月',
+        value: 30
+      },
+      {
+        title: '36月',
+        value: 36
+      }
+    ]
     if(String(overdueend)==="undefined"){
       url_data = "overdueStart="+overduestart
     }else{
@@ -250,9 +331,9 @@ Page({
       // }),
       success:function(res){
         let new_data = []
-        let old_data = that.data["tabs"]
+        let old_data = referer_list
         let item_index = 0
-        for (var old_data_item_key in that.data["tabs"]){
+        for (var old_data_item_key in referer_list){
           item_index++
           var all_num=0;
           var value_if = true
@@ -289,6 +370,10 @@ Page({
         })
       }
     })
+  },
+  onLoad(query) {
+    var overduestart = query.overduestart,overdueend = query.overdueend;
+    this.onTapRequest(overduestart,overdueend)
     let titleStr = "逾期 "
     if (!isNaN(overdueend)) {
       titleStr += overduestart + "~" + overdueend + " 天"
