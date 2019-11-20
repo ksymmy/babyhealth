@@ -161,30 +161,30 @@ Page({
     })
   },
 
-  onScroll(e) {
-    console.log(e.detail.scrollTop )
-    // if (e.detail.scrollTop == 0 && flg) {
-    //   this.onRequest();
-    //   dd.pageScrollTo({
-    //     scrollTop: this.data.pageHeight
-    //   })
-    // }
-    // if (e.detail.scrollHeight * 2 >= this.data.pageHeight * (page - 1)) {
-    //   let newH = e.detail.scrollHeight
-    //   if (this.newheight == 0) {
-    //     this.newheight = newH
-    //   } else if (this.newheight != newH) {
-    //     this.oldheight = newH - this.newheight
-    //     this.newheight = newH
-    //     console.log(this.newheight, this.oldheight)
-    //   }
-    //   this.scrollTopVal = e.detail.scrollTop
-    //   this.onRequest();
-    // }
+  // onScroll(e) {
+  //  // console.log(e.detail.scrollTop )
+  //   // if (e.detail.scrollTop == 0 && flg) {
+  //   //   this.onRequest();
+  //   //   dd.pageScrollTo({
+  //   //     scrollTop: this.data.pageHeight
+  //   //   })
+  //   // }
+  //   // if (e.detail.scrollHeight * 2 >= this.data.pageHeight * (page - 1)) {
+  //   //   let newH = e.detail.scrollHeight
+  //   //   if (this.newheight == 0) {
+  //   //     this.newheight = newH
+  //   //   } else if (this.newheight != newH) {
+  //   //     this.oldheight = newH - this.newheight
+  //   //     this.newheight = newH
+  //   //     console.log(this.newheight, this.oldheight)
+  //   //   }
+  //   //   this.scrollTopVal = e.detail.scrollTop
+  //   //   this.onRequest();
+  //   // }
 
 
-    // console.log(e.detail.scrollTop + 'sdsdfs');
-  },
+  //   // console.log(e.detail.scrollTop + 'sdsdfs');
+  // },
   toSignIn(e) {// 签到
     let that = this;
     let inx = e.currentTarget.dataset.index;

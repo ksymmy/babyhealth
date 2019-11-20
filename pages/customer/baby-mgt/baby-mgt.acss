@@ -1,67 +1,85 @@
-page{
- padding:0 0 174rpx;
-   min-height:100vh;
+page {
+  padding: 0 0 174rpx;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.page {
+  padding: 0;
+  background-color: rgb(255, 255, 255);
    box-sizing: border-box;
 }
-.page{
- padding: 0;
 
-  background-color:rgb(255, 255, 255)
-}
-.panel{
+.panel {
   width: 100%;
   border-top: 15rpx solid #f2f4f5;
   background-color: #fff;
-  padding:0 30rpx;
+  padding: 0 30rpx;
+  
 }
-.panel_title{
-  height:88rpx;
+view{
+box-sizing: border-box;
+}
+.panel_title {
+  height: 88rpx;
   line-height: 88rpx;
-  color:#191f25;
+  color: #191f25;
   font-size: 32rpx;
-  padding-left:30rpx;
+  padding-left: 30rpx;
 }
-.baby{
 
+.baby {
   height: 184rpx;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
 }
-.baby>view{
-   display: flex;
-   flex-direction: column;
-   text-align: center; 
-   font-size: 32rpx; 
-   color: #a0a5ab
+
+.baby>view {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 32rpx;
+  color: #a0a5ab
 }
-.baby image{
+
+.baby image {
   width: 82rpx;
   height: 82rpx;
   background-color: #99d0ff;
   border-radius: 50%;
-  padding:5rpx;
+  padding: 5rpx;
 }
-.baby text{
+
+.baby text {
   padding-top: 10rpx;
 }
-.baby view.cur{
-   color: #191f25
+
+.baby view.cur {
+  color: #191f25
 }
-.baby view.cur image{
+
+.baby view.cur image {
   width: 92rpx;
   height: 92rpx;
   background-color: #0089ff;
 }
-.baby view.addBtn image{
-   width: 82rpx;
+
+.baby view.addBtn image {
+  width: 82rpx;
   height: 82rpx;
   background-color: #fff;
 }
-.medical .list{
-  padding:0 30rpx;
+
+.medical .list {
+  padding: 0 30rpx;
 }
+.btnView button{
+  margin-top: 10px;
+}
+
 .placeholder {
   background-color: #dedede;
   color: #fff;
@@ -73,32 +91,40 @@ page{
 }
 
 .placeholder.inline {
-  width: 31%;
-  margin:0 15rpx 15rpx 0;
+  width: 32%;
+  margin: 0 2% 15rpx 0;
 }
-.singedin{
+.placeholder.inline:nth-child(3n+3){
+  margin-right: 0;
+}
+
+.singedin {
   background: #99d0ff url(/image/checked.png) no-repeat right top;
   background-size: 62rpx 50rpx;
 }
-.unmedical{
+
+.unmedical {
   background-color: #99d0ff;
 }
-.baby-info .list{
-  padding:0 30rpx;
-}
-.btnView{
-  width:100%;
-  height:136rpx;
-  background-color: #fff;
-  position: fixed;
-  bottom:30rpx;
-}
-.del{
-  background-color: #e2e4e5;
-  margin:0 30rpx;
-}
-.btnView button{
-  color:#6d757e;
-  font-size:34rpx;
+
+.baby-info .list {
+  padding: 0 30rpx;
 }
 
+.btnView {
+  width: 100%;
+  height: 136rpx;
+  background-color: #fff;
+  position: fixed;
+  bottom: 30rpx;
+}
+
+.del {
+  background-color: #e2e4e5;
+  margin: 0 30rpx;
+}
+
+.btnView button {
+  color: #6d757e;
+  font-size: 34rpx;
+}
