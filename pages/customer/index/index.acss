@@ -42,8 +42,8 @@ page{
 }
 
 .notice .btn_group image {
-  width: 186rpx;
-  height: 100px;
+  width: 180rpx;
+  height: 180rpx;
 }
 
 .notice .btn_group button {
