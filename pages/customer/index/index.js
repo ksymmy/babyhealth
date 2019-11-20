@@ -11,11 +11,9 @@ Page({
     scrollHeight: 0,//最小scroll-view高度
     animationInfo: {},
     topPosition: 0,
-    old: {
-      scrolTop: 0,
-    },
-    oldheight: 0,//标签位置
-    newheight: 0, //新窗口高度
+    scrollTopVal: 0,
+    oldHeight: 0,
+    newHeight: 0,
     list: [
       // {
       //   sendDate: '',
@@ -92,20 +90,20 @@ Page({
       }),
       success: (res) => {
         console.log(res);
-        res=res.reverse();
+        res = res.reverse();
         let len = res.length;
         let h2 = 0;
         if (page == 1) {
           let len1 = 0, len2 = 0;
           for (let i = 0; i < len; i++) {
-            if (res[i].type = 0) {
+            if (res[i].newsType == 0) {
               len1++;
             } else {
               len2++;
             }
           }
-        
-          let h = 760 * len1 + 660 * len2;
+
+          let h = 808 * len1 + 660 * len2;
           that.setData({
             'pageHeight': h
           })
@@ -136,17 +134,18 @@ Page({
           'list': data,
           'loadingState': false
         });
-        
-         if (page == 2) {
-        let htop = this.data.pageHeight
-        dd.pageScrollTo({
-          scrollTop: htop
-        })
+
+        if (page == 2) {
+          let htop = this.data.pageHeight
+          dd.pageScrollTo({
+            scrollTop: htop
+          })
         } else {
-          that.data.topPosition = that.data.old.scrolTop
-          that.$nextTick(function() {
-            that.data.topPosition = that.data.oldheight
-          });
+          // that.data.topPosition = that.data.old.scrolTop
+          // that.data.topPosition = that.data.oldheight
+          dd.pageScrollTo({
+            scrollTop: that.data.topPosition
+          })
         }
 
         // setTimeout(function() {
@@ -168,15 +167,19 @@ Page({
     })
   },
   onScroll(e) {
-    // let newH = e.detail.scrollHeight
-    // if (this.newheight == 0) {
-    //   this.newheight = newH
-    // } else if (this.newheight != newH) {
-    //   this.oldheight = newH - this.newheight
-    //   this.newheight = newH
-    //   console.log(this.newheight, this.oldheight)
-    // }
-    // this.old.scrolTop = e.detail.scrollTop
+    if (e.detail.scrollHeight * 2 >= this.data.pageHeight * (page - 1)) {
+      let newH = e.detail.scrollHeight
+      if (this.newheight == 0) {
+        this.newheight = newH
+      } else if (this.newheight != newH) {
+        this.oldheight = newH - this.newheight
+        this.newheight = newH
+        console.log(this.newheight, this.oldheight)
+      }
+      this.scrollTopVal = e.detail.scrollTop
+      this.onRequest();
+    }
+
 
     // console.log(e.detail.scrollTop + 'sdsdfs');
   },
@@ -207,9 +210,9 @@ Page({
     // this.setData({
     //   topPosition: htop
     // })
-    dd.navigateTo({
-      url: '../apply-changeDate/apply-changeDate?examinationId=' + e.target.dataset.val,
-    });
+    // dd.navigateTo({
+    //   url: '../apply-changeDate/apply-changeDate?examinationId=' + e.target.dataset.val,
+    // });
   },
   toConfirm(e) {// 确认可以按时体检
     let that = this;

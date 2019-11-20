@@ -36,10 +36,13 @@ Component({
     var _this$props = this.props,
       tabs = _this$props.tabs,
       animation = _this$props.animation,
-
+      flag = false;
+    if (tabs.length > 4 || tabs.length == 1) {
+      flag = true
+    }
 
     this.setData({
-      tabWidth: tabs.length > 4 || tabs.length == 1 ? 0.2 : 1 / tabs.length,
+      tabWidth: flag ? 0.2 : 1 / tabs.length,
       animation: animation,
       autoplay: true
     });

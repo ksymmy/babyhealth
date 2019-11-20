@@ -3,7 +3,7 @@
   <view class="fixed-con">
     <view class="search-con">
       <view class="search-box">
-        <input onInput="bindKeyInput" value="{{inputValue}}" placeholder="搜索" onConfirm="onSearch"/>
+        <input onInput="bindKeyInput" value="{{inputValue}}" placeholder="搜索"  placeholder-style="color:#949aa1;" onConfirm="onSearch"/>
       </view>
     </view>
     <view class="my-tab">
