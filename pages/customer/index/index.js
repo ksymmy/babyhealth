@@ -207,9 +207,9 @@ Page({
     // this.setData({
     //   topPosition: htop
     // })
-    // dd.navigateTo({
-    //   url: '../apply-changeDate/apply-changeDate?examinationId=' + e.target.dataset.val,
-    // });
+    dd.navigateTo({
+      url: '../apply-changeDate/apply-changeDate?examinationId=' + e.target.dataset.val,
+    });
   },
   toConfirm(e) {// 确认可以按时体检
     let that = this;
