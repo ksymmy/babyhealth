@@ -4,6 +4,7 @@ import ding from '/util/ding.js';
 let http = new HTTP();
 var timeperiod;
 var page;
+var onload_if = false
 var _my$getSystemInfoSync = my.getSystemInfoSync(),
   windowHeight = _my$getSystemInfoSync.windowHeight;
 var scrollHeight = windowHeight - 160;
@@ -129,7 +130,7 @@ Page({
   },
   //全部ding
   allDing() {
-    console.log(timeperiod)
+    // console.log(timeperiod)
     var url_path_data=""
     var item_index=0
     dd.showLoading({
@@ -151,7 +152,7 @@ Page({
       // timeperiod
       // }),
       success: function(res) {
-        console.log(res)
+        // console.log(res)
         dd.hideLoading();
         let users = res['users'];
         var text_template
@@ -160,7 +161,7 @@ Page({
         }else{
           text_template="家长你好！宝宝已经到体检时间啦，请您明天带上宝宝，到社区服务中心进行体检，祝宝宝健康成长。"
         }
-        console.log(timeperiod)
+        // console.log(timeperiod)
         var examid_list = res['examIds']
         // console.log("(((((((((((999999999999))))))")
         // http.request({
@@ -178,8 +179,8 @@ Page({
               corpId: dd.corpId,
               text: text_template,
               success:function(res){
-                console.log("ding success")
-                console.log(res)
+                // console.log("ding success")
+                // console.log(res)
                 http.request({
                   url:"baby/updatedingtimes?examIds="+examid_list,
                   method:"POST",
@@ -187,7 +188,7 @@ Page({
                   //   examIds:examid_list
                   // }),
                   success:function(res){
-                     console.log("&&&&&&&&7777777777777&&&&&&&&&")
+                    //  console.log("&&&&&&&&7777777777777&&&&&&&&&")
                   }
                 })
               },
@@ -195,7 +196,7 @@ Page({
                 
               }
             });
-        console.log(res)
+        // console.log(res)
       }
     })
   },
@@ -246,8 +247,6 @@ Page({
             }
           }
         ]
-        console.log("%%%%%^^^^^^^^^^^  ^           %%%%%%%%%%%%%")
-        console.log(result)
         var test = baby
         dd.navigateTo({
           url: `/pages/doctor/cancel-remind/index?babyId=` + baby.babyId +'&examid='+baby.id+'&examinationtype='+baby.age+ `&list=` + JSON.stringify(result)
@@ -256,6 +255,10 @@ Page({
     })
   },
   onShow(){
+    if (onload_if){
+      onload_if = false
+      return
+    }
     console.log("********88888888888888*********")
     this.firstRequest()
     if(timeperiod.hasOwnProperty("overdueEnd")){
@@ -352,14 +355,14 @@ Page({
             old_data[old_data_item_key]["badgeType"]="text"
             old_data[old_data_item_key]["badgeText"]=all_num
           }
-          if(value_if){
+          if(value_if&&old_data_item_key!=="0"){
             delete old_data[old_data_item_key]
           }
         }
         var result_tab = []
         for(var delete_item in old_data){
-          console.log(delete_item)
-          console.log(old_data[delete_item])
+          // console.log(delete_item)
+          // console.log(old_data[delete_item])
           if (old_data[delete_item]){
             result_tab.push(old_data[delete_item])
           }
@@ -372,6 +375,7 @@ Page({
     })
   },
   onLoad(query) {
+    onload_if = true
     var overduestart = query.overduestart,overdueend = query.overdueend;
     this.onTapRequest(overduestart,overdueend)
     let titleStr = "逾期 "

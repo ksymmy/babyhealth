@@ -1,6 +1,7 @@
 import {HTTP} from '/util/http.js';
 let http = new HTTP();
 var app = getApp()
+var onload_if = false
 Page({
   data: {
     // overTime: {
@@ -36,9 +37,14 @@ Page({
     })
   },
   onLoad(){
+    onload_if = true;
     this.onRequest()
   },
   onShow(){
+    if (onload_if){
+      onload_if = false
+      return
+    }
     this.onRequest()
   },
   

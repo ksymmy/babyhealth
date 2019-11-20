@@ -76,6 +76,7 @@ Page({
   },
   /*Ding操作*/
   handleDingItemTap(e) {
+    console.log("*******************ding************************")
     let mobile = `${e.currentTarget.dataset.value}`;
     if (!mobile || mobile == "undefind") {
       return
@@ -84,7 +85,6 @@ Page({
     dd.showLoading({
       content: '请稍后...'
     })
-    console.log(`${e}`)
     var text_template="家长你好！宝宝已经到"+examinationtype+"月龄了，请您明天带上宝宝，到社区服务中心进行"+examinationtype+"月龄体检，祝宝宝健康成长。"
     http.request({
       url: `baby/getuseridbbymobile?mobile=` + mobile,
@@ -99,15 +99,15 @@ Page({
           corpId: dd.corpId,
           text: text_template,
           success:function(res){
-            http.request({
-                  url:"baby/updatedingtimes?examIds="+examid_list,
-                  method:"POST",
-                  // data:JSON.stringify({
-                  //   examIds:examid_list
-                  // }),
-                  success:function(res){
-                  }
-                })
+            // http.request({
+            //       url:"baby/updatedingtimes?examIds="+examid_list,
+            //       method:"POST",
+            //       // data:JSON.stringify({
+            //       //   examIds:examid_list
+            //       // }),
+            //       success:function(res){
+            //       }
+            //     })
           }
         });
       },
