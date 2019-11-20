@@ -11,7 +11,7 @@
                 backgroundColor: tabBarBackgroundColor,
                 color: index === activeTab ? tabBarActiveTextColor: tabBarInactiveTextColor,
                 width: (tabs.length > 4 ? 0.2 : 1 / tabs.length) * 100 + '%',
-              }}" class="am-tabs-bar-tab {{tabBarCls}} ">
+              }}" class="am-tabs-bar-tab {{tabBarCls}} {{ flag ? 'onlyTab' : '' }}">
               <view class="am-tabs-bar-title {{ index === activeTab ? activeCls : '' }}" style="{{ borderBottomColor: index === activeTab ? tabBarUnderlineColor : '' }}">
                 <text>{{item.title}}</text>
                 <badge className="am-tabs-bar-badge {{item.badgeType ? item.badgeType : ''}}" a:if="{{item.badgeType}}" dot="{{item.badgeType == 'dot'}}" text="{{item.badgeText}}" />

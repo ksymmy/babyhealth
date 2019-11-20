@@ -142,6 +142,10 @@ view .am-tabs-content-wrap {
   font-size: 29rpx;
 }
 
+.am-tabs-bar-tab.onlyTab{
+   justify-content: left!important;
+   padding-left: 60rpx;
+}
 .am-tabs-bar-tab .am-badge-text .am-badge-text-inner {
   transform: translate(-50%, -50%);
   font-size: 24rpx;

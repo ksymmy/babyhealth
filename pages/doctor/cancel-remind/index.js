@@ -76,7 +76,6 @@ Page({
   },
   /*Ding操作*/
   handleDingItemTap(e) {
-    console.log("*******************ding************************")
     let mobile = `${e.currentTarget.dataset.value}`;
     if (!mobile || mobile == "undefind") {
       return
@@ -99,15 +98,15 @@ Page({
           corpId: dd.corpId,
           text: text_template,
           success:function(res){
-            // http.request({
-            //       url:"baby/updatedingtimes?examIds="+examid_list,
-            //       method:"POST",
-            //       // data:JSON.stringify({
-            //       //   examIds:examid_list
-            //       // }),
-            //       success:function(res){
-            //       }
-            //     })
+            http.request({
+                  url:"baby/updatedingtimes?examIds="+examid_list,
+                  method:"POST",
+                  // data:JSON.stringify({
+                  //   examIds:examid_list
+                  // }),
+                  success:function(res){
+                  }
+                })
           }
         });
       },

@@ -23,7 +23,8 @@ Component({
     duration: 500,
     popShow: false,
     showMask: true,
-    popList: []
+    popList: [],
+    flag: false
   },
   data: {
     windowWidth: windowWidth,
@@ -35,20 +36,26 @@ Component({
   didMount: function didMount() {
     var _this$props = this.props,
       tabs = _this$props.tabs,
-      animation = _this$props.animation,
-      flag = false;
-    if (tabs.length > 4 || tabs.length == 1) {
-      flag = true
+      animation = _this$props.animation;
+    if (tabs.length == 1) {
+      this.setData({
+        flag: true
+      })
     }
 
     this.setData({
-      tabWidth: flag ? 0.2 : 1 / tabs.length,
+      tabWidth: tabs.length > 4 ? 0.2 : 1 / tabs.length,
       animation: animation,
       autoplay: true
     });
   },
   didUpdate: function didUpdate(prevProps) {
     var tabs = this.props.tabs;
+    if (tabs.length == 1) {
+      this.setData({
+        flag: true
+      })
+    }
 
     if (prevProps.tabs.length !== tabs.length) {
       this.setData({
