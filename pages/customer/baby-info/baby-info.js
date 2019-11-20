@@ -79,12 +79,14 @@ Page({
       method: 'post',
       data: JSON.stringify(e.detail.value),
       success: (res) => {
-           dd.showToast({
-                type: 'success',
-                content: '保存成功',
-                duration: 2000
-            });
-          dd.navigateBack();  
+        dd.showToast({
+            type: 'success',
+            content: '保存成功',
+            duration: 1000,
+            success: () => {
+              dd.navigateBack(); 
+            },
+        });
       },
       fail: function(res) {
         // dd.alert({ content: JSON.stringify(res), buttonText: '好的' });

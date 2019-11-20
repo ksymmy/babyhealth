@@ -5,13 +5,13 @@
         <view class="list">
            <view class="item">
               <view class="label">姓名</view>
-              <view class="text"><input placeholder="" name="name" value="{{name}}"/></view>
+              <view class="text"><input maxlength="10" placeholder="" name="name" value="{{name}}"/></view>
             </view>
             <view class="item">
               <view class="label">性别</view>
               <view class="text">
                 <radio-group class="radio-group"  name="sex">
-                   <radio value="1" checked="true"/>男 
+                   <radio value="1" checked="true"/>男
                    <radio value="2" />女</view>
                 </radio-group>
                 
@@ -22,7 +22,7 @@
             </view>
             <view class="item">
               <view class="label">父亲姓名</view>
-              <view class="text"><input placeholder="" name="fatherName" value="{{fatherName}}" /></view>
+              <view class="text"><input maxlength="10" placeholder="" name="fatherName" value="{{fatherName}}" /></view>
             </view>
             <view class="item">
               <view class="label">联系电话</view>
@@ -30,7 +30,7 @@
             </view>
             <view class="item">
               <view class="label">母亲姓名</view>
-              <view class="text"><input placeholder="" name="motherName" value="{{motherName}}"/></view>
+              <view class="text"><input maxlength="10" placeholder="" name="motherName" value="{{motherName}}"/></view>
             </view>
             <view class="item">
               <view class="label">联系电话</view>
@@ -38,7 +38,7 @@
             </view>
             <view class="item">
               <view class="label">家庭地址</view>
-              <view class="text"><input placeholder="" name="address" value="{{address}}"/></view>
+              <view class="text"><input maxlength="50" placeholder="" name="address" value="{{address}}"/></view>
             </view>
             
         </view>
