@@ -4,7 +4,7 @@
       <block a:for={{list}} a:for-item="item">
         <view class="list-con">
           <view class="sendDate">
-        {{item.newsTime}}    :{{item.id}}
+        {{item.newsTime}}
           </view>
           <view class="orgInfo">
             <image mode="scaleToFill" src="/image/org.png"/>
