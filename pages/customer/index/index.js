@@ -3,10 +3,10 @@ import { showText } from '/app.js';
 import { config } from '/app.js';
 let http = new HTTP(), page = 1;
 var _my$getSystemInfoSync = my.getSystemInfoSync(), windowHeight = _my$getSystemInfoSync.windowHeight;
-var scrollHeight = windowHeight - 110;
+var scrollHeight = windowHeight - 140;
+var flg=false;
 Page({
   data: {
-    toUpper: 'toUpper',
     pageHeight: 1200,//scroll-view触底高度
     scrollHeight: 0,//最小scroll-view高度
     animationInfo: {},
@@ -32,17 +32,19 @@ Page({
 
   },
   onLoad(query) {
-    let h = 760 * 3;
-    this.setData({
-      'scrollHeight': scrollHeight,
-      'pageHeight': h
-    })
+    // let h = 760 * 3;
+    // this.setData({
+    //   'scrollHeight': scrollHeight,
+    //   'pageHeight': h
+    // })
     page = 1;
 
     this.setData({
       ['list']: [],
+      'scrollHeight': scrollHeight
     });
     this.onRequest();
+
 
     // let that = this;
 
@@ -56,6 +58,27 @@ Page({
     // this.setData({
     //   sendTime:d
     // })
+
+  },
+  onReady() {
+    var that = this
+    var is_1_height = 0;
+    setTimeout(function() {
+      dd.createSelectorQuery().select('#listcon').boundingClientRect().exec((rect) => {
+        is_1_height = rect[0].height
+        that.setData({
+          pageHeight: is_1_height - 1,
+          topPosition: is_1_height
+        });
+        if (page == 2) {
+          dd.pageScrollTo({
+            scrollTop: that.data.pageHeight
+          })
+          flg=true
+        }
+      });
+    }, 200)
+
 
   },
   onShow() {
@@ -72,9 +95,6 @@ Page({
       animationInfo: animation.export()
     });
   },
-  toUpper(e) {
-    this.onRequest();
-  },
   onRequest() {
     let that = this;
     this.setData({
@@ -86,10 +106,9 @@ Page({
       data: JSON.stringify({
         param: {},
         page: page,
-        size: 3,
+        size: 100,
       }),
       success: (res) => {
-        console.log(res);
         res = res.reverse();
         let len = res.length;
         let h2 = 0;
@@ -103,10 +122,10 @@ Page({
             }
           }
 
-          let h = 808 * len1 + 660 * len2;
-          that.setData({
-            'pageHeight': h
-          })
+          // let h = 2060;
+          // that.setData({
+          //   'pageHeight': h
+          // })
 
           if (len == 0) {
             that.setData({
@@ -135,50 +154,33 @@ Page({
           'loadingState': false
         });
 
-        if (page == 2) {
-          let htop = this.data.pageHeight
-          dd.pageScrollTo({
-            scrollTop: htop
-          })
-        } else {
-          // that.data.topPosition = that.data.old.scrolTop
-          // that.data.topPosition = that.data.oldheight
-          dd.pageScrollTo({
-            scrollTop: that.data.topPosition
-          })
-        }
-
-        // setTimeout(function() {
-        //   if (page == 2) {
-        //     let htop = that.data.pageHeight - 1000
-        //       dd.pageScrollTo({
-        //         scrollTop: htop
-        //       })
-        //     // that.setData({
-        //     //   topPosition: htop
-        //     // })
-        //   }
-        // }, 1000)
-
       },
       fail: function(res) {
         dd.alert({ content: JSON.stringify(res), buttonText: '好的' });
       }
     })
   },
+
   onScroll(e) {
-    if (e.detail.scrollHeight * 2 >= this.data.pageHeight * (page - 1)) {
-      let newH = e.detail.scrollHeight
-      if (this.newheight == 0) {
-        this.newheight = newH
-      } else if (this.newheight != newH) {
-        this.oldheight = newH - this.newheight
-        this.newheight = newH
-        console.log(this.newheight, this.oldheight)
-      }
-      this.scrollTopVal = e.detail.scrollTop
-      this.onRequest();
-    }
+    console.log(e.detail.scrollTop )
+    // if (e.detail.scrollTop == 0 && flg) {
+    //   this.onRequest();
+    //   dd.pageScrollTo({
+    //     scrollTop: this.data.pageHeight
+    //   })
+    // }
+    // if (e.detail.scrollHeight * 2 >= this.data.pageHeight * (page - 1)) {
+    //   let newH = e.detail.scrollHeight
+    //   if (this.newheight == 0) {
+    //     this.newheight = newH
+    //   } else if (this.newheight != newH) {
+    //     this.oldheight = newH - this.newheight
+    //     this.newheight = newH
+    //     console.log(this.newheight, this.oldheight)
+    //   }
+    //   this.scrollTopVal = e.detail.scrollTop
+    //   this.onRequest();
+    // }
 
 
     // console.log(e.detail.scrollTop + 'sdsdfs');

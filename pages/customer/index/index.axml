@@ -1,6 +1,6 @@
 <view class="page" key="container">
-  <scroll-view scroll-y='true' style="width:100%;min-height:{{scrollHeight}}px;height:{{pageHeight}}rpx;" onScroll="onScroll" onScrollToUpper="{{toUpper}}" scroll-top="{{topPosition}}">
-    <view>
+  <scroll-view scroll-y='true' style="width:100%;min-height:{{scrollHeight}}px;height:{{pageHeight}}px;" onScroll="onScroll" scroll-top="{{topPosition}}">
+    <view id="listcon">
       <block a:for={{list}} a:for-item="item">
         <view class="list-con">
           <view class="sendDate">
