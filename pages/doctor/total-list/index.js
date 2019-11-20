@@ -89,7 +89,8 @@ Page({
     activeTab: [0, 0],//下方tab选中序号
     inputValue: '',
     age: '',
-    year: ''
+    year: '',
+    flag: true
   },
   onLoad(param) {
     dd.setNavigationBar({
@@ -124,6 +125,9 @@ Page({
     this.onRequest();
   },
   onRequest() {
+    this.setData({
+      'flag': false
+    })
     var that = this;
     let len = 0;
     this.setData({
@@ -155,7 +159,7 @@ Page({
             that.setData({
               'listData.noDataState': true,
               'listData.loadingState': false,
-               'listData.pageHeight': scrollHeight
+              'listData.pageHeight': scrollHeight
             })
             return
           }
@@ -183,6 +187,11 @@ Page({
       },
       fail: function(res) {
         dd.alert({ content: JSON.stringify(res), buttonText: '好的' });
+      },
+      complete: function(res) {
+        that.setData({
+          'flag': true
+        });
       }
     })
   },
@@ -221,11 +230,11 @@ Page({
   },
   //下方tab选项切换
   handleTabChange(index, value) {
+    //index为选择序号，value为选中的值
     var newIndex = 'activeTab[' + this.data.topActiveTab + ']'
     this.setData({
       [newIndex]: index,
     });
-    console.log(value)
     if (!isNaN(value.title)) {//年份
       this.setData({
         ['age']: '',
@@ -241,8 +250,12 @@ Page({
   },
   /*下拉 */
   toLower(e) {
+    console.log('下拉+' + page)
     let that = this;
-    this.onRequest();
+    if (this.data.flag) {
+      this.onRequest();
+    }
+
   },
   cancelManage(e) {
     let baby = e.currentTarget.dataset.val, result = [];
