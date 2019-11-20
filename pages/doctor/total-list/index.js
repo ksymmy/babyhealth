@@ -125,13 +125,11 @@ Page({
     this.onRequest();
   },
   onRequest() {
-    this.setData({
-      'flag': false
-    })
     var that = this;
     let len = 0;
     this.setData({
-      'listData.loadingState': true
+      'listData.loadingState': true,
+      'flag': false
     })
     http.request({
       url: "baby/allbabyslist",
@@ -166,7 +164,7 @@ Page({
         } else if (len == 0) {
           that.setData({
             'listData.dataFinish': true,
-             'listData.loadingState': false
+            'listData.loadingState': false
           })
           return
         }
@@ -251,11 +249,9 @@ Page({
   /*下拉 */
   toLower(e) {
     console.log('下拉+' + page)
-    let that = this;
     if (this.data.flag) {
       this.onRequest();
     }
-
   },
   cancelManage(e) {
     let baby = e.currentTarget.dataset.val, result = [];

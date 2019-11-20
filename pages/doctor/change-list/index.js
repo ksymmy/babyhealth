@@ -25,7 +25,8 @@ Page({
         // }
       ],
       type: 2  //封装列表页面展示类型，1为明日体检列表，2为改期列表，3为逾期列表
-    }
+    },
+    flag: true
   },
   onLoad(param) {
     dd.setNavigationBar({
@@ -43,12 +44,15 @@ Page({
     this.onRequest();
   },
   toLower(e) {
-    this.onRequest();
+    if (this.data.flag) {
+      this.onRequest();
+    }
   },
   onRequest() {
     let that = this;
     this.setData({
-      'listData.loadingState': true
+      'listData.loadingState': true,
+      'flag': false
     })
     http.request({
       url: "baby/changedatebabyslist",
@@ -99,6 +103,11 @@ Page({
       },
       fail: function(res) {
         dd.alert({ content: JSON.stringify(res), buttonText: '好的' });
+      },
+      complete: res => {
+        that.setData({
+          'flag': true
+        });
       }
     })
   },
