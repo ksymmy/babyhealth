@@ -1,47 +1,49 @@
 <view class="page" key="container">
-  <scroll-view scroll-y style="width:100%;min-height:{{scrollHeight}}px;height:{{pageHeight}}rpx;" onScrollToUpper="{{toUpper}}">
-    <block a:for={{list}} a:for-item="item">
-      <view class="list-con">
-        <view class="sendDate">
-        {{item.newsTime}}
-        </view>
-        <view class="orgInfo">
-          <image mode="scaleToFill" src="/image/org.png"/>
-          <text>{{item.hospitalName}}</text>
-        </view>
-        <view class="notice">
-          <view class="notice_title">
-           {{item.title}}
+  <scroll-view scroll-y='true' style="width:100%;min-height:{{scrollHeight}}px;height:{{pageHeight}}rpx;" onScroll="onScroll" onScrollToUpper="{{toUpper}}" scroll-top="{{topPosition}}">
+    <view>
+      <block a:for={{list}} a:for-item="item">
+        <view class="list-con">
+          <view class="sendDate">
+        {{item.newsTime}}    :{{item.id}}
           </view>
-          <view class="notice_content">
+          <view class="orgInfo">
+            <image mode="scaleToFill" src="/image/org.png"/>
+            <text>{{item.hospitalName}}</text>
+          </view>
+          <view class="notice">
+            <view class="notice_title">
+           {{item.title}}
+            </view>
+            <view class="notice_content">
             {{item.context}}
-            <view style="padding-top:56rpx" a:if={{ item.type == 0 && item.signIn == 0 }}>
+              <view style="padding-top:56rpx" a:if={{ item.signIn == 0 && item.newsType == 0 && item.isDelay == 0 }}>
               您能否按医生预约的日期来体检？
+              </view>
+            </view>
+            <view class="notice_button btn_group">
+              <block a:if={{ item.signIn == 1 }}>
+                <!--  已签到 -->
+                <view animation="{{animationInfo}}">
+                  <image mode="scaleToFill" src="/image/signIn.png"/>
+                </view>
+              </block>
+              <block a:if={{ item.signIn == 0 }}>
+                <!-- 未签到 -->
+                <block a:if={{ item.newsType == 0 && item.isDelay == 0 }}>
+                  <!-- 提前提醒，可以改期 -->
+                  <button size="default" type="default" style="border-right: 1px solid #d5d5d5;" onTap="toApplyDate" data-val="{{ item.examinationId}}">申请改期</button>
+                  <button data-index="{{index}}" size="default" type="primary" plain="true" onTap="toConfirm" data-val="{{ item.examinationId }}" a:if="{{ item.confirm != 1}}">可以</button>
+                </block>
+                <block a:else>
+                  <!-- 体检当天或逾期提醒，可以签到 -->
+                  <button data-index="{{index}}" size="default" type="primary" plain="true" onTap="toSignIn" data-val="{{ item.examinationId }}">签到</button>
+                </block>
+              </block>
             </view>
           </view>
-          <view class="notice_button btn_group">
-            <block a:if={{ item.signIn == 1 }}>
-              <!--  已签到 -->
-              <view animation="{{animationInfo}}">
-                <image mode="scaleToFill" src="/image/signIn.png"/>
-              </view>
-            </block>
-            <block a:if={{ item.signIn == 0 }}>
-              <!-- 未签到 -->
-              <block a:if={{ item.type == 0 }}>
-                <!-- 提前提醒，可以改期 -->
-                <button size="default" type="default" style="border-right: 1px solid #d5d5d5;" onTap="toApplyDate" data-val="{{ item.examinationId}}">申请改期</button>
-                <button data-index="{{index}}" size="default" type="primary" plain="true" onTap="toConfirm" data-val="{{ item.examinationId }}" a:if="{{ item.confirm != 1}}">可以</button>
-              </block>
-              <block a:if={{ item.type == 1 || item.type == 2 }}>
-                <!-- 体检当天或逾期提醒，可以签到 -->
-                <button data-index="{{index}}" size="default" type="primary" plain="true" onTap="toSignIn" data-val="{{ item.examinationId }}">签到</button>
-              </block>
-            </block>
-          </view>
         </view>
-      </view>
-    </block>
+      </block>
+    </view>
   </scroll-view>
   <view class="fixBottom">
     <button size="default" type="primary" plain="true" onTap="toBBMgt">宝宝管理</button>

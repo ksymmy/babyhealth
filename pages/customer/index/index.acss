@@ -1,6 +1,9 @@
 page{
   padding-bottom: 110rpx;
 }
+.page{
+  padding: 0;
+}
 .list-con{
   text-align: center
 }
@@ -42,11 +45,15 @@ page{
 }
 
 .notice .btn_group image {
-  width: 186rpx;
-  height: 100px;
+  width: 180rpx;
+  height: 180rpx;
+  z-index: 98;
 }
 
 .notice .btn_group button {
   flex:1;
   background-color: #fff;
 }
+/* .list-con:first-child>.sendDate{
+  margin-top: 0;
+} */

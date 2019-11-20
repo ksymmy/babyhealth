@@ -105,6 +105,7 @@ page {
   bottom: 0;
   background: #fff;
   padding-left: 30rpx;
+  z-index: 99;
 }
 
 .fixBottom button {

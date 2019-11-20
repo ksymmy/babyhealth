@@ -1,6 +1,11 @@
+page{
+ padding:0 0 174rpx;
+   min-height:100vh;
+   box-sizing: border-box;
+}
 .page{
-  padding:0;
-  height:100vh;
+ padding: 0;
+
   background-color:rgb(255, 255, 255)
 }
 .panel{
@@ -91,5 +96,9 @@
 .del{
   background-color: #e2e4e5;
   margin:0 30rpx;
+}
+.btnView button{
+  color:#6d757e;
+  font-size:34rpx;
 }
 

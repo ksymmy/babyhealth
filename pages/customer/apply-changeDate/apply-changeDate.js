@@ -15,9 +15,9 @@ Page({
   onLoad(query) {
     this.onRequest(query.examinationId);
     // 页面加载
-    this.setData({
-      dateText: this.curDate()+' '+this.weekDay(new Date())//系统默认日期
-    })
+    // this.setData({
+    //   dateText: this.curDate()+' '+this.weekDay(new Date())//系统默认日期
+    // })
   },
   //系统当前日期
   curDate(){
