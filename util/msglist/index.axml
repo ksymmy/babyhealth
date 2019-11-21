@@ -11,11 +11,11 @@
               <text>{{item.birthday}}</text>
             </view>
             <view>
-                 {{item.age == 1?'满月':item.age+'月龄'}}
+                 {{item.age == 1?'满月':(item.age?item.age:'')+'月龄'}}
             </view>
           </view>
           <view class="msg-line">
-            <text  a:if="{{type}}">
+            <text a:if="{{type}}">
                   体检日期：{{item.textTime}}
             </text>
             <text  a:else>              

@@ -87,9 +87,9 @@ Page({
     ],
     topActiveTab: 0,//上方tab选中序号
     activeTab: [0, 0],//下方tab选中序号
-    inputValue: '',
-    age: '',
-    year: '',
+    inputValue: '',//搜索框值
+    age: '',//月龄
+    year: '',//年份
     flag: true
   },
   onLoad(param) {
@@ -273,15 +273,11 @@ Page({
           },
           {
             name: '体检',
-            value: baby.age == 1 ? '满月' : baby.age + '月龄'
+            value: baby.age == 1 ? '满月' : (baby.age ? baby.age : '') + '月龄'
           },
           {
-            name: '体检日期',
+            name: '下次体检日期',
             value: baby.textTime
-          },
-          {
-            name: '逾期',
-            value: ''
           },
           {
             name: '父亲',

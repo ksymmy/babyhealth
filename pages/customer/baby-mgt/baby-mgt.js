@@ -44,7 +44,7 @@ Page({
   del(e){//删除baby
     dd.confirm({
       title: '温馨提示',
-      content: '确认删除宝宝信息吗？',
+      content: '确认删除宝宝信息吗?',
       confirmButtonText: '确认',
       cancelButtonText: '取消',
       success: (result) => {

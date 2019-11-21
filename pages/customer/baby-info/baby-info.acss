@@ -31,3 +31,44 @@
   background-color: #3295fa;
   margin:0 30rpx;
 }
+
+.placeholder {
+  background-color: #dedede;
+  color: #fff;
+  text-align: center;
+  height: 82rpx;
+  line-height: 82rpx;
+  width: 100%;
+  font-size: 30rpx;
+}
+
+.placeholder.inline {
+  width: 32%;
+  margin: 0 2% 15rpx 0;
+}
+.placeholder.inline:nth-child(3n+3){
+  margin-right: 0;
+}
+.singedin {
+  background: #99d0ff url(/image/checked.png) no-repeat right top;
+  background-size: 62rpx 50rpx;
+}
+.medical{
+  border-bottom:1px solid #e2e4e5;
+  padding-bottom: 20rpx;
+}
+.medical_title{
+  line-height: 80rpx;
+  font-size: 32rpx;
+  color:#191f25;
+}
+radio{
+  vertical-align: middle;
+  margin-left: 20rpx;
+}
+.medical .desc{
+  font-size: 28rpx;
+  margin: 20rpx 0 0;
+  text-align: center;
+  display: block;
+}

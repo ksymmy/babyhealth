@@ -66,11 +66,29 @@ Page({
   },
   /*取消逾期提醒*/
   handleBtnTapTap(e) {
-    http.request({
-      url:"baby/cancelremind?examid="+examid,
-      method:"POST",
-      success:function(res){
-        dd.navigateBack();
+    dd.confirm({
+      title: '温馨提示',
+      content: '确认取消逾期提醒吗?',
+      confirmButtonText: '确认',
+      cancelButtonText: '取消',
+      success: (result) => {
+        if (result.confirm) {
+          http.request({
+            url: "baby/cancelremind?examid=" + examid,
+            method: "POST",
+            success: function(res) {
+              dd.showToast({
+                content: '取消逾期成功',
+                mask: true,
+                duration: 1000,
+                success: () => {
+                  dd.navigateBack();
+                },
+              });
+
+            }
+          })
+        }
       }
     })
   },
@@ -84,29 +102,29 @@ Page({
     dd.showLoading({
       content: '请稍后...'
     })
-    var text_template="家长你好！宝宝已经到"+examinationtype+"月龄了，请您明天带上宝宝，到社区服务中心进行"+examinationtype+"月龄体检，祝宝宝健康成长。"
+    var text_template = "家长你好！宝宝已经到" + examinationtype + "月龄了，请您明天带上宝宝，到社区服务中心进行" + examinationtype + "月龄体检，祝宝宝健康成长。"
     http.request({
       url: `baby/getuseridbbymobile?mobile=` + mobile,
       success: res => {
         if (res) {
           users.push(res);
         }
-        var examid_list=[]
+        var examid_list = []
         examid_list.push(examid)
         ding.createDing({
           users,
           corpId: dd.corpId,
           text: text_template,
-          success:function(res){
+          success: function(res) {
             http.request({
-                  url:"baby/updatedingtimes?examIds="+examid_list,
-                  method:"POST",
-                  // data:JSON.stringify({
-                  //   examIds:examid_list
-                  // }),
-                  success:function(res){
-                  }
-                })
+              url: "baby/updatedingtimes?examIds=" + examid_list,
+              method: "POST",
+              // data:JSON.stringify({
+              //   examIds:examid_list
+              // }),
+              success: function(res) {
+              }
+            })
           }
         });
       },

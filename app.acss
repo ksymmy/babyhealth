@@ -142,10 +142,11 @@ view .am-tabs-content-wrap {
   font-size: 29rpx;
 }
 
-.am-tabs-bar-tab.onlyTab{
-   justify-content: left!important;
-   padding-left: 60rpx;
+.am-tabs-bar-tab.onlyTab {
+  justify-content: left!important;
+  padding-left: 60rpx;
 }
+
 .am-tabs-bar-tab .am-badge-text .am-badge-text-inner {
   transform: translate(-50%, -50%);
   font-size: 24rpx;
@@ -268,4 +269,10 @@ view .am-tabs-content-wrap {
 
 .popover-box .popover-inner .popover-item:not(:last-child) {
   border-bottom: 1px solid rgb(238, 238, 238)
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
 }
