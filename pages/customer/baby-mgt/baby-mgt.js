@@ -2,29 +2,30 @@ import { HTTP } from '/util/http.js';
 let http = new HTTP();
 Page({
   data: {
-      curBaby:'0',//当前选中宝宝
-      parentName:"", // 当前人姓名
-      parentMobile:"", // 当前人手机号
-      address:"",
-      babyList:[]
+    curBaby: '0',//当前选中宝宝
+    parentName: "", // 当前人姓名
+    parentMobile: "", // 当前人手机号
+    address: "",
+    babyList: []
   },
   onLoad(query) {
-    
-    
+
+
   },
-  changeBaby(event){//baby信息切换
+  changeBaby(event) {//baby信息切换
     this.setData({
       curBaby: event.target.dataset.index
     })
-      //console.log(event.target.dataset.index);
+    //console.log(event.target.dataset.index);
   },
-  addBaby(e){
-    console.log(e);
-    var fatherName = e.target.dataset.val.fatherName;
-    var fatherMobile = e.target.dataset.val.fatherMobile;
-    var motherName = e.target.dataset.val.motherName;
-    var motherMobile = e.target.dataset.val.motherMobile; 
-    var address = e.target.dataset.val.address;
+  addBaby(e) {
+
+    var targetData = e.target.dataset.val;
+    var fatherName = targetData ? targetData.fatherName : null;
+    var fatherMobile = targetData ? targetData.fatherMobile : null;
+    var motherName = targetData ? targetData.motherName : null;
+    var motherMobile = targetData ? targetData.motherMobile : null;
+    var address = targetData ? targetData.address : null;
     if (fatherName == null || fatherName == '') {
       fatherName = this.data.parentName;
     }
@@ -40,31 +41,30 @@ Page({
     if (address == null || address == '') {
       address = this.data.address;
     }
-    var url = '../baby-info/baby-info?fatherName=' + fatherName + '&fatherMobile=' + fatherMobile + '&motherName=' + motherName + '&motherMobile=' + motherMobile +"&address=" + address;
-    console.log(url);
+    var url = '../baby-info/baby-info?fatherName=' + fatherName + '&fatherMobile=' + fatherMobile + '&motherName=' + motherName + '&motherMobile=' + motherMobile + "&address=" + address;
     dd.navigateTo({
       url: url
     });
   },
-  del(e){//删除baby
+  del(e) {//删除baby
     dd.confirm({
       title: '温馨提示',
       content: '确认删除宝宝信息吗?',
       confirmButtonText: '确认',
       cancelButtonText: '取消',
       success: (result) => {
-        if (result.confirm){
+        if (result.confirm) {
           http.request({
-            url: "baby/delBaby?babyId="+ e.target.dataset.val,
+            url: "baby/delBaby?babyId=" + e.target.dataset.val,
             method: 'post',
             success: (res) => {
               dd.showToast({
-                  type: 'success',
-                  content: '删除成功',
-                  duration: 1000,
-                  success: () => {
-                    this.onRequest();
-                  },
+                type: 'success',
+                content: '删除成功',
+                duration: 1000,
+                success: () => {
+                  this.onRequest();
+                },
               });
             },
             fail: function(res) {
@@ -74,27 +74,27 @@ Page({
         }
       },
     });
-      
+
   },
-  onShow(){
+  onShow() {
     // 页面加载
     this.onRequest();
   },
   onRequest() {
     let that = this;
-     this.setData({
+    this.setData({
       'loadingState': true
     })
     http.request({
       url: "baby/myBabys",
       method: 'post',
       success: (res) => {
-          that.setData({
-            parentName: res.parentName, 
-            parentMobile: res.parentMobile, 
-            address: res.address,
-            babyList: res.babyList
-          })
+        that.setData({
+          parentName: res.parentName,
+          parentMobile: res.parentMobile,
+          address: res.address,
+          babyList: res.babyList
+        })
       },
       fail: function(res) {
         // dd.alert({ content: JSON.stringify(res), buttonText: '好的' });
