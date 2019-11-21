@@ -62,3 +62,7 @@ page {
 /* .list-con:first-child>.sendDate{
   margin-top: 0;
 } */
+.fixBottom button{
+  color: #3396fb!important;
+  border-color: #3396fb!important;
+}
