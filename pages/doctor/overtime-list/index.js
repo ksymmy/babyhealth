@@ -10,7 +10,7 @@ var scrollHeight = windowHeight - 160;
 Page({
   ...msglist,
   data: {
-    timeperiod: {},//post 请求的查询条件: 例如 逾期时间起止,月龄,钉次数
+    timeperiod: { dingTimes: -1, examinationType: '' },//post 请求的查询条件: 例如 逾期时间起止,月龄,钉次数
     listData: {
       showDetail: 'cancelRemind',
       toLower: 'toLower',
@@ -33,7 +33,7 @@ Page({
     { title: '24月', value: 24 },
     { title: '30月', value: 30 },
     { title: '36月', value: 36 }],
-    popList: [{ title: 'DING 0 次', value: 0 }, { title: 'DING 1 次', value: 1 }, { title: 'DING 2 次', value: 2 }, { title: '3次及以上', value: 3 }, { title: '全部', value: '' }],//筛选条件
+    popList: [{ title: 'DING 0 次', value: 0 }, { title: 'DING 1 次', value: 1 }, { title: 'DING 2 次', value: 2 }, { title: '3次及以上', value: 3 }, { title: '全部', value: -1 }],//筛选条件
     activeTab: 0,//当前选中tab序号
     position: 'bottomRight',//弹出方向
     popshow: false,//弹出
@@ -146,7 +146,7 @@ Page({
         param: this.data.timeperiod, page: page, size: config.pageSize
       }),
       success: function(res) {
-        let len=res.length;
+        let len = res.length;
         if (page == 1) {
           if (len < config.pageSize) {
             let h = 135 * len + 10;
@@ -199,10 +199,10 @@ Page({
       content: '请稍后...'
     })
     http.request({
-      url: 'baby/overdueDingUserid?overdueStart' + that.data.timeperiod.overdueStart + '&overdueEnd' + that.data.timeperiod.overdueEnd
+      url: 'baby/overdueDingUserid?overdueStart=' + that.data.timeperiod.overdueStart + '&overdueEnd=' + that.data.timeperiod.overdueEnd
         + '&dingTimes=' + that.data.timeperiod.dingTimes + '&age=' + that.data.timeperiod.examinationType,
       success: function(res) {
-
+        dd.hideLoading();
         let users = res['users'];
         var text_template
         if (that.data.timeperiod.examinationType) {
@@ -220,13 +220,11 @@ Page({
               url: "baby/updatedingtimes?examIds=" + examid_list,
               method: "post",
               success: function(res) {
+                that.onSearch();
               }
             })
           },
           fail: function(res) {
-          },
-          complete: res => {
-            dd.hideLoading();
           }
         });
       }
