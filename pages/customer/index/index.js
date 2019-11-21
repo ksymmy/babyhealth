@@ -57,22 +57,7 @@ Page({
   },
   onReady() {
     var that = this
-    var is_1_height = 0;
-    setTimeout(function() {
-      dd.createSelectorQuery().select('#listcon').boundingClientRect().exec((rect) => {
-        is_1_height = rect[0].height
-        that.setData({
-          pageHeight: is_1_height - 1,
-          topPosition: is_1_height
-        });
-        if (page == 2) {
-          dd.pageScrollTo({
-            scrollTop: that.data.pageHeight
-          })
-          flg = true
-        }
-      });
-    }, 200)
+
 
 
   },
@@ -148,7 +133,22 @@ Page({
           'list': data,
           'loadingState': false
         });
-
+        var listHeight = 0;
+        setTimeout(function() {
+          dd.createSelectorQuery().select('#listcon').boundingClientRect().exec((rect) => {
+            listHeight = rect[0].height
+            that.setData({
+              pageHeight: listHeight - 1,
+              topPosition: listHeight-1
+            });
+            if (page == 2) {
+              dd.pageScrollTo({
+                scrollTop: that.data.pageHeight
+              })
+              flg = true
+            }
+          });
+        }, 200)
       },
       fail: function(res) {
         dd.alert({ content: JSON.stringify(res), buttonText: '好的' });
