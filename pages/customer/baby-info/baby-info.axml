@@ -18,7 +18,8 @@
           <view class="item">
             <view class="label">出生日期</view>
             <view class="text" onTap="datePicker">
-              <input placeholder="" name="birthday" value="{{birthday}}" disabled/>
+              <input placeholder="" name="birthday" value="{{birthday}}" disabled="true"/>
+              <input name="signIn" value="{{signInList}}"  style="display:none" disabled="true"/>
               </view>
           </view>
           <view class=" medical">
