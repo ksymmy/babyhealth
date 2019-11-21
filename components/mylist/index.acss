@@ -8,6 +8,9 @@
   font-size: 32rpx;
   color: #7e8185
 }
+.item:last-child{
+   border-bottom: 1rpx solid #e2e4e5;
+ }
 .item .label{
   color:#191f25;
   width:230rpx;
