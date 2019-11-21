@@ -10,7 +10,8 @@ Page({
     motherName: '',
     motherMobile: '',
     address: '',
-    signInList: [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    signInList: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    canSignInList: [0, 0, 0, 0, 0, 0, 0, 0, 0]
   },
   onLoad(e) {
     // 页面加载
@@ -79,6 +80,7 @@ Page({
       });
       return;
     }
+    console.log(e.detail.value);
     http.request({
       url: "baby/addBabyInfo",
       method: 'post',
@@ -108,10 +110,27 @@ Page({
   },
   changeState(e) {
     // let newEle = this.data.signInList[]
-    let flg = this.data.signInList[e.currentTarget.dataset.index]== 0 ? 1 : 0
-    this.setData({
-      ['signInList['+e.currentTarget.dataset.index+']']: flg
-    })
+    if (this.data.birthday == '') {
+       dd.showToast({
+          type: 'warn',
+          content: '请选择出生日期',
+          duration: 1000
+        });
+        return;
+    }
+    let oldFlag = this.data.signInList[e.currentTarget.dataset.index];
+    let newFlag = oldFlag == 1 ? 0 : 1
+    if (this.data.canSignInList[e.currentTarget.dataset.index] == 1) {
+       this.setData({
+          ['signInList['+e.currentTarget.dataset.index+']']: newFlag
+        })
+    } else {
+        dd.showToast({
+          type: 'warn',
+          content: '未到体检日期',
+          duration: 1000
+        });
+    }
   },
   datePicker() {
     dd.datePicker({
@@ -121,6 +140,21 @@ Page({
         if (typeof (res.date) != "undefined") {
           this.setData({
             birthday: res.date
+          })
+
+           http.request({
+            url: "baby/generateExaminationDates?birthday=" + res.date,
+            method: 'GET',
+            success: (res1) => {
+              this.setData({
+                  signInList: res1.signInList,
+                  canSignInList: res1.signInList,
+                  examinationDateList: res1.examinationDateList
+              })
+            },
+            fail: function(res) {
+              // dd.alert({ content: JSON.stringify(res), buttonText: '好的' });
+            }
           })
         }
       }
