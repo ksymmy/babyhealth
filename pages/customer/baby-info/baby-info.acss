@@ -6,11 +6,9 @@
   margin-top: 15rpx;
   background-color: #fff;
   padding:0 30rpx;
+  box-sizing: border-box;
 }
 
-.baby-info .list{
-  padding:0 30rpx;
-}
 .baby-info .list .item{
   border-bottom:1px solid #e2e4e5;
   border-top:none;

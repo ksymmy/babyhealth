@@ -101,7 +101,7 @@ Page({
       data: JSON.stringify({
         param: {},
         page: page,
-        size: 3,
+        size: 100,
       }),
       success: (res) => {
         res = res.reverse();
