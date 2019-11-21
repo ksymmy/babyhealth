@@ -3,9 +3,9 @@ let http = new HTTP();
 Page({
   data: {
     curBaby: '0',//当前选中宝宝
-    parentName: "", // 当前人姓名
-    parentMobile: "", // 当前人手机号
-    address: "",
+    parentName: '', // 当前人姓名
+    parentMobile: '', // 当前人手机号
+    address: '',
     babyList: []
   },
   onLoad(query) {
@@ -19,13 +19,12 @@ Page({
     //console.log(event.target.dataset.index);
   },
   addBaby(e) {
-
     var targetData = e.target.dataset.val;
-    var fatherName = targetData ? targetData.fatherName : null;
-    var fatherMobile = targetData ? targetData.fatherMobile : null;
-    var motherName = targetData ? targetData.motherName : null;
-    var motherMobile = targetData ? targetData.motherMobile : null;
-    var address = targetData ? targetData.address : null;
+    var fatherName = targetData && targetData.fatherName ? targetData.fatherName : '';
+    var fatherMobile = targetData && targetData.fatherMobile ? targetData.fatherMobile : '';
+    var motherName = targetData && targetData.motherName ? targetData.motherName : '';
+    var motherMobile = targetData && targetData.motherMobile ? targetData.motherMobile : '';
+    var address = targetData && targetData.address ? targetData.address : '';
     if (fatherName == null || fatherName == '') {
       fatherName = this.data.parentName;
     }
@@ -37,9 +36,6 @@ Page({
     }
     if (motherMobile == null || motherMobile == '') {
       motherMobile = this.data.parentMobile;
-    }
-    if (address == null || address == '') {
-      address = this.data.address;
     }
     var url = '../baby-info/baby-info?fatherName=' + fatherName + '&fatherMobile=' + fatherMobile + '&motherName=' + motherName + '&motherMobile=' + motherMobile + "&address=" + address;
     dd.navigateTo({
