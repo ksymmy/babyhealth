@@ -3,7 +3,7 @@ import { HTTP } from '/util/http.js';
 import { config } from '/app.js';
 let http = new HTTP(), page = 1;
 var _my$getSystemInfoSync = my.getSystemInfoSync(), windowHeight = _my$getSystemInfoSync.windowHeight;
-var scrollHeight = windowHeight;
+var scrollHeight = windowHeight-40;
 Page({
   ...msglist,
   data: {
