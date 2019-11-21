@@ -134,21 +134,21 @@ Page({
           'loadingState': false
         });
         var listHeight = 0;
-        setTimeout(function() {
-          dd.createSelectorQuery().select('#listcon').boundingClientRect().exec((rect) => {
-            listHeight = rect[0].height
-            that.setData({
-              pageHeight: listHeight - 1,
-              topPosition: listHeight-1
-            });
-            if (page == 2) {
+        if (page == 2) {
+          setTimeout(function() {
+            dd.createSelectorQuery().select('#listcon').boundingClientRect().exec((rect) => {
+              listHeight = rect[0].height
+              that.setData({
+                pageHeight: listHeight - 1,
+                topPosition: listHeight - 1
+              });
               dd.pageScrollTo({
                 scrollTop: that.data.pageHeight
               })
               flg = true
-            }
-          });
-        }, 200)
+            });
+          }, 200)
+        }
       },
       fail: function(res) {
         dd.alert({ content: JSON.stringify(res), buttonText: '好的' });
