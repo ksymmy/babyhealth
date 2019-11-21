@@ -20,7 +20,7 @@
               您能否按医生预约的日期来体检?
               </view>
             </view>
-            <view class="notice_button btn_group">
+            <view class="notice_button btn_group" a:if={{item.newsType != -1}}>
               <block a:if={{ item.signIn == 1 }}>
                 <!--  已签到 -->
                 <view animation="{{animationInfo}}">

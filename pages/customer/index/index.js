@@ -4,7 +4,7 @@ import { config } from '/app.js';
 let http = new HTTP(), page = 1;
 var _my$getSystemInfoSync = my.getSystemInfoSync(), windowHeight = _my$getSystemInfoSync.windowHeight;
 var scrollHeight = windowHeight - 140;
-var flg=false;
+var flg = false;
 Page({
   data: {
     pageHeight: 1200,//scroll-view触底高度
@@ -32,11 +32,6 @@ Page({
 
   },
   onLoad(query) {
-    // let h = 760 * 3;
-    // this.setData({
-    //   'scrollHeight': scrollHeight,
-    //   'pageHeight': h
-    // })
     page = 1;
 
     this.setData({
@@ -74,7 +69,7 @@ Page({
           dd.pageScrollTo({
             scrollTop: that.data.pageHeight
           })
-          flg=true
+          flg = true
         }
       });
     }, 200)
@@ -161,30 +156,7 @@ Page({
     })
   },
 
-  // onScroll(e) {
-  //  // console.log(e.detail.scrollTop )
-  //   // if (e.detail.scrollTop == 0 && flg) {
-  //   //   this.onRequest();
-  //   //   dd.pageScrollTo({
-  //   //     scrollTop: this.data.pageHeight
-  //   //   })
-  //   // }
-  //   // if (e.detail.scrollHeight * 2 >= this.data.pageHeight * (page - 1)) {
-  //   //   let newH = e.detail.scrollHeight
-  //   //   if (this.newheight == 0) {
-  //   //     this.newheight = newH
-  //   //   } else if (this.newheight != newH) {
-  //   //     this.oldheight = newH - this.newheight
-  //   //     this.newheight = newH
-  //   //     console.log(this.newheight, this.oldheight)
-  //   //   }
-  //   //   this.scrollTopVal = e.detail.scrollTop
-  //   //   this.onRequest();
-  //   // }
 
-
-  //   // console.log(e.detail.scrollTop + 'sdsdfs');
-  // },
   toSignIn(e) {// 签到
     let that = this;
     let inx = e.currentTarget.dataset.index;

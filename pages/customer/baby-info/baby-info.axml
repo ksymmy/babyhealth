@@ -1,52 +1,70 @@
 <form onSubmit="formSubmit" onReset="formReset">
-<view class="page" key="container">
-   
+  <view class="page" key="container">
     <view class="panel baby-info">
-        <view class="list">
-           <view class="item">
-              <view class="label">姓名</view>
-              <view class="text"><input maxlength="10" placeholder="" name="name" value="{{name}}"/></view>
-            </view>
-            <view class="item">
-              <view class="label">性别</view>
-              <view class="text">
-                <radio-group class="radio-group"  name="sex">
-                   <radio value="1" checked="true"/>男
-                   <radio value="2" />女</view>
-                </radio-group>
-                
-            </view>
-            <view class="item">
-              <view class="label">出生日期</view>
-              <view class="text" onTap="datePicker"><input placeholder=""  name="birthday" value="{{birthday}}"/></view>
-            </view>
-            <view class="item">
-              <view class="label">父亲姓名</view>
-              <view class="text"><input maxlength="10" placeholder="" name="fatherName" value="{{fatherName}}" /></view>
-            </view>
-            <view class="item">
-              <view class="label">联系电话</view>
-              <view class="text"><input maxlength="11" placeholder="" name="fatherMobile" value="{{fatherMobile}}"/></view>
-            </view>
-            <view class="item">
-              <view class="label">母亲姓名</view>
-              <view class="text"><input maxlength="10" placeholder="" name="motherName" value="{{motherName}}"/></view>
-            </view>
-            <view class="item">
-              <view class="label">联系电话</view>
-              <view class="text"><input maxlength="11" placeholder="" name="motherMobile" value="{{motherMobile}}"/></view>
-            </view>
-            <view class="item">
-              <view class="label">家庭地址</view>
-              <view class="text"><input maxlength="50" placeholder="" name="address" value="{{address}}"/></view>
-            </view>
-            
+      <view class="list">
+        <view class="item">
+          <view class="label">姓名</view>
+          <view class="text">
+            <input maxlength="10" placeholder="" name="name" value="{{name}}"/></view>
         </view>
-      
+        <view class="item">
+          <view class="label">性别</view>
+          <view class="text">
+            <radio-group class="radio-group" name="sex">
+              <radio value="1" checked="true"/>男
+              <radio value="2" />女</view>
+            </radio-group>
+          </view>
+          <view class="item">
+            <view class="label">出生日期</view>
+            <view class="text" onTap="datePicker">
+              <input placeholder="" name="birthday" value="{{birthday}}" disabled/>
+              </view>
+          </view>
+          <view class=" medical">
+            <view class="medical_title">已体检月龄</view>
+            <flex wrap="wrap">
+              <view class="placeholder inline {{signInList[0]==1?'singedin':''}}" data-index="0" onTap="changeState">满月</view>
+              <view class="placeholder inline {{signInList[1]==1?'singedin':''}}" data-index="1" onTap="changeState">3月</view>
+              <view class="placeholder inline {{signInList[2]==1?'singedin':''}}" data-index="2" onTap="changeState">6月</view>
+              <view class="placeholder inline {{signInList[3]==1?'singedin':''}}" data-index="3" onTap="changeState">8月</view>
+              <view class="placeholder inline {{signInList[4]==1?'singedin':''}}" data-index="4" onTap="changeState">12月</view>
+              <view class="placeholder inline {{signInList[5]==1?'singedin':''}}" data-index="5" onTap="changeState">18月</view>
+              <view class="placeholder inline {{signInList[6]==1?'singedin':''}}" data-index="6" onTap="changeState">24月</view>
+              <view class="placeholder inline {{signInList[7]==1?'singedin':''}}" data-index="7" onTap="changeState">30月</view>
+              <view class="placeholder inline {{signInList[8]==1?'singedin':''}}" data-index="8" onTap="changeState">36月</view>
+            </flex>
+            <text class="desc">如果月龄未体检，请点击月龄取消</text>
+          </view>
+          <view class="item">
+            <view class="label">父亲姓名</view>
+            <view class="text">
+              <input maxlength="10" placeholder="" name="fatherName" value="{{fatherName}}" /></view>
+          </view>
+          <view class="item">
+            <view class="label">联系电话</view>
+            <view class="text">
+              <input maxlength="11" placeholder="" name="fatherMobile" value="{{fatherMobile}}"/></view>
+          </view>
+          <view class="item">
+            <view class="label">母亲姓名</view>
+            <view class="text">
+              <input maxlength="10" placeholder="" name="motherName" value="{{motherName}}"/></view>
+          </view>
+          <view class="item">
+            <view class="label">联系电话</view>
+            <view class="text">
+              <input maxlength="11" placeholder="" name="motherMobile" value="{{motherMobile}}"/></view>
+          </view>
+          <view class="item">
+            <view class="label">家庭地址</view>
+            <view class="text">
+              <input maxlength="50" placeholder="" name="address" value="{{address}}"/></view>
+          </view>
+        </view>
+      </view>
+      <view class="btnView">
+        <button formType="submit" type="primary" class="save">保存</button>
+      </view>
     </view>
-    <view class="btnView">
-      <button formType="submit" type="primary" class="save">保存</button>
-    </view>
-    
-</view>
-</form>
+    </form>

@@ -3,6 +3,9 @@ let http = new HTTP();
 Page({
   data: {
       curBaby:'0',//当前选中宝宝
+      parentName:"", // 当前人姓名
+      parentMobile:"", // 当前人手机号
+      address:"",
       babyList:[]
   },
   onLoad(query) {
@@ -15,9 +18,32 @@ Page({
     })
       //console.log(event.target.dataset.index);
   },
-  addBaby(){
+  addBaby(e){
+    console.log(e);
+    var fatherName = e.target.dataset.val.fatherName;
+    var fatherMobile = e.target.dataset.val.fatherMobile;
+    var motherName = e.target.dataset.val.motherName;
+    var motherMobile = e.target.dataset.val.motherMobile; 
+    var address = e.target.dataset.val.address;
+    if (fatherName == null || fatherName == '') {
+      fatherName = this.data.parentName;
+    }
+    if (fatherMobile == null || fatherMobile == '') {
+      fatherMobile = this.data.parentMobile;
+    }
+    if (motherName == null || motherName == '') {
+      motherName = this.data.parentName;
+    }
+    if (motherMobile == null || motherMobile == '') {
+      motherMobile = this.data.parentMobile;
+    }
+    if (address == null || address == '') {
+      address = this.data.address;
+    }
+    var url = '../baby-info/baby-info?fatherName=' + fatherName + '&fatherMobile=' + fatherMobile + '&motherName=' + motherName + '&motherMobile=' + motherMobile +"&address=" + address;
+    console.log(url);
     dd.navigateTo({
-      url: '../baby-info/baby-info'
+      url: url
     });
   },
   del(e){//删除baby
@@ -32,7 +58,14 @@ Page({
             url: "baby/delBaby?babyId="+ e.target.dataset.val,
             method: 'post',
             success: (res) => {
-                this.onRequest();
+              dd.showToast({
+                  type: 'success',
+                  content: '删除成功',
+                  duration: 1000,
+                  success: () => {
+                    this.onRequest();
+                  },
+              });
             },
             fail: function(res) {
               // dd.alert({ content: JSON.stringify(res), buttonText: '好的' });
@@ -57,7 +90,10 @@ Page({
       method: 'post',
       success: (res) => {
           that.setData({
-            babyList: res
+            parentName: res.parentName, 
+            parentMobile: res.parentMobile, 
+            address: res.address,
+            babyList: res.babyList
           })
       },
       fail: function(res) {

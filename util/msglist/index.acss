@@ -28,7 +28,7 @@
    color: #191f25;
    font-size: 34rpx;
    font-weight: bold;
-   min-width:140rpx;
+   min-width: 140rpx;
    display: inline-block;
  }
 
@@ -104,12 +104,33 @@
    text-align: center;
    height: 36rpx;
    line-height: 36rpx;
-   margin:50rpx 0 0;
+   margin: 50rpx 0 0;
+   position: relative;
  }
 
  .loading>image {
    display: block;
    width: 320rpx;
-   height:60rpx;
+   height: 60rpx;
    margin: 0 auto 30rpx;
+ }
+
+ .desc::before, .desc::after {
+   content: '';
+   position: absolute;
+   height: 1px;
+   top: 50%;
+   background-color: #e2e4e5;
+ }
+
+ .desc::before {
+   left: 8%;
+   right: 48%;
+   margin-right: 140rpx;
+ }
+
+ .desc::after {
+   left: 48%;
+   right: 8%;
+   margin-left: 140rpx;
  }
