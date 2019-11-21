@@ -12,11 +12,15 @@ Page({
     address: '',
     signInList: [0, 0, 0, 0, 0, 0, 0, 0, 0]
   },
-  onLoad(query) {
+  onLoad(e) {
     // 页面加载
-    // this.setData({//给日期一个默认系统时间
-    //   dateText: this.curDate()//系统默认日期
-    // })
+    this.setData({
+        fatherName: e.fatherName,
+        fatherMobile: e.fatherMobile,
+        motherName: e.motherName,
+        motherMobile: e.motherMobile,
+        address: e.address,
+    })
   },
   formSubmit: function(e) {
     if (e.detail.value.name == '') {

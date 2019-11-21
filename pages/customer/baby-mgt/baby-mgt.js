@@ -5,6 +5,7 @@ Page({
       curBaby:'0',//当前选中宝宝
       parentName:"", // 当前人姓名
       parentMobile:"", // 当前人手机号
+      address:"",
       babyList:[]
   },
   onLoad(query) {
@@ -17,25 +18,29 @@ Page({
     })
       //console.log(event.target.dataset.index);
   },
-  addBaby(){
-    console.log(11111);
-    var fatherName = e.target.dataset.fatherName;
-    var fatherMobile = e.target.dataset.fatherMobile;
-    var motherName = e.target.dataset.motherName;
-    var motherMobile = e.target.dataset.motherMobile; 
+  addBaby(e){
+    console.log(e);
+    var fatherName = e.target.dataset.val.fatherName;
+    var fatherMobile = e.target.dataset.val.fatherMobile;
+    var motherName = e.target.dataset.val.motherName;
+    var motherMobile = e.target.dataset.val.motherMobile; 
+    var address = e.target.dataset.val.address;
     if (fatherName == null || fatherName == '') {
-      fatherName = parentName;
+      fatherName = this.data.parentName;
     }
     if (fatherMobile == null || fatherMobile == '') {
-      fatherMobile = parentMobile;
+      fatherMobile = this.data.parentMobile;
     }
     if (motherName == null || motherName == '') {
-      motherName = parentName;
+      motherName = this.data.parentName;
     }
     if (motherMobile == null || motherMobile == '') {
-      motherMobile = parentMobile;
+      motherMobile = this.data.parentMobile;
     }
-    var url = '../baby-info/baby-info?fatherName=' + fatherName + '&fatherMobile=' + fatherMobile + '&motherName=' + motherName + '&motherMobile=' + motherMobile;
+    if (address == null || address == '') {
+      address = this.data.address;
+    }
+    var url = '../baby-info/baby-info?fatherName=' + fatherName + '&fatherMobile=' + fatherMobile + '&motherName=' + motherName + '&motherMobile=' + motherMobile +"&address=" + address;
     console.log(url);
     dd.navigateTo({
       url: url
@@ -87,6 +92,7 @@ Page({
           that.setData({
             parentName: res.parentName, 
             parentMobile: res.parentMobile, 
+            address: res.address,
             babyList: res.babyList
           })
       },
