@@ -55,12 +55,12 @@ Page({
     // })
 
   },
-  onReady() {
-    var that = this
+  // onReady() {
+  //   var that = this
 
 
 
-  },
+  // },
   onShow() {
     var animation = dd.createAnimation({
       duration: 1000,
