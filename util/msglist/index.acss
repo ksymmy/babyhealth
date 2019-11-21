@@ -28,13 +28,15 @@
    color: #191f25;
    font-size: 34rpx;
    font-weight: bold;
+   min-width:140rpx;
+   display: inline-block;
  }
 
  .icon-sex {
    width: 42rpx;
    height: 42rpx;
    display: inline-block;
-   margin: 0 26rpx;
+   margin: 0 26rpx 0 14rpx;
  }
 
  .icon-sex.icon-female {
