@@ -146,6 +146,34 @@ Page({
         param: this.data.timeperiod, page: page, size: config.pageSize
       }),
       success: function(res) {
+        let len=res.length;
+        if (page == 1) {
+          if (len < config.pageSize) {
+            let h = 135 * len + 10;
+            that.setData({
+              'listData.pageHeight': h
+            })
+          }
+          if (len == 0) {
+            that.setData({
+              'listData.noDataState': true,
+              'listData.loadingState': false,
+              'listData.pageHeight': scrollHeight
+            })
+            return
+          }
+        } else if (len == 0) {
+          that.setData({
+            'listData.dataFinish': true,
+            'listData.loadingState': false
+          })
+          return
+        }
+        if (len < config.pageSize) {
+          that.setData({
+            'listData.dataFinish': true
+          })
+        }
         if (res.length) page++;
         var data = that.data.listData.list;
         data = data.concat(res);

@@ -57,7 +57,7 @@ Page({
     },
     flag: true
   },
-  onRequest(page) {
+  onRequest() {
     let that = this;
     this.setData({
       'listData.loadingState': true
