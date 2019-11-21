@@ -17,7 +17,7 @@
             <view class="notice_content">
             {{item.context}}
               <view style="padding-top:56rpx" a:if={{ item.signIn == 0 && item.newsType == 0 && item.isDelay == 0 }}>
-              您能否按医生预约的日期来体检？
+              您能否按医生预约的日期来体检?
               </view>
             </view>
             <view class="notice_button btn_group">

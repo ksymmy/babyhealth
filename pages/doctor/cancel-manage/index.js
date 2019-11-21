@@ -64,30 +64,39 @@ Page({
   },
   handleBtnTapTap(e) {
     let that = this;
-    that.setData({
-      'listData.isDisable': true
-    })
-    http.request({
-      url: 'baby/cancelbaby?id=' + that.data.babyId,
-      method: 'post',
-      success: res => {
-        dd.showToast({
-          content: '取消管理成功',
-          mask: true,
-          duration: 1000
-        });
-        setTimeout(() => {
-          let pages = getCurrentPages();
-          let prevPage = pages[pages.length - 2];
+    dd.confirm({
+      title: '温馨提示',
+      content: '确认取消儿童管理吗?',
+      confirmButtonText: '确认',
+      cancelButtonText: '取消',
+      success: (result) => {
+        if (result.confirm) {
           that.setData({
-            'listData.isDisable': false
+            'listData.isDisable': true
           })
-          prevPage.onSearch();
-          dd.navigateBack();
-        }, 1000)
-      }
-    })
-
+          http.request({
+            url: 'baby/cancelbaby?id=' + that.data.babyId,
+            method: 'post',
+            success: res => {
+              dd.showToast({
+                content: '取消管理成功',
+                mask: true,
+                duration: 1000
+              });
+              setTimeout(() => {
+                let pages = getCurrentPages();
+                let prevPage = pages[pages.length - 2];
+                that.setData({
+                  'listData.isDisable': false
+                })
+                prevPage.onSearch();
+                dd.navigateBack();
+              }, 1000)
+            }
+          })
+        }
+      },
+    });
   },
   handleDingItemTap(e) {
     let mobile = `${e.currentTarget.dataset.value}`;
