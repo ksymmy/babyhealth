@@ -133,8 +133,6 @@ Page({
     this.onRequest(page)
   },
   toLower(e) {
-
-    let that = this;
     if (this.data.flag) {
       this.onRequest(page);
     }
@@ -143,25 +141,19 @@ Page({
   handleDelay(e) {
     let that = this
     let examid = e.currentTarget.dataset.id
-
-    // dd.showToast({
-    //   content: `${e.currentTarget.dataset.id}`,
-    //   success: (res) => {
-
-    //   },
-    // });
     http.request({
-      // url:"baby/delayoneday",
       url: "baby/delayoneday?examId=" + examid,
       method: 'POST',
-      // data:JSON.stringify({
-      //   "examId":examid
-      // }),
       success: function(res) {
         dd.showToast({
           content: '已延后',
-          duration: 3000,
+          duration: 1000,
           success: function(res) {
+            that.setData({
+              'listData.list': []
+            })
+            page = 1
+            that.onRequest(page)
           },
           fail: function(res) {
           },
@@ -169,13 +161,9 @@ Page({
             dd.hideToast()
           }
         })
-        page = 1
-        that.onRequest(page)
       },
       complete: function(res) {
-
       }
     })
-
   }
 })
