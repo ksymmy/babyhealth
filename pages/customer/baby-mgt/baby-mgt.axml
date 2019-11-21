@@ -5,7 +5,7 @@
             <image a:else mode="scaleToFill" src="/image/boy.png"/>
             <text>{{item.name}}</text>
          </view>
-         <view class="addBtn" onTap="addBaby">
+         <view class="addBtn" onTap="addBaby" data-val={{babyList[curBaby]}}>
            <image mode="scaleToFill" src="/image/add.png"/>
            <text>新增</text>
           </view>
@@ -16,7 +16,7 @@
           <view class="placeholder inline {{babyList[curBaby].signIn[0]==1?'singedin':''}}">满月</view>
           <view class="placeholder inline {{babyList[curBaby].signIn[1]==1?'singedin':''}}">3月</view>
           <view class="placeholder inline {{babyList[curBaby].signIn[2]==1?'singedin':''}}">6月</view>
-          <view class="placeholder inline {{babyList[curBaby].signIn[3]==1?'singedin':''}}" >8月</view>
+          <view class="placeholder inline {{babyList[curBaby].signIn[3]==1?'singedin':''}}">8月</view>
           <view class="placeholder inline {{babyList[curBaby].signIn[4]==1?'singedin':''}}">12月</view>
           <view class="placeholder inline {{babyList[curBaby].signIn[5]==1?'singedin':''}}">18月</view>
           <view class="placeholder inline {{babyList[curBaby].signIn[6]==1?'singedin':''}}">24月</view>

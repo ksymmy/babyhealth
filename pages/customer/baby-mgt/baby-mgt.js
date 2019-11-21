@@ -3,6 +3,8 @@ let http = new HTTP();
 Page({
   data: {
       curBaby:'0',//当前选中宝宝
+      parentName:"", // 当前人姓名
+      parentMobile:"", // 当前人手机号
       babyList:[]
   },
   onLoad(query) {
@@ -16,8 +18,27 @@ Page({
       //console.log(event.target.dataset.index);
   },
   addBaby(){
+    console.log(11111);
+    var fatherName = e.target.dataset.fatherName;
+    var fatherMobile = e.target.dataset.fatherMobile;
+    var motherName = e.target.dataset.motherName;
+    var motherMobile = e.target.dataset.motherMobile; 
+    if (fatherName == null || fatherName == '') {
+      fatherName = parentName;
+    }
+    if (fatherMobile == null || fatherMobile == '') {
+      fatherMobile = parentMobile;
+    }
+    if (motherName == null || motherName == '') {
+      motherName = parentName;
+    }
+    if (motherMobile == null || motherMobile == '') {
+      motherMobile = parentMobile;
+    }
+    var url = '../baby-info/baby-info?fatherName=' + fatherName + '&fatherMobile=' + fatherMobile + '&motherName=' + motherName + '&motherMobile=' + motherMobile;
+    console.log(url);
     dd.navigateTo({
-      url: '../baby-info/baby-info'
+      url: url
     });
   },
   del(e){//删除baby
@@ -32,7 +53,14 @@ Page({
             url: "baby/delBaby?babyId="+ e.target.dataset.val,
             method: 'post',
             success: (res) => {
-                this.onRequest();
+              dd.showToast({
+                  type: 'success',
+                  content: '删除成功',
+                  duration: 1000,
+                  success: () => {
+                    this.onRequest();
+                  },
+              });
             },
             fail: function(res) {
               // dd.alert({ content: JSON.stringify(res), buttonText: '好的' });
@@ -57,7 +85,9 @@ Page({
       method: 'post',
       success: (res) => {
           that.setData({
-            babyList: res
+            parentName: res.parentName, 
+            parentMobile: res.parentMobile, 
+            babyList: res.babyList
           })
       },
       fail: function(res) {
