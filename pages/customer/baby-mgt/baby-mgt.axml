@@ -1,6 +1,6 @@
 <view class="page" key="container">
     <view class="panel baby">
-         <view a:for="{{babyList}}" class="{{curBaby==index?'cur':''}}" data-index={{index}} onTap="changeBaby">
+         <view a:for="{{babyList}}" class="{{curBaby==index?'cur':''}} {{item.sex==2?'female':''}}" data-index={{index}} onTap="changeBaby">
             <image a:if="{{item.sex==2}}" mode="scaleToFill" src="/image/girl.png"/>
             <image a:else mode="scaleToFill" src="/image/boy.png"/>
             <text>{{item.name}}</text>

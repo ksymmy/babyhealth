@@ -81,7 +81,7 @@ page {
   font-size: 28rpx;
   line-height: 50rpx;
   padding-bottom: 38rpx;
-  border-bottom: 1px solid #d5d5d5;
+  /* border-bottom: 1px solid #d5d5d5; */
 }
 
 .notice .btn_group {
@@ -98,13 +98,14 @@ page {
 }
 
 .fixBottom {
-  width: 100%;
   height: 100rpx;
   padding-top: 23rpx;
   position: fixed;
   bottom: 0;
+  left: 0;
+  right: 0;
   background: #fff;
-  padding-left: 30rpx;
+  padding-left: 20rpx;
   z-index: 99;
 }
 
@@ -124,10 +125,9 @@ page {
   position: relative;
 }
 
-.am-tabs .am-tabs-scroll-right {
-  width: 24px;
+.am-tabs .am-tabs-scroll-right,.am-tabs .am-tabs-scroll-left {
+  width: 0;
 }
-
 view .am-tabs-content-wrap {
   width: 100vw!important;
   background-color: transparent;

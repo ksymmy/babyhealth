@@ -1,6 +1,5 @@
 page {
   padding: 0 0 174rpx;
-  min-height: 100vh;
   box-sizing: border-box;
   background-color: #fff;
 }
@@ -60,6 +59,12 @@ box-sizing: border-box;
 .baby view.cur {
   color: #191f25
 }
+.baby view.female image{
+ background-color: #ff99b6;
+}
+.baby view.female.cur image{
+  background-color: #ff749b;
+}
 
 .baby view.cur image {
   width: 92rpx;
@@ -117,10 +122,11 @@ box-sizing: border-box;
   background-color: #fff;
   position: fixed;
   bottom: 30rpx;
+  z-index: 99;
 }
 
 .del {
-  background-color: #e2e4e5;
+  background-color: #fff;
   margin: 0 30rpx;
 }
 
