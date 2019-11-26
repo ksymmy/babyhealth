@@ -80,7 +80,7 @@ Page({
       data: JSON.stringify({
         param: {},
         page: page,
-        size: 30,
+        size: 20,
       }),
       success: (res) => {
         res = res.reverse();
@@ -129,7 +129,7 @@ Page({
               listHeight = rect[0].height;
               newHeight = rect[0].height;
               that.setData({
-                pageHeight: listHeight - 200,
+                pageHeight: listHeight - 100,
                 topPosition: listHeight - 1
               });
               dd.pageScrollTo({
@@ -137,7 +137,6 @@ Page({
               })
             });
           }, 200)
-
         } else {
           dd.createSelectorQuery().select('#listcon').boundingClientRect().exec((rect) => {
             oldHeight = newHeight;
