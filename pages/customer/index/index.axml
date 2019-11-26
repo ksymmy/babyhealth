@@ -1,5 +1,8 @@
 <view class="page" key="container">
   <scroll-view scroll-y='true' style="width:100%;min-height:{{scrollHeight}}px;height:{{pageHeight}}px;" onScroll="{{onScroll}}" scroll-top="{{topPosition}}">
+    <view a:if="{{loadingState}}" class="loading">
+      <image mode="scaleToFill" src="/image/loading.gif"/>
+    </view>
     <view id="listcon" onTouchStart="touchStart" onTouchEnd="touchEnd">
       <block a:for={{list}} a:for-item="item">
         <view class="list-con">

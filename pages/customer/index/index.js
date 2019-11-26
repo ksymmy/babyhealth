@@ -13,6 +13,7 @@ Page({
     animationInfo: {},
     topPosition: 0,
     onScroll: 'onScroll',
+    loadingState: false,
     list: [
       // {
       //   sendDate: '',
@@ -85,35 +86,6 @@ Page({
       success: (res) => {
         res = res.reverse();
         let len = res.length;
-        let h2 = 0;
-        if (page == 1) {
-          let len1 = 0, len2 = 0;
-          for (let i = 0; i < len; i++) {
-            if (res[i].newsType == 0) {
-              len1++;
-            } else {
-              len2++;
-            }
-          }
-          if (len == 0) {
-            that.setData({
-              'noDataState': true,
-              'loadingState': false
-            })
-            return
-          }
-        } else if (len == 0) {
-          that.setData({
-            'dataFinish': true,
-            'loadingState': false
-          })
-          return
-        }
-        if (len < 3) {
-          that.setData({
-            'dataFinish': true
-          })
-        }
         page++;
         var data = that.data.list;
         data = res.concat(data);
@@ -143,7 +115,7 @@ Page({
             newHeight = rect[0].height
             //console.log(newHeight + "-" + oldHeight)
             that.setData({
-              topPosition: newHeight - oldHeight -1
+              topPosition: newHeight - oldHeight - 1
             });
             dd.pageScrollTo({
               scrollTop: newHeight - oldHeight
@@ -157,6 +129,9 @@ Page({
       },
       complete: function(res) {
         flg = true;
+        that.setData({
+          'loadingState': false
+        })
       }
     })
   },
