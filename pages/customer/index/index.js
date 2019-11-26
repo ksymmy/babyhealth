@@ -142,7 +142,7 @@ Page({
           dd.createSelectorQuery().select('#listcon').boundingClientRect().exec((rect) => {
             oldHeight = newHeight;
             newHeight = rect[0].height
-            console.log(newHeight + "-" + oldHeight)
+            //console.log(newHeight + "-" + oldHeight)
             that.setData({
               topPosition: newHeight - oldHeight -1
             });
