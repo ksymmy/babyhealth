@@ -4,16 +4,15 @@ import { config } from '/app.js';
 let http = new HTTP(), page = 1;
 var _my$getSystemInfoSync = my.getSystemInfoSync(), windowHeight = _my$getSystemInfoSync.windowHeight;
 var scrollHeight = windowHeight - 140;
-var flg = false;
+var flg = false, newHeight = 0, oldHeight = 0, i = 0, start = 0, end = 0, distance = 0;
+
 Page({
   data: {
     pageHeight: 1200,//scroll-view触底高度
     scrollHeight: 0,//最小scroll-view高度
     animationInfo: {},
     topPosition: 0,
-    scrollTopVal: 0,
-    oldHeight: 0,
-    newHeight: 0,
+    onScroll: 'onScroll',
     list: [
       // {
       //   sendDate: '',
@@ -55,12 +54,6 @@ Page({
     // })
 
   },
-  // onReady() {
-  //   var that = this
-
-
-
-  // },
   onShow() {
     var animation = dd.createAnimation({
       duration: 1000,
@@ -80,13 +73,14 @@ Page({
     this.setData({
       'loadingState': true
     })
+    flg = false;
     http.request({
       url: "baby/remindNewsList",
       method: 'post',
       data: JSON.stringify({
         param: {},
         page: page,
-        size: 100,
+        size: 30,
       }),
       success: (res) => {
         res = res.reverse();
@@ -101,12 +95,6 @@ Page({
               len2++;
             }
           }
-
-          // let h = 2060;
-          // that.setData({
-          //   'pageHeight': h
-          // })
-
           if (len == 0) {
             that.setData({
               'noDataState': true,
@@ -134,30 +122,57 @@ Page({
           'loadingState': false
         });
         var listHeight = 0;
+        //滚动到固定位置
         if (page == 2) {
           setTimeout(function() {
             dd.createSelectorQuery().select('#listcon').boundingClientRect().exec((rect) => {
-              listHeight = rect[0].height
+              listHeight = rect[0].height;
+              newHeight = rect[0].height;
               that.setData({
-                pageHeight: listHeight - 1,
+                pageHeight: listHeight - 200,
                 topPosition: listHeight - 1
               });
               dd.pageScrollTo({
-                scrollTop: that.data.pageHeight
+                scrollTop: that.data.topPosition
               })
-              flg = true
             });
           }, 200)
+
+        } else {
+          dd.createSelectorQuery().select('#listcon').boundingClientRect().exec((rect) => {
+            oldHeight = newHeight;
+            newHeight = rect[0].height
+            console.log(newHeight + "-" + oldHeight)
+            that.setData({
+              topPosition: newHeight - oldHeight -1
+            });
+            dd.pageScrollTo({
+              scrollTop: newHeight - oldHeight
+            })
+          });
+
         }
       },
       fail: function(res) {
         dd.alert({ content: JSON.stringify(res), buttonText: '好的' });
+      },
+      complete: function(res) {
+        flg = true;
       }
     })
   },
 
-
-  toSignIn(e) {// 签到
+  //滑动结束
+  touchEnd(e) {
+    end = e.changedTouches[0].pageY;
+    //console.log('scrollHeight:' + scrollHeight + ",end:" + end)
+    //到顶部分页刷新
+    if (end <= scrollHeight - 80) {
+      this.onRequest()
+    }
+  },
+  // 签到
+  toSignIn(e) {
     let that = this;
     let inx = e.currentTarget.dataset.index;
     http.request({
@@ -180,10 +195,6 @@ Page({
     });
   },
   toApplyDate(e) {//去申请改期
-
-    // this.setData({
-    //   topPosition: htop
-    // })
     dd.navigateTo({
       url: '../apply-changeDate/apply-changeDate?examinationId=' + e.target.dataset.val,
     });

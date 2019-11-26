@@ -21,7 +21,7 @@
     "defaultTitle": "宝宝健康体检",
     "backgroundColor": "#F5F5F9",
     "pullRefresh": false,
-    "allowsBounceVertical": "YES"
+    "allowsBounceVertical": "NO"
   },
   "debug": true
 }
