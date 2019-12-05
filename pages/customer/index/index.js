@@ -3,7 +3,7 @@ import { showText } from '/app.js';
 import { config } from '/app.js';
 let http = new HTTP(), page = 1;
 var _my$getSystemInfoSync = my.getSystemInfoSync(), windowHeight = _my$getSystemInfoSync.windowHeight;
-var scrollHeight = windowHeight - 140;
+var scrollHeight = windowHeight-70;
 var flg = false, newHeight = 0, oldHeight = 0, i = 0, start = 0, end = 0,  flag=true;
 
 Page({
@@ -12,7 +12,6 @@ Page({
     scrollHeight: 0,//最小scroll-view高度
     animationInfo: {},
     topPosition: 0,
-    onScroll: 'onScroll',
     loadingState: false,
     list: [
       // {
@@ -101,7 +100,7 @@ Page({
               listHeight = rect[0].height;
               newHeight = rect[0].height;
               that.setData({
-                pageHeight: listHeight - 100,
+                pageHeight: listHeight ,
                 topPosition: listHeight - 1
               });
               if (flag) {
@@ -147,7 +146,7 @@ Page({
     end = e.changedTouches[0].pageY;
     //console.log(JSON.stringify(e.changedTouches[0])+'scrollHeight:' + scrollHeight + ",end:" + end+",start="+start)
     //到顶部分页刷新     
-    if (end <= scrollHeight + 80 & end - start > 0) {
+    if (end <= scrollHeight & end - start > 0) {
       this.onRequest();
     }
     flag=true
