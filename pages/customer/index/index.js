@@ -3,8 +3,8 @@ import { showText } from '/app.js';
 import { config } from '/app.js';
 let http = new HTTP(), page = 1;
 var _my$getSystemInfoSync = my.getSystemInfoSync(), windowHeight = _my$getSystemInfoSync.windowHeight;
-var scrollHeight = windowHeight-70;
-var flg = false, newHeight = 0, oldHeight = 0, i = 0, start = 0, end = 0,  flag=true;
+var scrollHeight = windowHeight - 70;
+var flg = false, newHeight = 0, oldHeight = 0, i = 0, start = 0, end = 0, flag = true;
 
 Page({
   data: {
@@ -28,7 +28,7 @@ Page({
 
       // }
     ],
-  
+
   },
   onLoad(query) {
     page = 1;
@@ -100,7 +100,7 @@ Page({
               listHeight = rect[0].height;
               newHeight = rect[0].height;
               that.setData({
-                pageHeight: listHeight ,
+                pageHeight: listHeight,
                 topPosition: listHeight - 1
               });
               if (flag) {
@@ -144,15 +144,21 @@ Page({
   //滑动结束
   touchEnd(e) {
     end = e.changedTouches[0].pageY;
-    //console.log(JSON.stringify(e.changedTouches[0])+'scrollHeight:' + scrollHeight + ",end:" + end+",start="+start)
-    //到顶部分页刷新     
-    if (end <= scrollHeight & end - start > 0) {
-      this.onRequest();
-    }
-    flag=true
+    var topVal = 0;
+    console.log(JSON.stringify(e.changedTouches[0]) + 'scrollHeight:' + scrollHeight + ",end:" + end + ",start=" + start)
+    dd.createSelectorQuery().select('#listcon').boundingClientRect().exec((rect) => {
+      topVal = rect[0].top
+      //到顶部分页刷新
+      if (topVal >= -scrollHeight & end - start > 0) {
+        this.onRequest();
+      }
+      flag = true
+    })
+         
+
   },
   touchStart(e) {
-    flag=false
+    flag = false
     start = e.changedTouches[0].pageY;
     // console.log(JSON.stringify(e.changedTouches[0]))
   },
