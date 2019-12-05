@@ -1,5 +1,6 @@
 page {
-  padding-bottom: 130rpx;
+  padding: 0 0 130rpx;
+  box-sizing: border-box;
 }
 
 .page {
