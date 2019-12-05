@@ -32,7 +32,7 @@
       </view>
       <view class="popover-inner ">
         <block a:for="{{popList}}">
-          <view class="popover-item" data-value="{{item.value}}" onTap="onPopClick">
+          <view class="popover-item {{ item.value === dingTimes ? 'on' : '' }}" data-value="{{item.value}}" onTap="onPopClick">
             <text>{{item.title}}</text>
           </view>
         </block>

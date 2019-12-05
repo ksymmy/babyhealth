@@ -125,9 +125,10 @@ page {
   position: relative;
 }
 
-.am-tabs .am-tabs-scroll-right,.am-tabs .am-tabs-scroll-left {
+.am-tabs .am-tabs-scroll-right, .am-tabs .am-tabs-scroll-left {
   width: 0;
 }
+
 view .am-tabs-content-wrap {
   width: 100vw!important;
   background-color: transparent;
@@ -254,10 +255,9 @@ view .am-tabs-content-wrap {
 }
 
 .popover-box .popover-inner .popover-item {
-  min-width: 80px;
+  min-width: 100px;
   max-width: 170px;
   height: 39px;
-  margin: 0px 10px;
   line-height: 39px;
   white-space: nowrap;
   overflow: hidden;
@@ -265,6 +265,21 @@ view .am-tabs-content-wrap {
   text-align: center;
   color: #333;
   font-size: 24rpx;
+}
+
+.popover-box .popover-inner .popover-item:first-child {
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+}
+
+.popover-box .popover-inner .popover-item:last-child {
+  border-bottom-left-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+}
+
+.popover-box .popover-inner .popover-item.on {
+  background-color: #108ee9;
+  color: #fff;
 }
 
 .popover-box .popover-inner .popover-item:not(:last-child) {

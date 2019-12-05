@@ -24,9 +24,12 @@ Component({
     popShow: false,
     showMask: true,
     popList: [],
-    flag: false
+
+    flag: false,
+
   },
   data: {
+    dingTimes: -1,
     windowWidth: windowWidth,
     tabWidth: 0.2,
     autoplay: false,
@@ -96,6 +99,9 @@ Component({
     },
     onPopClick: function onPopClick(e) {
       var chooseNum = e.target.dataset.value
+      this.setData({
+        dingTimes: chooseNum
+      })
       if (this.props.onPopClick) {
         this.props.onPopClick({
           chooseNum: chooseNum
