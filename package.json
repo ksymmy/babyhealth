@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ksymmy/babyhealth#readme",
   "dependencies": {
+    "dingtalk-jsapi": "^2.8.11",
     "lodash": "^4.17.15",
     "mini-antui": "^0.4.34"
   }

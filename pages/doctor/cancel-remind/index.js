@@ -76,7 +76,7 @@ Page({
           http.request({
             url: "baby/cancelremind?examid=" + examid,
             method: "POST",
-            success: function(res) {
+            success: function (res) {
               dd.showToast({
                 content: '取消逾期成功',
                 mask: true,
@@ -115,14 +115,16 @@ Page({
           users,
           corpId: dd.corpId,
           text: text_template,
-          success: function(res) {
+          success: function (res) {
             http.request({
               url: "baby/updatedingtimes?examIds=" + examid_list,
               method: "POST",
-              // data:JSON.stringify({
-              //   examIds:examid_list
-              // }),
-              success: function(res) {
+              success: function (res) {
+                //返回到逾期列表并刷新
+                let pages = getCurrentPages();
+                let prevPage = pages[pages.length - 2];
+                prevPage.onSearch();
+                dd.navigateBack();
               }
             })
           }
