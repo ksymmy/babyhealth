@@ -4,7 +4,7 @@ import { config } from '/app.js';
 let http = new HTTP(), page = 1;
 var _my$getSystemInfoSync = my.getSystemInfoSync(), windowHeight = _my$getSystemInfoSync.windowHeight;
 var scrollHeight = windowHeight - 140;
-var flg = false, newHeight = 0, oldHeight = 0, i = 0,start = 0, end = 0;
+var flg = false, newHeight = 0, oldHeight = 0, i = 0, start = 0, end = 0,  flag=true;
 
 Page({
   data: {
@@ -29,7 +29,7 @@ Page({
 
       // }
     ],
-
+  
   },
   onLoad(query) {
     page = 1;
@@ -104,9 +104,12 @@ Page({
                 pageHeight: listHeight - 100,
                 topPosition: listHeight - 1
               });
-              dd.pageScrollTo({
-                scrollTop: that.data.topPosition
-              })
+              if (flag) {
+                dd.pageScrollTo({
+                  scrollTop: that.data.topPosition
+                })
+              }
+
             });
           }, 200)
         } else {
@@ -114,12 +117,15 @@ Page({
             oldHeight = newHeight;
             newHeight = rect[0].height
             //console.log(newHeight + "-" + oldHeight)
-            that.setData({
-              topPosition: newHeight - oldHeight - 1
-            });
-            dd.pageScrollTo({
-              scrollTop: newHeight - oldHeight
-            })
+            if (flag) {
+              that.setData({
+                topPosition: newHeight - oldHeight - 1
+              });
+
+              dd.pageScrollTo({
+                scrollTop: newHeight - oldHeight
+              })
+            }
           });
 
         }
@@ -140,15 +146,16 @@ Page({
   touchEnd(e) {
     end = e.changedTouches[0].pageY;
     //console.log(JSON.stringify(e.changedTouches[0])+'scrollHeight:' + scrollHeight + ",end:" + end+",start="+start)
-    //到顶部分页刷新
- 
-    if (end <= scrollHeight + 80 & end - start > 0  ) {
+    //到顶部分页刷新     
+    if (end <= scrollHeight + 80 & end - start > 0) {
       this.onRequest();
     }
+    flag=true
   },
-  touchStart(e){
+  touchStart(e) {
+    flag=false
     start = e.changedTouches[0].pageY;
-   // console.log(JSON.stringify(e.changedTouches[0]))
+    // console.log(JSON.stringify(e.changedTouches[0]))
   },
   // 签到
   toSignIn(e) {
