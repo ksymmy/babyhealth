@@ -4,7 +4,7 @@ page {
 }
 
 .page {
-  padding: 20rpx;
+  padding:0 20rpx;
 }
 
 .list-con {
