@@ -4,7 +4,7 @@ import { config } from '/app.js';
 let http = new HTTP(), page = 1;
 var _my$getSystemInfoSync = my.getSystemInfoSync(), windowHeight = _my$getSystemInfoSync.windowHeight;
 var scrollHeight = windowHeight - 140;
-var flg = false, newHeight = 0, oldHeight = 0, i = 0,   end = 0, oldEnd = 0;
+var flg = false, newHeight = 0, oldHeight = 0, i = 0,start = 0, end = 0;
 
 Page({
   data: {
@@ -139,12 +139,16 @@ Page({
   //滑动结束
   touchEnd(e) {
     end = e.changedTouches[0].pageY;
-    //console.log('scrollHeight:' + scrollHeight + ",end:" + end)
+    //console.log(JSON.stringify(e.changedTouches[0])+'scrollHeight:' + scrollHeight + ",end:" + end+",start="+start)
     //到顶部分页刷新
-    if (end <= scrollHeight - 80&&oldEnd<end) {
+ 
+    if (end <= scrollHeight + 80 & end - start > 0  ) {
       this.onRequest();
-      oldEnd=end;
     }
+  },
+  touchStart(e){
+    start = e.changedTouches[0].pageY;
+   // console.log(JSON.stringify(e.changedTouches[0]))
   },
   // 签到
   toSignIn(e) {
