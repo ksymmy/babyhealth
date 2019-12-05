@@ -145,7 +145,7 @@ Page({
   touchEnd(e) {
     end = e.changedTouches[0].pageY;
     var topVal = 0;
-    console.log(JSON.stringify(e.changedTouches[0]) + 'scrollHeight:' + scrollHeight + ",end:" + end + ",start=" + start)
+    //console.log(JSON.stringify(e.changedTouches[0]) + 'scrollHeight:' + scrollHeight + ",end:" + end + ",start=" + start)
     dd.createSelectorQuery().select('#listcon').boundingClientRect().exec((rect) => {
       topVal = rect[0].top
       //到顶部分页刷新
