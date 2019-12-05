@@ -4,7 +4,7 @@ import { config } from '/app.js';
 let http = new HTTP(), page = 1;
 var _my$getSystemInfoSync = my.getSystemInfoSync(), windowHeight = _my$getSystemInfoSync.windowHeight;
 var scrollHeight = windowHeight - 140;
-var flg = false, newHeight = 0, oldHeight = 0, i = 0, start = 0, end = 0, distance = 0;
+var flg = false, newHeight = 0, oldHeight = 0, i = 0,   end = 0, oldEnd = 0;
 
 Page({
   data: {
@@ -141,8 +141,9 @@ Page({
     end = e.changedTouches[0].pageY;
     //console.log('scrollHeight:' + scrollHeight + ",end:" + end)
     //到顶部分页刷新
-    if (end <= scrollHeight - 80) {
-      this.onRequest()
+    if (end <= scrollHeight - 80&&oldEnd<end) {
+      this.onRequest();
+      oldEnd=end;
     }
   },
   // 签到

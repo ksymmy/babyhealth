@@ -16,11 +16,11 @@ Page({
   onLoad(e) {
     // 页面加载
     this.setData({
-        fatherName: e.fatherName,
-        fatherMobile: e.fatherMobile,
-        motherName: e.motherName,
-        motherMobile: e.motherMobile,
-        address: e.address,
+      fatherName: e.fatherName,
+      fatherMobile: e.fatherMobile,
+      motherName: e.motherName,
+      motherMobile: e.motherMobile,
+      address: e.address,
     })
   },
   formSubmit: function(e) {
@@ -63,6 +63,13 @@ Page({
         duration: 2000
       });
       return;
+    } else if (!this.phoneCheck(e.detail.value.fatherMobile)) {
+      dd.showToast({
+        type: 'warn',
+        content: '请核对父亲手机号格式',
+        duration: 2000
+      });
+      return;
     }
     if (e.detail.value.motherName == '') {
       dd.showToast({
@@ -79,8 +86,15 @@ Page({
         duration: 2000
       });
       return;
+    } else if (!this.phoneCheck(e.detail.value.motherMobile)) {
+      dd.showToast({
+        type: 'warn',
+        content: '请核对母亲手机号格式',
+        duration: 2000
+      });
+      return;
     }
-    console.log(e.detail.value);
+
     http.request({
       url: "baby/addBabyInfo",
       method: 'post',
@@ -100,6 +114,14 @@ Page({
       }
     })
   },
+  phoneCheck(tel) {
+    var strTemp = /^1[3|4|5|6|7|8|9][0-9]{9}$/;
+    if (strTemp.test(tel)) {
+      return true;
+    }
+    return false;
+  },
+
   //系统当前日期
   curDate() {
     var dateObj = new Date(); //表示当前系统时间的Date对象
@@ -111,25 +133,25 @@ Page({
   changeState(e) {
     // let newEle = this.data.signInList[]
     if (this.data.birthday == '') {
-       dd.showToast({
-          type: 'warn',
-          content: '请选择出生日期',
-          duration: 1000
-        });
-        return;
+      dd.showToast({
+        type: 'warn',
+        content: '请选择出生日期',
+        duration: 1000
+      });
+      return;
     }
     let oldFlag = this.data.signInList[e.currentTarget.dataset.index];
     let newFlag = oldFlag == 1 ? 0 : 1
     if (this.data.canSignInList[e.currentTarget.dataset.index] == 1) {
-       this.setData({
-          ['signInList['+e.currentTarget.dataset.index+']']: newFlag
-        })
+      this.setData({
+        ['signInList[' + e.currentTarget.dataset.index + ']']: newFlag
+      })
     } else {
-        dd.showToast({
-          type: 'warn',
-          content: '未到体检日期',
-          duration: 1000
-        });
+      dd.showToast({
+        type: 'warn',
+        content: '未到体检日期',
+        duration: 1000
+      });
     }
   },
   datePicker() {
@@ -142,14 +164,14 @@ Page({
             birthday: res.date
           })
 
-           http.request({
+          http.request({
             url: "baby/generateExaminationDates?birthday=" + res.date,
             method: 'GET',
             success: (res1) => {
               this.setData({
-                  signInList: res1.signInList,
-                  canSignInList: res1.signInList,
-                  examinationDateList: res1.examinationDateList
+                signInList: res1.signInList,
+                canSignInList: res1.signInList,
+                examinationDateList: res1.examinationDateList
               })
             },
             fail: function(res) {
