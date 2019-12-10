@@ -1,5 +1,5 @@
 <view class="page" key="container">
-  <scroll-view scroll-y='true' style="width:100%;height:{{scrollHeight}}px;"  scroll-top="{{topPosition}}">
+  <scroll-view scroll-y='true' style="width:100%;height:{{scrollHeight}}px;" scroll-top="{{topPosition}}">
     <view a:if="{{loadingState}}" class="loading">
       <image mode="scaleToFill" src="/image/loading.gif"/>
     </view>
@@ -32,10 +32,12 @@
               </block>
               <block a:if={{ item.signIn == 0 }}>
                 <!-- 未签到 -->
-                <block a:if={{ item.newsType == 0 && item.isDelay == 0 }}>
-                  <!-- 提前提醒，可以改期 -->
-                  <button size="default" type="default" style="border-right: 1px solid #d5d5d5;" onTap="toApplyDate" data-val="{{ item.examinationId}}">申请改期</button>
-                  <button data-index="{{index}}" size="default" type="primary" plain="true" onTap="toConfirm" data-val="{{ item.examinationId }}" a:if="{{ item.confirm != 1}}">可以</button>
+                <block a:if={{ item.newsType == 0}}>
+                  <block a:if={{ item.isDelay == 0 }}>
+                    <!-- 提前提醒，可以改期 -->
+                    <button size="default" type="default" style="border-right: 1px solid #d5d5d5;" onTap="toApplyDate" data-val="{{ item.examinationId}}">申请改期</button>
+                    <button data-index="{{index}}" size="default" type="primary" plain="true" onTap="toConfirm" data-val="{{ item.examinationId }}" a:if="{{ item.confirm != 1}}">可以</button>
+                  </block>
                 </block>
                 <block a:else>
                   <!-- 体检当天或逾期提醒，可以签到 -->
