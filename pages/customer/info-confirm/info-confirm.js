@@ -4,10 +4,6 @@ Page({
     person: 0//父母选择序号，0为父亲，1为母亲
   },
 
-  onLoad(query) {
-    // 页面加载
-  },
-
   changeChoice: function(e) {
     this.setData({
       'person': e.target.dataset.key
