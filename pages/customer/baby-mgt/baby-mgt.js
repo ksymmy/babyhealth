@@ -6,11 +6,13 @@ Page({
     parentName: '', // 当前人姓名
     parentMobile: '', // 当前人手机号
     address: '',
+    type: '',//0-从宝宝管理按钮进入，1-从家长关系查询页面中进入
     babyList: []
   },
-  onLoad(query) {
-
-
+  onLoad(e) {
+    this.setData({
+      type: e.type,
+    })
   },
   changeBaby(event) {//baby信息切换
     this.setData({
@@ -91,6 +93,22 @@ Page({
           address: res.address,
           babyList: res.babyList
         })
+        //console.log('list===' + JSON.stringify(res.babyList))
+        //判断来源并提示
+        if (this.data.type == '1' && res.babyList.length != 0) {
+          var babyName = '';
+          for (var num = 0; num < res.babyList.length; num++) {
+            //console.log('baby===' + JSON.stringify(res.babyList[num]))
+            babyName = babyName + res.babyList[num].name + '，'
+            //console.log('babyName===' + babyName)
+          }
+          babyName = babyName.substring(0, babyName.length - 1);
+          dd.showToast({
+            type: 'warn',
+            content: '已关联数据：系统已经查询到“' + babyName +'”健康体检信息，已为您自动关联。',
+            duration: 3000
+          });
+        }
       },
       fail: function(res) {
         // dd.alert({ content: JSON.stringify(res), buttonText: '好的' });

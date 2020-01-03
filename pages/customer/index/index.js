@@ -181,9 +181,25 @@ Page({
     })
   },
   toBBMgt() {//去宝宝管理页面
-    dd.navigateTo({
-      url: '../baby-mgt/baby-mgt'
-    });
+    //先判断家长是否进行了手机号绑定
+    http.request({
+      url: "vaildMobile",
+      method: 'GET',
+      success: (res) => {
+        if (res == "ok") {
+          dd.navigateTo({
+            url: '../baby-mgt/baby-mgt'
+          });
+        } else {
+            dd.navigateTo({
+            url: '../info-confirm/info-confirm'
+          });
+        }
+      },
+      fail: function(res) {
+
+      }
+    })
   },
   toApplyDate(e) {//去申请改期
     dd.navigateTo({
