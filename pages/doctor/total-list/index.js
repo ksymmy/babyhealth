@@ -280,7 +280,7 @@ Page({
             value: baby.textTime
           },
           {
-            name: '父亲',
+            name: '爸爸',
             value: res.fatherName,
             extraText: res.fatherMobile,
             state: {
@@ -288,7 +288,7 @@ Page({
             }
           },
           {
-            name: '母亲',
+            name: '妈妈',
             value: res.motherName,
             extraText: res.motherMobile,
             state: {

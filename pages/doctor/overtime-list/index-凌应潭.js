@@ -239,7 +239,7 @@ Page({
             }
           },
           {
-            name: '母亲',
+            name: '妈妈',
             value: res.motherName,
             extraText: res.motherMobile,
             state: {

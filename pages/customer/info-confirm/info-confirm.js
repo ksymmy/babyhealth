@@ -2,7 +2,7 @@ import { HTTP } from '/util/http.js';
 let http = new HTTP();
 Page({
   data: {
-    person: 0//父母选择序号，0为父亲，1为母亲
+    person: 0//父母选择序号，0为爸爸，1为妈妈
   },
 
   changeChoice: function(e) {

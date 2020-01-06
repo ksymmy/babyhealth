@@ -38,7 +38,7 @@
             <text class="desc">如果月龄未体检，请点击月龄取消</text>
           </view>
           <view class="item">
-            <view class="label">父亲姓名</view>
+            <view class="label">爸爸姓名</view>
             <view class="text">
               <input maxlength="10" placeholder="" name="fatherName" value="{{fatherName}}" /></view>
           </view>
@@ -48,7 +48,7 @@
               <input maxlength="11" placeholder="" name="fatherMobile" value="{{fatherMobile}}"/></view>
           </view>
           <view class="item">
-            <view class="label">母亲姓名</view>
+            <view class="label">妈妈姓名</view>
             <view class="text">
               <input maxlength="10" placeholder="" name="motherName" value="{{motherName}}"/></view>
           </view>

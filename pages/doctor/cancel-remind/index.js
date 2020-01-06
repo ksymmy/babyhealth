@@ -36,7 +36,7 @@ Page({
           value: '14天'
         },
         {
-          name: '父亲',
+          name: '爸爸',
           value: '袁一明',
           extraText: '15300001699',
           state: {
@@ -45,7 +45,7 @@ Page({
         }
         ,
         {
-          name: '父亲',
+          name: '爸爸',
           value: '爱美丽',
           extraText: '15300001692',
           state: {

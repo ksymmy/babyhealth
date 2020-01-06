@@ -30,8 +30,8 @@
             <my-list a:if="{{babyList[curBaby].sex==2}}" label="性别" text="女"/>
             <my-list a:else label="性别" text="男"/>
             <my-list label="出生日期" text="{{babyList[curBaby].birthday}}"/>
-            <my-list label="父亲" text="{{(babyList[curBaby].fatherName==''||babyList[curBaby].fatherName==null ? '' : babyList[curBaby].fatherName) + (babyList[curBaby].fatherMobile==''||babyList[curBaby].fatherMobile==null ? '' : '    '+babyList[curBaby].fatherMobile)}}"/>
-            <my-list label="母亲" text="{{(babyList[curBaby].motherName==''||babyList[curBaby].motherName==null ? '' : babyList[curBaby].motherName) + (babyList[curBaby].motherMobile==''||babyList[curBaby].motherMobile==null ? '' : '    '+babyList[curBaby].motherMobile)}}"/>
+            <my-list label="爸爸" text="{{(babyList[curBaby].fatherName==''||babyList[curBaby].fatherName==null ? '' : babyList[curBaby].fatherName) + (babyList[curBaby].fatherMobile==''||babyList[curBaby].fatherMobile==null ? '' : '    '+babyList[curBaby].fatherMobile)}}"/>
+            <my-list label="妈妈" text="{{(babyList[curBaby].motherName==''||babyList[curBaby].motherName==null ? '' : babyList[curBaby].motherName) + (babyList[curBaby].motherMobile==''||babyList[curBaby].motherMobile==null ? '' : '    '+babyList[curBaby].motherMobile)}}"/>
         </view>
     </view>
     <view class="btnView" a:if="{{babyList.length!=0}}">

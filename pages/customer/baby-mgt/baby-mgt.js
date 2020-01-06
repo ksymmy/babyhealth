@@ -7,7 +7,8 @@ Page({
     parentMobile: '', // 当前人手机号
     address: '',
     type: '',//0-从宝宝管理按钮进入，1-从家长关系查询页面中进入
-    babyList: []
+    babyList: [],
+    sex: 0//家长性别0-爸爸，1-妈妈
   },
   onLoad(e) {
     this.setData({
@@ -22,23 +23,34 @@ Page({
   },
   addBaby(e) {
     var targetData = e.target.dataset.val;
-    var fatherName = targetData && targetData.fatherName ? targetData.fatherName : '';
-    var fatherMobile = targetData && targetData.fatherMobile ? targetData.fatherMobile : '';
-    var motherName = targetData && targetData.motherName ? targetData.motherName : '';
-    var motherMobile = targetData && targetData.motherMobile ? targetData.motherMobile : '';
+    // var fatherName = targetData && targetData.fatherName ? targetData.fatherName : '';
+    // var fatherMobile = targetData && targetData.fatherMobile ? targetData.fatherMobile : '';
+    // var motherName = targetData && targetData.motherName ? targetData.motherName : '';
+    // var motherMobile = targetData && targetData.motherMobile ? targetData.motherMobile : '';
     var address = targetData && targetData.address ? targetData.address : '';
-    if (fatherName == null || fatherName == '') {
+    var fatherName = '';
+    var fatherMobile = '';
+    var motherName = '';
+    var motherMobile = '';
+    if (this.data.sex == 0) {
       fatherName = this.data.parentName;
-    }
-    if (fatherMobile == null || fatherMobile == '') {
       fatherMobile = this.data.parentMobile;
-    }
-    if (motherName == null || motherName == '') {
+    } else {
       motherName = this.data.parentName;
-    }
-    if (motherMobile == null || motherMobile == '') {
       motherMobile = this.data.parentMobile;
     }
+    // if (fatherName == null || fatherName == '') {
+    //   fatherName = this.data.parentName;
+    // }
+    // if (fatherMobile == null || fatherMobile == '') {
+    //   fatherMobile = this.data.parentMobile;
+    // }
+    // if (motherName == null || motherName == '') {
+    //   motherName = this.data.parentName;
+    // }
+    // if (motherMobile == null || motherMobile == '') {
+    //   motherMobile = this.data.parentMobile;
+    // }
     var url = '../baby-info/baby-info?fatherName=' + fatherName + '&fatherMobile=' + fatherMobile + '&motherName=' + motherName + '&motherMobile=' + motherMobile + "&address=" + address;
     dd.navigateTo({
       url: url
@@ -87,6 +99,7 @@ Page({
       url: "baby/myBabys",
       method: 'post',
       success: (res) => {
+        this.setData({sex: res.sex})
         that.setData({
           parentName: res.parentName,
           parentMobile: res.parentMobile,
