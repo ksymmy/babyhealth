@@ -102,38 +102,48 @@ Page({
     dd.showLoading({
       content: '请稍后...'
     })
-    var text_template = "家长你好！宝宝已经到" + examinationtype + "月龄了，请您明天带上宝宝，到社区服务中心进行" + examinationtype + "月龄体检，祝宝宝健康成长。"
+
     http.request({
-      url: `baby/getuseridbbymobile?mobile=` + mobile,
-      success: res => {
-        if (res) {
-          users.push(res);
-        }
-        var examid_list = []
-        examid_list.push(examid)
-        ding.createDing({
-          users,
-          corpId: dd.corpId,
-          text: text_template,
-          success: function (res) {
-            http.request({
-              url: "baby/updatedingtimes?examIds=" + examid_list,
-              method: "POST",
+      url: 'hospitalnoticetemp/get',
+      success: temp => {
+        let inx = examinationType;
+        inx = inx ? inx : 'all';
+        var text_template = temp['et' + inx];
+        http.request({
+          url: `baby/getuseridbbymobile?mobile=` + mobile,
+          success: res => {
+            if (res) {
+              users.push(res);
+            }
+            var examid_list = []
+            examid_list.push(examid)
+            ding.createDing({
+              users,
+              corpId: dd.corpId,
+              text: text_template,
               success: function (res) {
-                //返回到逾期列表并刷新
-                let pages = getCurrentPages();
-                let prevPage = pages[pages.length - 2];
-                prevPage.onSearch();
-                dd.navigateBack();
+                http.request({
+                  url: "baby/updatedingtimes?examIds=" + examid_list,
+                  method: "POST",
+                  success: function (res) {
+                    //返回到逾期列表并刷新
+                    let pages = getCurrentPages();
+                    let prevPage = pages[pages.length - 2];
+                    prevPage.onSearch();
+                    dd.navigateBack();
+                  }
+                })
               }
-            })
+            });
+          },
+          complete: res => {
+            dd.hideLoading();
           }
-        });
+        })
       },
-      complete: res => {
+      complete: data => {
         dd.hideLoading();
       }
-    })
+    });
   }
-
 })

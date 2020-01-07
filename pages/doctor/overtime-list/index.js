@@ -86,7 +86,7 @@ Page({
     ]
     http.request({
       url: 'baby/overduelistcount?overdueStart=' + that.data.timeperiod.overdueStart + '&overdueEnd=' + that.data.timeperiod.overdueEnd,
-      success: function(res) {
+      success: function (res) {
         let new_data = []
         let old_data = referer_list
         let item_index = 0
@@ -124,7 +124,7 @@ Page({
       }
     })
   },
-  onSearch: function() {
+  onSearch: function () {
     page = 1;
     this.setData({
       ['listData.noDataState']: false,
@@ -145,7 +145,7 @@ Page({
       data: JSON.stringify({
         param: this.data.timeperiod, page: page, size: config.pageSize
       }),
-      success: function(res) {
+      success: function (res) {
         let len = res.length;
         if (page == 1) {
           if (len < config.pageSize) {
@@ -181,10 +181,10 @@ Page({
           ['listData.list']: data
         });
       },
-      fail: function(res) {
+      fail: function (res) {
         dd.alert({ content: JSON.stringify(res), buttonText: '好的' });
       },
-      complete: function(res) {
+      complete: function (res) {
         that.setData({
           'listData.loadingState': false,
           'flag': true
@@ -201,32 +201,41 @@ Page({
     http.request({
       url: 'baby/overdueDingUserid?overdueStart=' + that.data.timeperiod.overdueStart + '&overdueEnd=' + that.data.timeperiod.overdueEnd
         + '&dingTimes=' + that.data.timeperiod.dingTimes + '&age=' + that.data.timeperiod.examinationType,
-      success: function(res) {
-        dd.hideLoading();
+      success: function (res) {
+
         let users = res['users'];
-        var text_template
-        if (that.data.timeperiod.examinationType) {
-          text_template = "家长你好！宝宝已经到" + that.data.timeperiod.examinationType + "月龄了，请您明天带上宝宝，到社区服务中心进行" + that.data.timeperiod.examinationType + "月龄体检，祝宝宝健康成长。"
-        } else {
-          text_template = "家长你好！宝宝已经到体检时间啦，请您明天带上宝宝，到社区服务中心进行体检，祝宝宝健康成长。"
-        }
-        var examid_list = res['examIds']
-        ding.createDing({
-          users,
-          corpId: dd.corpId,
-          text: text_template,
-          success: function(res) {
-            http.request({
-              url: "baby/updatedingtimes?examIds=" + examid_list,
-              method: "post",
-              success: function(res) {
-                that.onSearch();
+        var text_template;
+        http.request({
+          url: 'hospitalnoticetemp/get',
+          success: temp => {
+            let inx = that.data.timeperiod.examinationType;
+            inx = inx ? inx : 'all';
+            text_template = temp['et' + inx];
+            var examid_list = res['examIds']
+            ding.createDing({
+              users,
+              corpId: dd.corpId,
+              text: text_template,
+              success: function (res) {
+                http.request({
+                  url: "baby/updatedingtimes?examIds=" + examid_list,
+                  method: "post",
+                  success: function (res) {
+                    that.onSearch();
+                  }
+                })
+              },
+              fail: function (res) {
               }
-            })
+            });
           },
-          fail: function(res) {
+          complete: data => {
+            dd.hideLoading();
           }
         });
+      },
+      complete: data => {
+        dd.hideLoading();
       }
     })
   },
