@@ -106,7 +106,7 @@ Page({
     http.request({
       url: 'hospitalnoticetemp/get',
       success: temp => {
-        let inx = examinationType;
+        let inx = examinationtype;
         inx = inx ? inx : 'all';
         var text_template = temp['et' + inx];
         http.request({
