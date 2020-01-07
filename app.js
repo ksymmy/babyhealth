@@ -45,7 +45,7 @@ App({
   },
   globalData: {
     hasLogin: false,
-    handerUrl: "http://baby.vaiwan.com/",
+    handerUrl: "http://w.jqsoft.net:8989/",
   }
 
 

@@ -1,0 +1,23 @@
+<view class="page">
+  <form onSubmit="formSubmit">
+    <view class="page-con">
+      <view class="label-name">我是宝宝的</view>
+      <view class="choice-list clearfix">
+        <view>
+          <view class="choice-panel {{ person==0? 'active' : '' }}" data-key="0" onTap="changeChoice">
+          爸爸
+          </view>
+        </view>
+        <view>
+          <view class="choice-panel {{ person==1? 'active' : '' }}" data-key="1" onTap="changeChoice">
+          妈妈
+          </view>
+        </view>
+      </view>
+      <view class="label-name">我的手机号</view>
+      <view class="input-box">
+        <input type="text" placeholder="请输入手机号" name="phone"/></view>
+      <button formType="submit" type="primary" class="search-btn">查询</button>
+    </view>
+  </form>
+</view>

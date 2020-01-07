@@ -51,7 +51,7 @@ Page({
     if (e.detail.value.fatherName == '') {
       dd.showToast({
         type: 'warn',
-        content: '父亲姓名不能为空',
+        content: '爸爸姓名不能为空',
         duration: 2000
       });
       return;
@@ -59,14 +59,14 @@ Page({
     if (e.detail.value.fatherMobile == '') {
       dd.showToast({
         type: 'warn',
-        content: '父亲联系电话不能为空',
+        content: '爸爸联系电话不能为空',
         duration: 2000
       });
       return;
     } else if (!this.phoneCheck(e.detail.value.fatherMobile)) {
       dd.showToast({
         type: 'warn',
-        content: '请核对父亲手机号格式',
+        content: '请核对爸爸手机号格式',
         duration: 2000
       });
       return;
@@ -74,7 +74,7 @@ Page({
     if (e.detail.value.motherName == '') {
       dd.showToast({
         type: 'warn',
-        content: '母亲姓名不能为空',
+        content: '妈妈姓名不能为空',
         duration: 2000
       });
       return;
@@ -82,14 +82,14 @@ Page({
     if (e.detail.value.motherMobile == '') {
       dd.showToast({
         type: 'warn',
-        content: '母亲手机号不能为空',
+        content: '妈妈手机号不能为空',
         duration: 2000
       });
       return;
     } else if (!this.phoneCheck(e.detail.value.motherMobile)) {
       dd.showToast({
         type: 'warn',
-        content: '请核对母亲手机号格式',
+        content: '请核对妈妈手机号格式',
         duration: 2000
       });
       return;

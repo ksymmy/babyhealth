@@ -1,6 +1,6 @@
 {
   "pages": [
-   
+    
      "pages/index/index",
     "pages/customer/index/index",
     "pages/doctor/cancel-remind/index",
@@ -13,9 +13,10 @@
     "pages/doctor/cancel-manage/index",
     "pages/customer/baby-info/baby-info",
     "pages/customer/apply-changeDate/apply-changeDate",
-     "pages/customer/baby-mgt/baby-mgt",
+    "pages/customer/baby-mgt/baby-mgt",
     "pages/customer/signed-in/signed-in",
-    "pages/customer/sign-in/sign-in"
+    "pages/customer/sign-in/sign-in",
+      "pages/customer/info-confirm/info-confirm"
   ],
   "window": {
     "defaultTitle": "宝宝健康体检",
