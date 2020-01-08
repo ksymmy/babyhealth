@@ -19,6 +19,12 @@ Page({
     //   dateText: this.curDate()+' '+this.weekDay(new Date())//系统默认日期
     // })
   },
+  bindTextAreaBlur: function(e) {
+    //console.log(e.detail.value)
+    this.setData({
+      delayReason: e.detail.value
+    })
+  },
   //系统当前日期
   curDate(){
     var dateObj = new Date(); //表示当前系统时间的Date对象

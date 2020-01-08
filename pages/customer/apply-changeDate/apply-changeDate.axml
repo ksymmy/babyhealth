@@ -21,7 +21,7 @@
         </view>
     </view>
     <view class="panel" style="border-bottom:15rpx solid #f2f4f5">
-       <textarea auto-height placeholder="点击输入改期原因…" />
+       <textarea auto-height onBlur="bindTextAreaBlur" placeholder="点击输入改期原因…" />
     </view>
     <view class="btnView">
       <button type="primary" class="save" onTap="saveApply">确定改期</button>
